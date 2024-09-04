@@ -381,6 +381,22 @@ from the generated code:
 | `additive_` | Geometry which is drawn by adding its color to the previously drawn geometry covering the same pixels.  Equivalent to a "linear dodge" layer in some graphics applications.                      |
 | `blended_`  | Geometry which is drawn by mixing its color with the previously drawn geometry covering the same pixels.  May draw in the wrong order when mixed with `additive_` or other `blended_` materials. |
 
+### Vertex Color
+
+OBJ exporters may include vertex color as part of their vertex definitions:
+
+```obj
+v x y z red green blue opacity
+```
+
+For example:
+
+```obj
+v 18.3, -17.9, 22.1, 0.3, 0.9, 1, 0.24
+```
+
+Where these are not supplied, red, green, blue and opacity are assumed to be 1.
+
 ## Building
 
 Execute `make` to build the executable, which will be placed at
