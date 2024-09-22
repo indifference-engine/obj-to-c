@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "write_pass.h"
 #include "faces.h"
 #include "indices.h"
