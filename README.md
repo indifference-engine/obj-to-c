@@ -4,367 +4,118 @@ Command-line utility to convert OBJ files to C files.
 
 ## Usage
 
-`obj_to_c MESH_MACRO_NAME MATERIAL_PREFIX_ path/to/first/include.h path/to/second/include.h < path/to/input.obj > path/to/output.c`
+`obj_to_c object_prefix_ material_prefix_ OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME OPAQUE_PASS_DATA_MACRO_NAME OPAQUE_DRAW_CALL_DATA_MACRO_NAME CUTOUT_PASS_DATA_MACRO_NAME CUTOUT_DRAW_CALL_DATA_MACRO_NAME OPAQUE_CUTOUT_PASS_MACRO_NAME OPAQUE_DRAW_CALL_MACRO_NAME CUTOUT_DRAW_CALL_MACRO_NAME ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME ADDITIVE_PASS_DATA_MACRO_NAME ADDITIVE_DRAW_CALL_DATA_MACRO_NAME BLENDED_PASS_DATA_MACRO_NAME BLENDED_DRAW_CALL_DATA_MACRO_NAME ADDITIVE_BLENDED_PASS_MACRO_NAME ADDITIVE_DRAW_CALL_MACRO_NAME BLENDED_DRAW_CALL_MACRO_NAME path/to/first/include.h path/to/second/include.h < path/to/input.obj > path/to/output.c`
 
 This will output a file similar to the following:
 
 ```c
 #include "path/to/first/include.h"
 #include "path/to/second/include.h"
-
-MESH_MACRO_NAME
+OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME(
+  object_prefix_first_object,
+  { -1.000000f, -1.000000f, 1.534695f, 1.000000f, -1.000000f, 1.534695f, 1.000000f, 1.000000f, 1.534695f, -1.000000f, 1.000000f, 1.534695f, -1.935218f, 0.000000f, 1.534695f, 1.000000f, 1.000000f, 0.767347f, -1.935218f, 0.000000f, 0.000000f, -1.000000f, -1.000000f, 0.000000f, -1.000000f, 1.000000f, 1.084368f, -1.000000f, 1.000000f, 0.000000f, -1.000000f, 2.170819f, 1.084368f, -1.000000f, 2.170819f, 0.000000f, 1.000000f, -1.000000f, 0.000000f, 1.000000f, 1.000000f, 0.000000f, 1.000000f, 2.170819f, 0.000000f, 1.000000f, 2.170819f, 0.767347f, 1.855214f, 1.000000f, 0.767347f, 1.855214f, 1.000000f, 0.000000f, 1.855214f, 2.170819f, 0.000000f, 1.855214f, 2.170819f, 0.767347f, 1.855214f, 2.764472f, 0.213226f, 1.855214f, 2.764472f, 0.571406f, 1.000000f, 2.764472f, 0.213226f, 1.000000f, 2.764472f, 0.571406f }
+)
+OPAQUE_PASS_DATA_MACRO_NAME
 (
-  object_name,
-
-  // Number of vertices for opaque and cutout geometry.
-  4,
-
-  // Location of each vertex for opaque and cutout geometry on the X axis.
-  { -2.4f, 8.2f, 1.3f, 4.5f },
-
-  // Location of each vertex for opaque and cutout geometry on the Y axis.
-  { 3.1f, -2.9f, 8.5f, 6.4f },
-
-  // Location of each vertex for opaque and cutout geometry on the Z axis.
-  { 2.6f, 3.1f, -1.1f, 0.5f },
-
-  // Number of opaque render passes.
-  2,
-
-  // Materials of opaque render passes.
-  { MATERIAL_PREFIX_a, MATERIAL_PREFIX_b },
-
-  // Number of triangles per opaque render pass.
-  { 2, 3 },
-
-  // A vertex index for each vertex of each triangle of each opaque render pass.
+  object_prefix_first_object,
+  { 1.000000f, 1.000000f, 0.000000f, 0.000000f },
+  { 1.000000f, 0.000000f, 0.145098f, 1.000000f },
+  { 1.000000f, 0.035294f, 1.000000f, 0.121569f }
+)
+OPAQUE_DRAW_CALL_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  material_prefix_opaque_b,
+  { 0.267882f, 0.528240f, 0.528240f, 0.267882f, 0.146137f },
+  { 0.397042f, 0.397042f, 0.136684f, 0.136684f, 0.266863f },
+  { 0, 1, 2, 0, 2, 3, 0, 3, 4 },
+  { 0, 1, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 1, 2, 0, 2, 3, 0, 3, 4 }
+)
+OPAQUE_DRAW_CALL_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  material_prefix_opaque_a,
+  { 0.628132f, 0.528240f, 0.528240f, 0.000220f, 0.121966f, 0.267882f, 0.146137f, 0.528240f, 0.267882f, 0.267882f, 0.225066f, 0.880881f, 0.880881f, 0.728465f, 0.728465f, 0.728025f, 0.728025f, 0.121966f, 0.000220f, 0.601830f, 0.862188f, 0.862188f, 0.601830f, 0.958162f, 0.958162f, 0.805746f, 0.805746f, 0.728465f, 0.728465f, 0.839796f, 0.839796f, 0.728465f, 0.728465f, 0.839796f, 0.839796f, 0.728465f, 0.728465f, 0.728465f, 0.828357f, 0.802850f, 0.756222f },
+  { 0.136684f, 0.136684f, 0.397042f, 0.403326f, 0.533505f, 0.397042f, 0.266863f, 0.036791f, 0.078061f, 0.136684f, 0.096641f, 0.241715f, 0.100553f, 0.100553f, 0.241715f, 0.397042f, 0.136684f, 0.000220f, 0.130399f, 0.972666f, 0.972666f, 0.831505f, 0.872774f, 0.100113f, 0.000220f, 0.000220f, 0.100113f, 0.027978f, 0.074605f, 0.342048f, 0.242155f, 0.242155f, 0.342048f, 0.389116f, 0.342488f, 0.342488f, 0.389116f, 0.466837f, 0.466837f, 0.389556f, 0.389556f },
+  { 5, 2, 1, 6, 7, 0, 6, 0, 4, 5, 8, 3, 5, 3, 2, 4, 3, 8, 9, 8, 10, 9, 10, 11, 1, 12, 5, 12, 13, 5, 8, 9, 6, 6, 4, 8, 14, 11, 10, 14, 10, 15, 16, 17, 18, 16, 18, 19, 19, 18, 20, 19, 20, 21, 5, 13, 17, 5, 17, 16, 22, 23, 21, 22, 21, 20, 14, 15, 23, 14, 23, 22 },
+  { 0, 0, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 },
+  { 0, 1, 2, 3, 4, 5, 3, 5, 6, 7, 8, 9, 7, 9, 1, 6, 9, 10, 11, 12, 13, 11, 13, 14, 2, 15, 0, 15, 16, 0, 10, 17, 18, 18, 6, 10, 19, 20, 21, 19, 21, 22, 23, 24, 25, 23, 25, 26, 26, 25, 27, 26, 27, 28, 29, 30, 31, 29, 31, 32, 33, 34, 35, 33, 35, 36, 37, 38, 39, 37, 39, 40 }
+)
+CUTOUT_PASS_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  { 1.000000f, 0.000000f },
+  { 1.000000f, 1.000000f },
+  { 1.000000f, 0.121569f },
+  { 1.000000f, 1.000000f }
+)
+CUTOUT_DRAW_CALL_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  material_prefix_cutout_a,
+  { 0.976769f, 0.713161f, 0.713161f, 0.976769f, 0.601830f, 0.601830f, 0.601830f, 0.713161f },
+  { 0.597267f, 0.597267f, 0.749682f, 0.749682f, 0.597267f, 0.749682f, 0.831064f, 0.831064f },
+  { 8, 5, 15, 8, 15, 10, 15, 5, 16, 15, 16, 19, 15, 19, 21, 15, 21, 23 },
+  { 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0 },
+  { 0, 1, 2, 0, 2, 3, 2, 1, 4, 2, 4, 5, 2, 5, 6, 2, 6, 7 }
+)
+OPAQUE_CUTOUT_PASS_MACRO_NAME
+(
+  object_prefix_first_object,
   {
-    0, 1, 2,
-    2, 3, 0,
-
-    2, 1, 0,
-    3, 1, 0,
-    2, 0, 1,
-  },
-
-  // The number of texture widths between the left of the texture and the point
-  // to sample for each vertex of each triangle of each opaque render pass.
+    OPAQUE_DRAW_CALL_MACRO_NAME(object_prefix_first_object, material_prefix_opaque_b)
+    OPAQUE_DRAW_CALL_MACRO_NAME(object_prefix_first_object, material_prefix_opaque_a)
+    CUTOUT_DRAW_CALL_MACRO_NAME(object_prefix_first_object, material_prefix_cutout_a)
+  }
+)
+ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(
+  object_prefix_first_object,
+  { -1.000000f, -1.000000f, 0.000000f, -1.935218f, 0.000000f, 0.000000f, -1.000000f, 1.000000f, 0.000000f, 1.000000f, 1.000000f, 0.000000f, 1.000000f, -1.000000f, 0.000000f, -1.000000f, 2.170819f, 0.000000f, 1.000000f, 2.170819f, 0.000000f, 1.855214f, 2.170819f, 0.000000f, 1.855214f, 1.000000f, 0.000000f, 1.000000f, 2.764472f, 0.213226f, 1.855214f, 2.764472f, 0.213226f, 1.000000f, -1.000000f, 1.534695f, -1.000000f, -1.000000f, 1.534695f }
+)
+ADDITIVE_PASS_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  { 1.000000f, 1.000000f },
+  { 1.000000f, 0.000000f },
+  { 1.000000f, 0.035294f }
+)
+ADDITIVE_DRAW_CALL_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  material_prefix_additive_a,
+  { 0.267882f, 0.528240f, 0.528240f, 0.267882f },
+  { 0.596826f, 0.596826f, 0.397042f, 0.397042f },
+  { 0, 4, 11, 0, 11, 12 },
+  { 0, 0, 1, 0, 1, 0 },
+  { 0, 1, 2, 0, 2, 3 }
+)
+BLENDED_PASS_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  { 1.000000f, 0.000000f },
+  { 1.000000f, 0.145098f },
+  { 1.000000f, 1.000000f },
+  { 1.000000f, 1.000000f }
+)
+BLENDED_DRAW_CALL_DATA_MACRO_NAME
+(
+  object_prefix_first_object,
+  material_prefix_blended_a,
+  { 0.601390f, 0.529562f, 0.362000f, 0.259635f, 0.499025f, 0.221859f, 0.119494f, 0.075722f, 0.215863f, 0.043992f, 0.000220f },
+  { 0.760390f, 0.597267f, 0.658025f, 0.897415f, 0.999780f, 0.598100f, 0.837489f, 0.939854f, 0.999780f, 0.805204f, 0.907569f },
+  { 0, 1, 2, 0, 2, 3, 0, 3, 4, 3, 2, 5, 3, 5, 6, 3, 6, 7, 3, 7, 8, 7, 6, 9, 7, 9, 10 },
+  { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  { 0, 1, 2, 0, 2, 3, 0, 3, 4, 3, 2, 5, 3, 5, 6, 3, 6, 7, 3, 7, 8, 7, 6, 9, 7, 9, 10 }
+)
+ADDITIVE_BLENDED_PASS_MACRO_NAME
+(
+  object_prefix_first_object,
   {
-    0.2f, 1.4f, 0.3f,
-    -0.4f, 10.0f, 4.2f,
-
-    4.1f, 6.2f, 3.0f,
-    -4.8f, -5.5f, 7.9f,
-    12.3f, -4.1f, 0.1f,
-  },
-
-  // The number of texture heights between the top of the texture and the point
-  // to sample for each vertex of each triangle of each opaque render pass.
-  {
-    6.3f, -1.1f, 0.9f,
-    12.4f, 8.3f, 2.1f,
-
-    6.8f, -5.6f, -3.0f,
-    0.0f, -7.3f, 12.7f,
-    -14.8f, 12.3f, 18.4f,
-  },
-
-  // The intensity of the red channel for each vertex of each triangle of each
-  // opaque render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the green channel for each vertex of each triangle of each
-  // opaque render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the blue channel for each vertex of each triangle of each
-  // opaque render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // Number of cutout render passes.
-  2,
-
-  // Materials of cutout render passes.
-  { MATERIAL_PREFIX_a, MATERIAL_PREFIX_b },
-
-  // Number of triangles per cutout render pass.
-  { 2, 3 },
-
-  // A vertex index for each vertex of each triangle of each cutout render pass.
-  {
-    0, 1, 2,
-    2, 3, 0,
-
-    2, 1, 0,
-    3, 1, 0,
-    2, 0, 1,
-  },
-
-  // The number of texture widths between the left of the texture and the point
-  // to sample for each vertex of each triangle of each cutout render pass.
-  {
-    0.2f, 1.4f, 0.3f,
-    -0.4f, 10.0f, 4.2f,
-
-    4.1f, 6.2f, 3.0f,
-    -4.8f, -5.5f, 7.9f,
-    12.3f, -4.1f, 0.1f,
-  },
-
-  // The number of texture heights between the top of the texture and the point
-  // to sample for each vertex of each triangle of each cutout render pass.
-  {
-    6.3f, -1.1f, 0.9f,
-    12.4f, 8.3f, 2.1f,
-
-    6.8f, -5.6f, -3.0f,
-    0.0f, -7.3f, 12.7f,
-    -14.8f, 12.3f, 18.4f,
-  },
-
-  // The intensity of the red channel for each vertex of each triangle of each
-  // cutout render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the green channel for each vertex of each triangle of each
-  // cutout render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the blue channel for each vertex of each triangle of each
-  // cutout render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The opacity of each vertex of each triangle of each cutout render pass, as
-  // a unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // Number of vertices for additive and blended geometry.
-  4,
-
-  // Location of each vertex for additive and blended geometry on the X axis.
-  { -2.4f, 8.2f, 1.3f, 4.5f },
-
-  // Location of each vertex for additive and blended geometry on the Y axis.
-  { 3.1f, -2.9f, 8.5f, 6.4f },
-
-  // Location of each vertex for additive and blended geometry on the Z axis.
-  { 2.6f, 3.1f, -1.1f, 0.5f },
-
-  // Number of additive render passes.
-  2,
-
-  // Materials of additive render passes.
-  { MATERIAL_PREFIX_a, MATERIAL_PREFIX_b },
-
-  // Number of triangles per additive render pass.
-  { 2, 3 },
-
-  // A vertex index for each vertex of each triangle of each additive render
-  // pass.
-  {
-    0, 1, 2,
-    2, 3, 0,
-
-    2, 1, 0,
-    3, 1, 0,
-    2, 0, 1,
-  },
-
-  // The number of texture widths between the left of the texture and the point
-  // to sample for each vertex of each triangle of each additive render pass.
-  {
-    0.2f, 1.4f, 0.3f,
-    -0.4f, 10.0f, 4.2f,
-
-    4.1f, 6.2f, 3.0f,
-    -4.8f, -5.5f, 7.9f,
-    12.3f, -4.1f, 0.1f,
-  },
-
-  // The number of texture heights between the top of the texture and the point
-  // to sample for each vertex of each triangle of each additive render pass.
-  {
-    6.3f, -1.1f, 0.9f,
-    12.4f, 8.3f, 2.1f,
-
-    6.8f, -5.6f, -3.0f,
-    0.0f, -7.3f, 12.7f,
-    -14.8f, 12.3f, 18.4f,
-  },
-
-  // The intensity of the red channel for each vertex of each triangle of each
-  // additive render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the green channel for each vertex of each triangle of each
-  // additive render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the blue channel for each vertex of each triangle of each
-  // additive render pass, as a non-linearized unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // Number of blended render passes.
-  2,
-
-  // Materials of blended render passes.
-  { MATERIAL_PREFIX_a, MATERIAL_PREFIX_b },
-
-  // Number of triangles per blended render pass.
-  { 2, 3 },
-
-  // A vertex index for each vertex of each triangle of each blended render pass.
-  {
-    0, 1, 2,
-    2, 3, 0,
-
-    2, 1, 0,
-    3, 1, 0,
-    2, 0, 1,
-  },
-
-  // The number of texture widths between the left of the texture and the point
-  // to sample for each vertex of each triangle of each blended render pass.
-  {
-    0.2f, 1.4f, 0.3f,
-    -0.4f, 10.0f, 4.2f,
-
-    4.1f, 6.2f, 3.0f,
-    -4.8f, -5.5f, 7.9f,
-    12.3f, -4.1f, 0.1f,
-  },
-
-  // The number of texture heights between the top of the texture and the point
-  // to sample for each vertex of each triangle of each blended render pass.
-  {
-    6.3f, -1.1f, 0.9f,
-    12.4f, 8.3f, 2.1f,
-
-    6.8f, -5.6f, -3.0f,
-    0.0f, -7.3f, 12.7f,
-    -14.8f, 12.3f, 18.4f,
-  },
-
-  // The intensity of the red channel for each vertex of each triangle of each
-  // blended render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the green channel for each vertex of each triangle of each
-  // blended render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The intensity of the blue channel for each vertex of each triangle of each
-  // blended render pass, as a non-linearized unit interval, not pre-multiplied
-  // by opacity.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-
-  // The opacity of each vertex of each triangle of each blended render pass, as
-  // a unit interval.
-  {
-    0.3f, 0.1f, 0.9f,
-    0.4f, 0.3f, 0.1f,
-
-    0.8f, 0.6f, 0.0f,
-    0.0f, 0.3f, 0.7f,
-    0.8f, 0.3f, 1.0f,
-  },
-);
+    ADDITIVE_DRAW_CALL_MACRO_NAME(object_prefix_first_object, material_prefix_additive_a)
+    BLENDED_DRAW_CALL_MACRO_NAME(object_prefix_first_object, material_prefix_blended_a)
+  }
+)
 ```
 
 ### Material Mapping
@@ -410,7 +161,8 @@ Execute `make` to build the executable, which will be placed at
 
 ## Tests
 
-Execute `make test` to run the test suite.
+Execute `make test` to run the test suite.  Note that this only covers the
+command-line executable, NOT any bundled add-ons.
 
 ## Blender OBJ Add-On
 
