@@ -543,7 +543,7 @@ void write_pass(
 
   if (number_of_unique_xyz)
   {
-    write_or_throw(stdout, "%s({ ", pass_macro_data_name);
+    write_or_throw(stdout, "%s(\n  %s%s,\n  { ", pass_macro_data_name, object_prefix, object_name);
 
     for (size_t unique_xyz = 0; unique_xyz < number_of_unique_xyz; unique_xyz++)
     {
@@ -555,7 +555,7 @@ void write_pass(
       write_or_throw(stdout, "%ff, %ff, %ff", unique_x[unique_xyz], unique_y[unique_xyz], unique_z[unique_xyz]);
     }
 
-    write_or_throw(stdout, " })\n", pass_macro_data_name);
+    write_or_throw(stdout, " }\n)\n", pass_macro_data_name);
 
     if (number_of_first_matched_materials)
     {
