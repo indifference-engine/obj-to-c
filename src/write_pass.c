@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
 #include "write_pass.h"
 #include "faces.h"
 #include "indices.h"
@@ -12,6 +11,12 @@
 #include "command_line_arguments.h"
 #include "object_name.h"
 #include "material_name.h"
+
+// Clang on Ubuntu unfortunately fails to declare this despite being instructed
+// to compile as C99.
+#ifndef SIZE_MAX
+#define SIZE_MAX ((size_t) - 1)
+#endif
 
 void write_pass(
     const char *const pass_macro_data_name,

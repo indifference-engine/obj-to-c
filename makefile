@@ -24,7 +24,7 @@ dist/obj_to_c: $(O_FILES)
 
 obj/%.o: src/%.c $(TOTAL_REBUILD_FILES)
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 test: $(addprefix tests/pass_markers/, $(TESTS))
 
