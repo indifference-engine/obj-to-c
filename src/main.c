@@ -12,6 +12,8 @@
 #include "end_object.h"
 #include "command_line_arguments.h"
 #include "write_or_throw.h"
+#include "reopen_as_read_only_binary_or_throw.h"
+#include "reopen_as_write_only_binary_or_throw.h"
 
 int main(const int argc, const char *const *const argv)
 {
@@ -62,6 +64,9 @@ int main(const int argc, const char *const *const argv)
   blended_draw_call_macro_name = argv[18];
   include_paths = argv + 19;
   number_of_include_paths = argc - 19;
+
+  reopen_as_read_only_binary_or_throw(stdin);
+  reopen_as_write_only_binary_or_throw(stdout);
 
   for (size_t include_path = 0; include_path < number_of_include_paths; include_path++)
   {
