@@ -7,7 +7,7 @@
 #include "faces.h"
 #include "command_line_arguments.h"
 
-void end_object()
+void end_object(void)
 {
   if (object_name != NULL)
   {

@@ -5,6 +5,6 @@
 /**
  * Handles a space character.
  */
-void space();
+void space(void);
 
 #endif

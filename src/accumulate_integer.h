@@ -7,6 +7,6 @@
  * not be expected.
  * @return The accumulated integer.
  */
-int accumulate_integer();
+int accumulate_integer(void);
 
 #endif

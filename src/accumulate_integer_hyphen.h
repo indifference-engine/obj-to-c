@@ -6,6 +6,6 @@
  * Appends a hyphen to the integer currently being accumulated.  Halts execution
  * should this not be expected.
  */
-void accumulate_integer_hyphen();
+void accumulate_integer_hyphen(void);
 
 #endif

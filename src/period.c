@@ -3,7 +3,7 @@
 #include "throw.h"
 #include "accumulate_float_period.h"
 
-void period()
+void period(void)
 {
   switch (state)
   {

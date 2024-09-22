@@ -6,6 +6,6 @@
  * Appends a minus to the float currently being accumulated.  Halts execution
  * should this not be expected.
  */
-void accumulate_float_hyphen();
+void accumulate_float_hyphen(void);
 
 #endif

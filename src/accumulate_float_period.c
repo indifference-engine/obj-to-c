@@ -4,7 +4,7 @@
 #include "malloc_or_throw.h"
 #include "realloc_or_throw.h"
 
-void accumulate_float_period()
+void accumulate_float_period(void)
 {
   if (accumulated_float_length)
   {

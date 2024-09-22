@@ -6,6 +6,6 @@
  * Validates the most recently parsed face, halting execution if it fails basic
  * correctness checks.
  */
-void validate_face();
+void validate_face(void);
 
 #endif

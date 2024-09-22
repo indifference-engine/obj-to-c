@@ -5,7 +5,7 @@
 #include "indices.h"
 #include "accumulate_integer.h"
 
-void forward_slash()
+void forward_slash(void)
 {
   switch (state)
   {

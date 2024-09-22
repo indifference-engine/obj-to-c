@@ -11,7 +11,7 @@
 #include "normalize.h"
 #include "subtract.h"
 
-void validate_face()
+void validate_face(void)
 {
   const size_t face_vertex_count = face_lengths[number_of_faces - 1];
 

@@ -3,7 +3,7 @@
 #include "accumulated_integer.h"
 #include "throw.h"
 
-int accumulate_integer()
+int accumulate_integer(void)
 {
   if (accumulated_integer_length)
   {

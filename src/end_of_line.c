@@ -9,7 +9,7 @@
 #include "accumulate_float.h"
 #include "accumulate_integer.h"
 
-void end_of_line()
+void end_of_line(void)
 {
   switch (state)
   {

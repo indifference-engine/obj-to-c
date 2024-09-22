@@ -5,6 +5,6 @@
 /**
  * Handles a forward slash character.
  */
-void forward_slash();
+void forward_slash(void);
 
 #endif

@@ -5,6 +5,6 @@
 /**
  * Handles a period character.
  */
-void period();
+void period(void);
 
 #endif

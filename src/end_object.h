@@ -5,6 +5,6 @@
 /**
  * Flushes the current object to the output and clears the list of faces.
  */
-void end_object();
+void end_object(void);
 
 #endif

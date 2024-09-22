@@ -5,6 +5,6 @@
 /**
  * Handles the end of the current line.
  */
-void end_of_line();
+void end_of_line(void);
 
 #endif

@@ -3,7 +3,7 @@
 #include "throw.h"
 #include "malloc_or_throw.h"
 
-void accumulate_float_hyphen()
+void accumulate_float_hyphen(void)
 {
   if (accumulated_float_length)
   {

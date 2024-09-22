@@ -8,7 +8,7 @@
 #include "accumulate_integer.h"
 #include "faces.h"
 
-void hyphen()
+void hyphen(void)
 {
   switch (state)
   {

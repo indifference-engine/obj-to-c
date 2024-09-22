@@ -5,6 +5,6 @@
 /**
  * Handles a hyphen character.
  */
-void hyphen();
+void hyphen(void);
 
 #endif

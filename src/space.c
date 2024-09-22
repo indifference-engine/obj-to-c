@@ -14,7 +14,7 @@
 #include "current_material.h"
 #include "materials.h"
 
-void space()
+void space(void)
 {
   switch (state)
   {

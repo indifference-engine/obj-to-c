@@ -3,7 +3,7 @@
 #include "accumulated_float.h"
 #include "throw.h"
 
-float accumulate_float()
+float accumulate_float(void)
 {
   if (accumulated_float_length)
   {

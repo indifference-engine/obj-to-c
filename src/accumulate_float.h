@@ -7,6 +7,6 @@
  * not be expected.
  * @return The accumulated float.
  */
-float accumulate_float();
+float accumulate_float(void);
 
 #endif
