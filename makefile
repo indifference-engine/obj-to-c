@@ -20,7 +20,7 @@ TESTS = $(patsubst tests/cases/%, %, $(shell bash -c "find tests/cases -mindepth
 
 dist/obj_to_c: $(O_FILES)
 	mkdir -p $(dir $@)
-	$(CC) $(CLAGS) -flto -lm $(O_FILES) -o $@
+	$(CC) $(CLAGS) -flto -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS $(O_FILES) -o $@
 
 obj/%.o: src/%.c $(TOTAL_REBUILD_FILES)
 	mkdir -p $(dir $@)
