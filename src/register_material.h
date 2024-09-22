@@ -5,6 +5,6 @@
 /**
  * Registers the current material name.
  */
-void register_material();
+void register_material(void);
 
 #endif

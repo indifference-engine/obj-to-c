@@ -7,7 +7,7 @@
 #include "malloc_or_throw.h"
 #include "realloc_or_throw.h"
 
-void register_material()
+void register_material(void)
 {
   for (size_t index = 0; index < number_of_materials; index++)
   {
