@@ -172,7 +172,7 @@ support for vertex colors and material types.
 ### Installation
 
 - Download and install [Blender](https://www.blender.org/download/).  The plugin
-  was developed using version 3.6.5.  Other versions will likely work.
+  was developed using version 4.2.3.  Other versions will likely work.
 - Open Blender.
 - From the menu bar, select "Edit" > "Preferences".
 - A "Blender Preferences" window will open.

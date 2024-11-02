@@ -2,7 +2,7 @@ bl_info = {
     "name": "Indifference Engine OBJ",
     "author": "siliconspecter",
     "version": (0, 0, 0),
-    "blender": (3, 6, 5),
+    "blender": (4, 2, 3),
     "location": "File > Import-Export",
     "description": "Import-Export OBJ files from/to Indifference Engine",
     "category": "Import-Export",
@@ -23,7 +23,7 @@ from bpy_extras.io_utils import ExportHelper, ImportHelper
 
 
 def initialize_scene(context):
-    context.scene.render.engine = "BLENDER_EEVEE"
+    context.scene.render.engine = "BLENDER_EEVEE_NEXT"
     context.scene.eevee.taa_render_samples = 1
     context.scene.eevee.taa_samples = 1
     context.scene.view_settings.view_transform = "Standard"
