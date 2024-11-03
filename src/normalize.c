@@ -5,7 +5,7 @@ void normalize(const float vector[3], float normal[3])
 {
   const float vector_magnitude = magnitude(vector);
 
-  if (vector_magnitude < 0.01f)
+  if (vector_magnitude < 0.001f)
   {
     throw("Failed to normalize a vector as its magnitude is too small.");
   }
