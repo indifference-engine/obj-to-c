@@ -8,6 +8,8 @@
 #include "register_material.h"
 #include "accumulate_float.h"
 #include "accumulate_integer.h"
+#include "determine_object_type.h"
+#include "object_type.h"
 
 void end_of_line(void)
 {
@@ -21,6 +23,7 @@ void end_of_line(void)
     return;
 
   case STATE_O_NAME:
+    determine_object_type();
     state = STATE_INITIAL;
     return;
 
@@ -130,6 +133,32 @@ void end_of_line(void)
     validate_face();
     state = STATE_INITIAL;
     return;
+
+  case STATE_F_V:
+    if (object_type == OBJECT_TYPE_NAVIGATION)
+    {
+      int v = accumulate_integer();
+
+      if (v < 0)
+      {
+        v += number_of_vertices;
+
+        if (v < 0)
+        {
+          throw("Face references nonexistent vertex.");
+        }
+      }
+
+      if ((size_t)v >= number_of_vertices)
+      {
+        throw("Face references nonexistent vertex.");
+      }
+
+      index_v[number_of_indices - 1] = v;
+      state = STATE_F_SPACE;
+      return;
+    }
+    break;
 
   case STATE_F_VT:
   {

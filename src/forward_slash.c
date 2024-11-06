@@ -4,34 +4,37 @@
 #include "vertices.h"
 #include "indices.h"
 #include "accumulate_integer.h"
+#include "object_type.h"
 
 void forward_slash(void)
 {
   switch (state)
   {
   case STATE_F_V:
-  {
-    int v = accumulate_integer();
-
-    if (v < 0)
+    if (object_type == OBJECT_TYPE_GRAPHICAL)
     {
-      v += number_of_vertices;
+      int v = accumulate_integer();
 
       if (v < 0)
       {
+        v += number_of_vertices;
+
+        if (v < 0)
+        {
+          throw("Face references nonexistent vertex.");
+        }
+      }
+
+      if ((size_t)v >= number_of_vertices)
+      {
         throw("Face references nonexistent vertex.");
       }
-    }
 
-    if ((size_t)v >= number_of_vertices)
-    {
-      throw("Face references nonexistent vertex.");
+      index_v[number_of_indices - 1] = v;
+      state = STATE_F_V_SLASH;
+      return;
     }
-
-    index_v[number_of_indices - 1] = v;
-    state = STATE_F_V_SLASH;
-    return;
-  }
+    break;
   }
 
   throw("Unexpected forward slash in state %d.", state);

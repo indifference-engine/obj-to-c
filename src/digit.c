@@ -5,6 +5,7 @@
 #include "accumulate_integer_digit.h"
 #include "indices.h"
 #include "faces.h"
+#include "object_type.h"
 
 void digit(const int digit)
 {
@@ -95,13 +96,23 @@ void digit(const int digit)
     if (number_of_indices)
     {
       index_v = realloc(index_v, sizeof(size_t) * (number_of_indices + 1));
-      index_vt = realloc(index_vt, sizeof(size_t) * (number_of_indices + 1));
+
+      if (object_type == OBJECT_TYPE_GRAPHICAL)
+      {
+        index_vt = realloc(index_vt, sizeof(size_t) * (number_of_indices + 1));
+      }
+
       number_of_indices++;
     }
     else
     {
       index_v = malloc(sizeof(size_t));
-      index_vt = malloc(sizeof(size_t));
+
+      if (object_type == OBJECT_TYPE_GRAPHICAL)
+      {
+        index_vt = malloc(sizeof(size_t));
+      }
+
       number_of_indices = 1;
     }
 

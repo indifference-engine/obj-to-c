@@ -10,9 +10,14 @@
 extern const char *object_prefix;
 
 /**
- * A prefix applied to any material names.
+ * A prefix applied to any non-navigation material names.
  */
 extern const char *material_prefix;
+
+/**
+ * A prefix applied to any navigation material names.
+ */
+extern const char *navigation_material_prefix;
 
 /**
  * The name of a macro which declares data for an opaque/cutout pass (XYZ) (e.g.
@@ -113,6 +118,18 @@ extern const char *additive_draw_call_macro_name;
  * object_name, material_name)).
  */
 extern const char *blended_draw_call_macro_name;
+
+/**
+ * The name of a macro which declares a navigation mesh (a material type per
+ * face, a vertex count per face, an index offset per face, a location per
+ * vertex per face, a surface normal per face, an exit normal per edge per face,
+ * an up normal per vertex per face, a number of neighbors per edge per face, an
+ * edge index offset per face, a neighbor index offset per edge per face,
+ * a face index per neighbor per edge per face) (e.g. MACRO(object_name,
+ * { MATERIAL_NAME }, { 3 }, { 0 }, { 1.0f, 2.0f, 3.0f }, { 0.0f, 1.0f, 0.0 },
+ * { -1.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 2 }, { 0 }, { 0 }, { 1, 2 })).
+ */
+extern const char *navigation_macro_name;
 
 /**
  * The include paths to emit.

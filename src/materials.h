@@ -25,6 +25,11 @@
 #define MATERIAL_TYPE_BLENDED 3
 
 /**
+ * The material is a navigation mesh surface type and cannot be rendered.
+ */
+#define MATERIAL_TYPE_NAVIGATION 4
+
+/**
  * The types of the materials found.
  */
 extern int *material_types;

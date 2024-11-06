@@ -13,6 +13,8 @@
 #include "register_material.h"
 #include "current_material.h"
 #include "materials.h"
+#include "determine_object_type.h"
+#include "object_type.h"
 
 void space(void)
 {
@@ -38,6 +40,7 @@ void space(void)
     return;
 
   case STATE_O_NAME:
+    determine_object_type();
     state = STATE_O_NAME_SPACE;
     return;
 
@@ -200,6 +203,26 @@ void space(void)
   case STATE_F:
     if (number_of_materials)
     {
+      switch (object_type)
+      {
+      case OBJECT_TYPE_NONE:
+        throw("No object for face.");
+
+      case OBJECT_TYPE_GRAPHICAL:
+        if (material_types[current_material] == MATERIAL_TYPE_NAVIGATION)
+        {
+          throw("Cannot apply navigation materials to non-navigation objects.");
+        }
+        break;
+
+      case OBJECT_TYPE_NAVIGATION:
+        if (material_types[current_material] != MATERIAL_TYPE_NAVIGATION)
+        {
+          throw("Cannot apply navigation materials to non-navigation objects.");
+        }
+        break;
+      }
+
       if (number_of_faces)
       {
         face_materials = realloc(face_materials, sizeof(size_t) * (number_of_faces + 1));
@@ -227,6 +250,32 @@ void space(void)
 
   case STATE_F_SPACE:
     return;
+
+  case STATE_F_V:
+    if (object_type == OBJECT_TYPE_NAVIGATION)
+    {
+      int v = accumulate_integer();
+
+      if (v < 0)
+      {
+        v += number_of_vertices;
+
+        if (v < 0)
+        {
+          throw("Face references nonexistent vertex.");
+        }
+      }
+
+      if ((size_t)v >= number_of_vertices)
+      {
+        throw("Face references nonexistent vertex.");
+      }
+
+      index_v[number_of_indices - 1] = v;
+      state = STATE_F_SPACE;
+      return;
+    }
+    break;
 
   case STATE_F_VT:
   {

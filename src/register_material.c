@@ -39,6 +39,10 @@ void register_material(void)
   {
     material_type = MATERIAL_TYPE_BLENDED;
   }
+  else if (material_name_length > 11 && strncmp("navigation_", material_name, 11) == 0)
+  {
+    material_type = MATERIAL_TYPE_NAVIGATION;
+  }
   else
   {
     throw("Unable to determine type of material \"%s\".", material_name);
