@@ -559,7 +559,7 @@ void write_pass(
 
     if (number_of_first_matched_materials)
     {
-      write_or_throw(stdout, "%s\n(\n  %s%s,\n  { ", first_material_type_pass_data_macro_name, object_prefix, object_name);
+      write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s(", first_material_type_pass_data_macro_name, object_prefix, object_name, red_list_macro_name);
 
       for (size_t unique_r = 0; unique_r < number_of_first_unique_rgb; unique_r++)
       {
@@ -568,10 +568,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", first_unique_r[unique_r]);
+        write_or_throw(stdout, "%s(%ff)", red_macro_name, first_unique_r[unique_r]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", green_list_macro_name);
 
       for (size_t unique_g = 0; unique_g < number_of_first_unique_rgb; unique_g++)
       {
@@ -580,10 +580,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", first_unique_g[unique_g]);
+        write_or_throw(stdout, "%s(%ff)", green_macro_name, first_unique_g[unique_g]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", blue_list_macro_name);
 
       for (size_t unique_b = 0; unique_b < number_of_first_unique_rgb; unique_b++)
       {
@@ -592,10 +592,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", first_unique_b[unique_b]);
+        write_or_throw(stdout, "%s(%ff)", blue_macro_name, first_unique_b[unique_b]);
       }
 
-      write_or_throw(stdout, " }\n)\n");
+      write_or_throw(stdout, ")\n)\n");
 
       for (size_t material = 0; material < number_of_first_matched_materials; material++)
       {
@@ -665,7 +665,7 @@ void write_pass(
 
     if (number_of_second_matched_materials)
     {
-      write_or_throw(stdout, "%s\n(\n  %s%s,\n  { ", second_material_type_pass_data_macro_name, object_prefix, object_name);
+      write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s(", second_material_type_pass_data_macro_name, object_prefix, object_name, red_list_macro_name);
 
       for (size_t unique_r = 0; unique_r < number_of_second_unique_rgbo; unique_r++)
       {
@@ -674,10 +674,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", second_unique_r[unique_r]);
+        write_or_throw(stdout, "%s(%ff)", red_macro_name, second_unique_r[unique_r]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", green_list_macro_name);
 
       for (size_t unique_g = 0; unique_g < number_of_second_unique_rgbo; unique_g++)
       {
@@ -686,10 +686,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", second_unique_g[unique_g]);
+        write_or_throw(stdout, "%s(%ff)", green_macro_name, second_unique_g[unique_g]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", blue_list_macro_name);
 
       for (size_t unique_b = 0; unique_b < number_of_second_unique_rgbo; unique_b++)
       {
@@ -698,10 +698,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", second_unique_b[unique_b]);
+        write_or_throw(stdout, "%s(%ff)", blue_macro_name, second_unique_b[unique_b]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", opacity_list_macro_name);
 
       for (size_t unique_o = 0; unique_o < number_of_second_unique_rgbo; unique_o++)
       {
@@ -710,10 +710,10 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", second_unique_o[unique_o]);
+        write_or_throw(stdout, "%s(%ff)", opacity_macro_name, second_unique_o[unique_o]);
       }
 
-      write_or_throw(stdout, " }\n)\n");
+      write_or_throw(stdout, ")\n)\n");
 
       for (size_t material = 0; material < number_of_second_matched_materials; material++)
       {

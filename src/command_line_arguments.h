@@ -147,6 +147,55 @@ extern const char *location_list_macro_name;
 extern const char *location_macro_name;
 
 /**
+ * The name of a macro which declares a list of red intensities (e.g.
+ * RED_LIST_MACRO_NAME(RED_MACRO_NAME(...), RED_MACRO_NAME(...), ...)).
+ */
+extern const char *red_list_macro_name;
+
+/**
+ * The name of a macro which declares a red intensity as a unit interval (e.g.
+ * RED_MACRO_NAME(0.92f)).
+ */
+extern const char *red_macro_name;
+
+/**
+ * The name of a macro which declares a list of green intensities (e.g.
+ * GREEN_LIST_MACRO_NAME(GREEN_MACRO_NAME(...), GREEN_MACRO_NAME(...), ...)).
+ */
+extern const char *green_list_macro_name;
+
+/**
+ * The name of a macro which declares a green intensity as a unit interval (e.g.
+ * GREEN_MACRO_NAME(0.92f)).
+ */
+extern const char *green_macro_name;
+
+/**
+ * The name of a macro which declares a list of blue intensities (e.g.
+ * BLUE_LIST_MACRO_NAME(BLUE_MACRO_NAME(...), BLUE_MACRO_NAME(...), ...)).
+ */
+extern const char *blue_list_macro_name;
+
+/**
+ * The name of a macro which declares a blue intensity as a unit interval (e.g.
+ * BLUE_MACRO_NAME(0.92f)).
+ */
+extern const char *blue_macro_name;
+
+/**
+ * The name of a macro which declares a list of opacities (e.g.
+ * OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...),
+ * ...)).
+ */
+extern const char *opacity_list_macro_name;
+
+/**
+ * The name of a macro which declares an opacity as a unit interval (e.g.
+ * OPACITY_MACRO_NAME(0.92f)).
+ */
+extern const char *opacity_macro_name;
+
+/**
  * The include paths to emit.
  */
 extern const char *const *include_paths;

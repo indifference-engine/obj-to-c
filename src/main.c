@@ -20,32 +20,42 @@ int main(const int argc, const char *const *const argv)
   (void)(argc);
   (void)(argv);
 
-  if (argc < 21)
+  if (argc < 31)
   {
-    throw("At least 22 arguments are required:\n",
-          "• A prefix applied to any object names.\n",
-          "• A prefix applied to any non-navigation material names.\n",
-          "• A prefix applied to any navigation material names.\n",
-          "• The name of a macro which declares data for an opaque/cutout pass (XYZ) (e.g. MACRO(object_name, { 1.0f, 2.0f, 3.0f })).\n"
-          "• The name of a macro which declares data for an opaque pass (R, G, B) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f })).\n"
-          "• The name of a macro which declares data for an opaque draw call (V, U, XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n"
-          "• The name of a macro which declares data for a cutout pass (R, G, B, O) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f }, { 1.0f })).\n"
-          "• The name of a macro which declares data for a cutout draw call (V, U XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n"
-          "• The name of a macro which declares an opaque/cutout pass (e.g. MACRO(object_name, { /* Draw calls. */ })).\n"
-          "• The name of a macro which declares an opaque draw call (e.g. MACRO(object_name, material_name)).\n"
-          "• The name of a macro which declares a cutout draw call (e.g. MACRO(object_name, material_name)).\n"
-          "• The name of a macro which declares data for an additive/blended pass (XYZ) (e.g. MACRO(object_name, { 1.0f, 2.0f, 3.0f })).\n"
-          "• The name of a macro which declares data for an additive pass (R, G, B) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f })).\n"
-          "• The name of a macro which declares data for an additive draw call (V, U, XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n"
-          "• The name of a macro which declares data for a blended pass (R, G, B, O) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f }, { 1.0f })).\n"
-          "• The name of a macro which declares data for a blended draw call (V, U XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n"
-          "• The name of a macro which declares an additive/blended pass (e.g. MACRO(object_name, { /* Draw calls. */ })).\n"
-          "• The name of a macro which declares an additive draw call (e.g. MACRO(object_name, material_name)).\n"
-          "• The name of a macro which declares a blended draw call (e.g. MACRO(object_name, material_name)).\n"
-          "• The name of a macro which declares a navigation mesh (a material type per face, a vertex count per face, an index offset per face, a location per vertex per face, a surface normal per face, an exit normal per edge per face, an up normal per vertex per face, a number of neighbors per edge per face, a neighbor index offset per edge per face, a face index per neighbor per edge per face) (e.g. MACRO(object_name, { MATERIAL_NAME }, { 3 }, { 0 }, { 1.0f, 2.0f, 3.0f }, { 0.0f, 1.0f, 0.0 }, { -1.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 2 }, { 0 }, { 1, 2 })).\n"
-          "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n"
-          "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. MACRO_NAME(1.23f, -3.25f, 94.24f)).\n"
-          "• Any number of include paths.\n");
+    throw(
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+        "At least 30 arguments are required:\n",
+        "• A prefix applied to any object names.\n",
+        "• A prefix applied to any non-navigation material names.\n",
+        "• A prefix applied to any navigation material names.\n",
+        "• The name of a macro which declares data for an opaque/cutout pass (XYZ) (e.g. MACRO(object_name, { 1.0f, 2.0f, 3.0f })).\n",
+        "• The name of a macro which declares data for an opaque pass (R, G, B) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f })).\n",
+        "• The name of a macro which declares data for an opaque draw call (V, U, XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n",
+        "• The name of a macro which declares data for a cutout pass (R, G, B, O) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f }, { 1.0f })).\n",
+        "• The name of a macro which declares data for a cutout draw call (V, U XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n",
+        "• The name of a macro which declares an opaque/cutout pass (e.g. MACRO(object_name, { /* Draw calls. */ })).\n",
+        "• The name of a macro which declares an opaque draw call (e.g. MACRO(object_name, material_name)).\n",
+        "• The name of a macro which declares a cutout draw call (e.g. MACRO(object_name, material_name)).\n",
+        "• The name of a macro which declares data for an additive/blended pass (XYZ) (e.g. MACRO(object_name, { 1.0f, 2.0f, 3.0f })).\n",
+        "• The name of a macro which declares data for an additive pass (R, G, B) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f })).\n",
+        "• The name of a macro which declares data for an additive draw call (V, U, XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n",
+        "• The name of a macro which declares data for a blended pass (R, G, B, O) (e.g. MACRO(object_name, { 1.0f }, { 1.0f }, { 1.0f }, { 1.0f })).\n",
+        "• The name of a macro which declares data for a blended draw call (V, U XYZ indices, RGB indices, VU indices) (e.g. MACRO(object_name, material_name, { 1.0f }, { 1.0f }, { 0, 1, 2 }, { 0, 1, 2 }, { 0, 1, 2 })).\n",
+        "• The name of a macro which declares an additive/blended pass (e.g. MACRO(object_name, { /* Draw calls. */ })).\n",
+        "• The name of a macro which declares an additive draw call (e.g. MACRO(object_name, material_name)).\n",
+        "• The name of a macro which declares a blended draw call (e.g. MACRO(object_name, material_name)).\n",
+        "• The name of a macro which declares a navigation mesh (a material type per face, a vertex count per face, an index offset per face, a location per vertex per face, a surface normal per face, an exit normal per edge per face, an up normal per vertex per face, a number of neighbors per edge per face, a neighbor index offset per edge per face, a face index per neighbor per edge per face) (e.g. MACRO(object_name, { MATERIAL_NAME }, { 3 }, { 0 }, { 1.0f, 2.0f, 3.0f }, { 0.0f, 1.0f, 0.0 }, { -1.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 2 }, { 0 }, { 1, 2 })).\n",
+        "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. MACRO_NAME(1.23f, -3.25f, 94.24f)).\n",
+        "• The name of a macro which declares a list of red intensities (e.g. RED_LIST_MACRO_NAME(RED_MACRO_NAME(...), RED_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a red intensity as a unit interval (e.g. RED_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of green intensities (e.g. GREEN_LIST_MACRO_NAME(GREEN_MACRO_NAME(...), GREEN_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a green intensity as a unit interval (e.g. GREEN_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of blue intensities (e.g. BLUE_LIST_MACRO_NAME(BLUE_MACRO_NAME(...), BLUE_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a blue intensity as a unit interval (e.g. BLUE_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of opacities (e.g. OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares an opacity as a unit interval (e.g. OPACITY_MACRO_NAME(0.92f)).\n",
+        "• Any number of include paths.\n");
   }
 
   object_prefix = argv[1];
@@ -70,8 +80,16 @@ int main(const int argc, const char *const *const argv)
   navigation_macro_name = argv[20];
   location_list_macro_name = argv[21];
   location_macro_name = argv[22];
-  include_paths = argv + 23;
-  number_of_include_paths = argc - 23;
+  red_list_macro_name = argv[23];
+  red_macro_name = argv[24];
+  green_list_macro_name = argv[25];
+  green_macro_name = argv[26];
+  blue_list_macro_name = argv[27];
+  blue_macro_name = argv[28];
+  opacity_list_macro_name = argv[29];
+  opacity_macro_name = argv[30];
+  include_paths = argv + 31;
+  number_of_include_paths = argc - 31;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);
