@@ -20,11 +20,11 @@ int main(const int argc, const char *const *const argv)
   (void)(argc);
   (void)(argv);
 
-  if (argc < 31)
+  if (argc < 35)
   {
     throw(
-        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
-        "At least 30 arguments are required:\n",
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+        "At least 34 arguments are required:\n",
         "• A prefix applied to any object names.\n",
         "• A prefix applied to any non-navigation material names.\n",
         "• A prefix applied to any navigation material names.\n",
@@ -55,6 +55,10 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a blue intensity as a unit interval (e.g. BLUE_MACRO_NAME(0.92f)).\n",
         "• The name of a macro which declares a list of opacities (e.g. OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares an opacity as a unit interval (e.g. OPACITY_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of V coordinates (e.g. V_LIST_MACRO_NAME(V_MACRO_NAME(...), V_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a V coordinate (e.g. V_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of U coordinates (e.g. U_LIST_MACRO_NAME(U_MACRO_NAME(...), U_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a U coordinate (e.g. U_MACRO_NAME(0.92f)).\n",
         "• Any number of include paths.\n");
   }
 
@@ -88,8 +92,12 @@ int main(const int argc, const char *const *const argv)
   blue_macro_name = argv[28];
   opacity_list_macro_name = argv[29];
   opacity_macro_name = argv[30];
-  include_paths = argv + 31;
-  number_of_include_paths = argc - 31;
+  v_list_macro_name = argv[31];
+  v_macro_name = argv[32];
+  u_list_macro_name = argv[33];
+  u_macro_name = argv[34];
+  include_paths = argv + 35;
+  number_of_include_paths = argc - 35;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

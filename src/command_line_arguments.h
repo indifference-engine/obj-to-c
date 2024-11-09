@@ -196,6 +196,28 @@ extern const char *opacity_list_macro_name;
 extern const char *opacity_macro_name;
 
 /**
+ * The name of a macro which declares a list of V coordinates (e.g.
+ * V_LIST_MACRO_NAME(V_MACRO_NAME(...), V_MACRO_NAME(...), ...)).
+ */
+extern const char *v_list_macro_name;
+
+/**
+ * The name of a macro which declares a V coordinate (e.g. V_MACRO_NAME(0.92f)).
+ */
+extern const char *v_macro_name;
+
+/**
+ * The name of a macro which declares a list of U coordinates (e.g.
+ * U_LIST_MACRO_NAME(U_MACRO_NAME(...), U_MACRO_NAME(...), ...)).
+ */
+extern const char *u_list_macro_name;
+
+/**
+ * The name of a macro which declares a U coordinate (e.g. U_MACRO_NAME(0.92f)).
+ */
+extern const char *u_macro_name;
+
+/**
  * The include paths to emit.
  */
 extern const char *const *include_paths;

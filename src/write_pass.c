@@ -599,7 +599,7 @@ void write_pass(
 
       for (size_t material = 0; material < number_of_first_matched_materials; material++)
       {
-        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  { ", first_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
+        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", first_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]], v_list_macro_name);
 
         for (size_t unique_v = 0; unique_v < first_matched_material_number_of_unique_uv[material]; unique_v++)
         {
@@ -608,10 +608,10 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%ff", first_matched_material_unique_v[material][unique_v]);
+          write_or_throw(stdout, "%s(%ff)", v_macro_name, first_matched_material_unique_v[material][unique_v]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", u_list_macro_name);
 
         for (size_t unique_u = 0; unique_u < first_matched_material_number_of_unique_uv[material]; unique_u++)
         {
@@ -620,10 +620,10 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%ff", first_matched_material_unique_u[material][unique_u]);
+          write_or_throw(stdout, "%s(%ff)", u_macro_name, first_matched_material_unique_u[material][unique_u]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  { ");
 
         for (size_t unique_xyz = 0; unique_xyz < first_matched_material_number_of_indices[material]; unique_xyz++)
         {
@@ -717,7 +717,7 @@ void write_pass(
 
       for (size_t material = 0; material < number_of_second_matched_materials; material++)
       {
-        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  { ", second_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
+        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", second_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]], v_list_macro_name);
 
         for (size_t unique_v = 0; unique_v < second_matched_material_number_of_unique_uv[material]; unique_v++)
         {
@@ -726,10 +726,10 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%ff", second_matched_material_unique_v[material][unique_v]);
+          write_or_throw(stdout, "%s(%ff)", v_macro_name, second_matched_material_unique_v[material][unique_v]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", u_list_macro_name);
 
         for (size_t unique_u = 0; unique_u < second_matched_material_number_of_unique_uv[material]; unique_u++)
         {
@@ -738,10 +738,10 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%ff", second_matched_material_unique_u[material][unique_u]);
+          write_or_throw(stdout, "%s(%ff)", u_macro_name, second_matched_material_unique_u[material][unique_u]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  { ");
 
         for (size_t unique_xyz = 0; unique_xyz < second_matched_material_number_of_indices[material]; unique_xyz++)
         {
