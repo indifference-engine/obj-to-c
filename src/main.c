@@ -22,7 +22,7 @@ int main(const int argc, const char *const *const argv)
 
   if (argc < 21)
   {
-    throw("At least 20 arguments are required:\n",
+    throw("At least 22 arguments are required:\n",
           "• A prefix applied to any object names.\n",
           "• A prefix applied to any non-navigation material names.\n",
           "• A prefix applied to any navigation material names.\n",
@@ -43,6 +43,8 @@ int main(const int argc, const char *const *const argv)
           "• The name of a macro which declares an additive draw call (e.g. MACRO(object_name, material_name)).\n"
           "• The name of a macro which declares a blended draw call (e.g. MACRO(object_name, material_name)).\n"
           "• The name of a macro which declares a navigation mesh (a material type per face, a vertex count per face, an index offset per face, a location per vertex per face, a surface normal per face, an exit normal per edge per face, an up normal per vertex per face, a number of neighbors per edge per face, a neighbor index offset per edge per face, a face index per neighbor per edge per face) (e.g. MACRO(object_name, { MATERIAL_NAME }, { 3 }, { 0 }, { 1.0f, 2.0f, 3.0f }, { 0.0f, 1.0f, 0.0 }, { -1.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 2 }, { 0 }, { 1, 2 })).\n"
+          "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n"
+          "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. MACRO_NAME(1.23f, -3.25f, 94.24f)).\n"
           "• Any number of include paths.\n");
   }
 
@@ -66,8 +68,10 @@ int main(const int argc, const char *const *const argv)
   additive_draw_call_macro_name = argv[18];
   blended_draw_call_macro_name = argv[19];
   navigation_macro_name = argv[20];
-  include_paths = argv + 21;
-  number_of_include_paths = argc - 21;
+  location_list_macro_name = argv[21];
+  location_macro_name = argv[22];
+  include_paths = argv + 23;
+  number_of_include_paths = argc - 23;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

@@ -20,8 +20,9 @@ extern const char *material_prefix;
 extern const char *navigation_material_prefix;
 
 /**
- * The name of a macro which declares data for an opaque/cutout pass (XYZ) (e.g.
- * MACRO(object_name, { 1.0f, 2.0f, 3.0f })).
+ * The name of a macro which declares data for an opaque/cutout pass (e.g.
+ * OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME(object_name,
+ * LOCATION_LIST_MACRO_NAME(...))).
  */
 extern const char *opaque_cutout_pass_data_macro_name;
 
@@ -71,7 +72,8 @@ extern const char *cutout_draw_call_macro_name;
 
 /**
  * The name of a macro which declares data for an additive/blended pass (XYZ)
- * (e.g. MACRO(object_name, { 1.0f, 2.0f, 3.0f })).
+ * (e.g. ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(object_name,
+ * LOCATION_LIST_MACRO_NAME(...))).
  */
 extern const char *additive_blended_pass_data_macro_name;
 
@@ -130,6 +132,19 @@ extern const char *blended_draw_call_macro_name;
  * { -1.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f }, { 2 }, { 0 }, { 0 }, { 1, 2 })).
  */
 extern const char *navigation_macro_name;
+
+/**
+ * The name of a macro which declares a list of locations (e.g.
+ * LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...),
+ * ...)).
+ */
+extern const char *location_list_macro_name;
+
+/**
+ * The name of a macro which declares the X, Y and Z coordinates of a single
+ * location (e.g. MACRO_NAME(1.23f, -3.25f, 94.24f)).
+ */
+extern const char *location_macro_name;
 
 /**
  * The include paths to emit.

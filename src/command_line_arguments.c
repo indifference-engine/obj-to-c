@@ -21,5 +21,7 @@ const char *additive_blended_pass_macro_name = NULL;
 const char *additive_draw_call_macro_name = NULL;
 const char *blended_draw_call_macro_name = NULL;
 const char *navigation_macro_name = NULL;
+const char *location_list_macro_name = NULL;
+const char *location_macro_name = NULL;
 const char *const *include_paths = NULL;
 size_t number_of_include_paths = 0;
