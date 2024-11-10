@@ -229,7 +229,7 @@ void end_object(void)
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%u", index);
+        write_or_throw(stdout, "%s(%u)", face_vertex_offset_macro_name, index);
 
         index += face_lengths[face_index];
       }
