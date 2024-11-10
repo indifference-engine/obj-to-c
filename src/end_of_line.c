@@ -179,7 +179,10 @@ void end_of_line(void)
       throw("Face references nonexistent texture coordinate.");
     }
 
-    index_vt[number_of_indices - 1] = vt;
+    if (object_type == OBJECT_TYPE_GRAPHICAL)
+    {
+      index_vt[number_of_indices - 1] = vt;
+    }
 
     validate_face();
     state = STATE_INITIAL;

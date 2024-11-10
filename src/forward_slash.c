@@ -11,30 +11,28 @@ void forward_slash(void)
   switch (state)
   {
   case STATE_F_V:
-    if (object_type == OBJECT_TYPE_GRAPHICAL)
+  {
+    int v = accumulate_integer();
+
+    if (v < 0)
     {
-      int v = accumulate_integer();
+      v += number_of_vertices;
 
       if (v < 0)
       {
-        v += number_of_vertices;
-
-        if (v < 0)
-        {
-          throw("Face references nonexistent vertex.");
-        }
-      }
-
-      if ((size_t)v >= number_of_vertices)
-      {
         throw("Face references nonexistent vertex.");
       }
-
-      index_v[number_of_indices - 1] = v;
-      state = STATE_F_V_SLASH;
-      return;
     }
-    break;
+
+    if ((size_t)v >= number_of_vertices)
+    {
+      throw("Face references nonexistent vertex.");
+    }
+
+    index_v[number_of_indices - 1] = v;
+    state = STATE_F_V_SLASH;
+    return;
+  }
   }
 
   throw("Unexpected forward slash in state %d.", state);

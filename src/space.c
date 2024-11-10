@@ -296,7 +296,11 @@ void space(void)
       throw("Face references nonexistent texture coordinate.");
     }
 
-    index_vt[number_of_indices - 1] = vt;
+    if (object_type == OBJECT_TYPE_GRAPHICAL)
+    {
+      index_vt[number_of_indices - 1] = vt;
+    }
+
     state = STATE_F_SPACE;
     return;
   }
