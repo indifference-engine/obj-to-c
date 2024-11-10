@@ -163,10 +163,16 @@ void end_of_line(void)
       }
 
       index_v[number_of_indices - 1] = v;
-      state = STATE_F_SPACE;
+
+      validate_face();
+      state = STATE_INITIAL;
       return;
     }
-    break;
+    else
+    {
+      throw("Every vertex of a non-navigation object must feature a texture coordinate.");
+      break;
+    }
 
   case STATE_F_VT:
   {
