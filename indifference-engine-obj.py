@@ -38,7 +38,7 @@ def initialize_scene(context):
                         space.shading.type = "MATERIAL"
 
 
-def configure_as_navigation_mesh(obj):
+def configure_as_navigation_object(obj):
     wireframe = obj.modifiers.new("Wireframe", "WIREFRAME")
     wireframe.thickness = 0.05
     wireframe.use_replace = False
@@ -287,7 +287,7 @@ def create_material(name, texture_path):
     return output
 
 
-def create_navigation_mesh_material(name, color):
+def create_navigation_object_material(name, color):
     output = bpy.data.materials.get(name)
 
     if not output:
@@ -394,7 +394,7 @@ class IndifferenceEngineOBJAddAdditiveMaterial(Operator, ImportHelper):
         return import_material(self, context, "additive_")
 
 
-def create_new_navigation_mesh_material():
+def create_new_navigation_object_material():
     name = "navigation_untitled"
     counter = 2
 
@@ -402,17 +402,17 @@ def create_new_navigation_mesh_material():
         name = "navigation_untitled_" + str(counter)
         counter = counter + 1
 
-    return create_navigation_mesh_material(name, [1, 0, 0])
+    return create_navigation_object_material(name, [1, 0, 0])
 
 
-class IndifferenceEngineOBJAddNavigationMeshMaterial(Operator):
-    bl_idname = "indifference_engine_obj.add_navigation_mesh_material"
-    bl_label = "Add Indifference Engine OBJ Navigation Mesh Material"
+class IndifferenceEngineOBJAddNavigationObjectMaterial(Operator):
+    bl_idname = "indifference_engine_obj.add_navigation_object_material"
+    bl_label = "Add Indifference Engine OBJ Navigation Object Material"
 
     def execute(self, context):
         initialize_scene(context)
 
-        output = create_new_navigation_mesh_material()
+        output = create_new_navigation_object_material()
 
         for object in bpy.context.selected_objects:
             if object.type == "MESH" and object.name.startswith("navigation_"):
@@ -421,9 +421,9 @@ class IndifferenceEngineOBJAddNavigationMeshMaterial(Operator):
         return {"FINISHED"}
 
 
-class IndifferenceEngineOBJAddNavigationMesh(Operator):
-    bl_idname = "indifference_engine_obj.add_navigation_mesh"
-    bl_label = "Add Indifference Engine OBJ Navigation Mesh"
+class IndifferenceEngineOBJAddNavigationObject(Operator):
+    bl_idname = "indifference_engine_obj.add_navigation_object"
+    bl_label = "Add Indifference Engine OBJ Navigation Object"
 
     def execute(self, context):
         initialize_scene(context)
@@ -443,7 +443,7 @@ class IndifferenceEngineOBJAddNavigationMesh(Operator):
 
         output.name = name
 
-        configure_as_navigation_mesh(output)
+        configure_as_navigation_object(output)
 
         bpy.ops.view3d.view_selected()
 
@@ -452,7 +452,7 @@ class IndifferenceEngineOBJAddNavigationMesh(Operator):
                 output.data.materials.append(material)
                 return {"FINISHED"}
 
-        output.data.materials.append(create_new_navigation_mesh_material())
+        output.data.materials.append(create_new_navigation_object_material())
 
         return {"FINISHED"}
 
@@ -471,8 +471,8 @@ class IndifferenceEngineOBJAdd(Menu):
             icon="MATERIAL",
         )
         layout.operator(
-            IndifferenceEngineOBJAddNavigationMesh.bl_idname,
-            text="Navigation Mesh",
+            IndifferenceEngineOBJAddNavigationObject.bl_idname,
+            text="Navigation Object",
             icon="MESH_DATA",
         )
 
@@ -506,8 +506,8 @@ class IndifferenceEngineOBJAddMaterial(Menu):
             icon="MATERIAL",
         )
         layout.operator(
-            IndifferenceEngineOBJAddNavigationMeshMaterial.bl_idname,
-            text="Navigation Mesh",
+            IndifferenceEngineOBJAddNavigationObjectMaterial.bl_idname,
+            text="Navigation Object",
             icon="MATERIAL",
         )
 
@@ -727,7 +727,7 @@ class IndifferenceEngineOBJExport(Operator, ExportHelper):
                                 {"ERROR"},
                                 'Object "'
                                 + obj.name
-                                + '" contains non-navigation materials but is a navigation mesh.',
+                                + '" contains non-navigation materials but is a navigation object.',
                             )
                             return {"FINISHED"}
 
@@ -789,7 +789,7 @@ class IndifferenceEngineOBJExport(Operator, ExportHelper):
                                                         {"ERROR"},
                                                         'Object "'
                                                         + obj.name
-                                                        + '" is not a navigation mesh but contains navigation materials.',
+                                                        + '" is not a navigation object but contains navigation materials.',
                                                     )
                                                     return {"FINISHED"}
 
@@ -952,7 +952,7 @@ class IndifferenceEngineOBJImport(Operator, ImportHelper):
 
                         faces.clear()
 
-                        configure_as_navigation_mesh(obj)
+                        configure_as_navigation_object(obj)
                     else:
                         object_vertices = []
                         indices = []
@@ -1184,7 +1184,7 @@ class IndifferenceEngineOBJImport(Operator, ImportHelper):
                                             waiting_for_color = False
 
                                             materials[material_name] = (
-                                                create_navigation_mesh_material(
+                                                create_navigation_object_material(
                                                     material_name,
                                                     [
                                                         float(kd_match[1]),
@@ -1322,7 +1322,7 @@ class IndifferenceEngineOBJImport(Operator, ImportHelper):
                         ) != current_material.name.startswith("navigation_"):
                             self.report(
                                 {"ERROR"},
-                                "Navigation materials cannot be used on non-navigation meshes nor vice versa.",
+                                "Navigation materials cannot be used on non-navigation objects nor vice versa.",
                             )
                             return {"FINISHED"}
                         else:
@@ -1444,8 +1444,8 @@ classes = (
     IndifferenceEngineOBJAddBlendMaterial,
     IndifferenceEngineOBJAddCutoutMaterial,
     IndifferenceEngineOBJAddAdditiveMaterial,
-    IndifferenceEngineOBJAddNavigationMeshMaterial,
-    IndifferenceEngineOBJAddNavigationMesh,
+    IndifferenceEngineOBJAddNavigationObjectMaterial,
+    IndifferenceEngineOBJAddNavigationObject,
     IndifferenceEngineOBJAdd,
     IndifferenceEngineOBJAddMaterial,
     IndifferenceEngineOBJExport,
