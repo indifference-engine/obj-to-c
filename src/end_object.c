@@ -240,19 +240,30 @@ void end_object(void)
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
+        if (face_index)
+        {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(", location_list_macro_name);
+
         const size_t face_length = face_lengths[face_index];
 
         for (size_t vertex_index = 0; vertex_index < face_length; vertex_index++)
         {
-          if (index)
+          if (vertex_index)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", index_v[index]);
+          const size_t xyz_index = index_v[index];
+
+          write_or_throw(stdout, "%s(%f, %f, %f)", location_macro_name, vertex_x[xyz_index], vertex_y[xyz_index], vertex_z[xyz_index]);
 
           index++;
         }
+
+        write_or_throw(stdout, ")");
       }
 
       write_or_throw(stdout, "),\n  %s(", normal_list_macro_name);
