@@ -256,7 +256,11 @@ void space(void)
     {
       int v = accumulate_integer();
 
-      if (v < 0)
+      if (!v)
+      {
+        throw("Vertex indices cannot be zero.");
+      }
+      else if (v < 0)
       {
         v += number_of_vertices;
 
@@ -264,6 +268,10 @@ void space(void)
         {
           throw("Face references nonexistent vertex.");
         }
+      }
+      else
+      {
+        v--;
       }
 
       if ((size_t)v >= number_of_vertices)
@@ -281,7 +289,11 @@ void space(void)
   {
     int vt = accumulate_integer();
 
-    if (vt < 0)
+    if (!vt)
+    {
+      throw("Texture coordinate indices cannot be zero.");
+    }
+    else if (vt < 0)
     {
       vt += number_of_texture_coordinates;
 
@@ -289,6 +301,10 @@ void space(void)
       {
         throw("Face references nonexistent texture coordinate.");
       }
+    }
+    else
+    {
+      vt--;
     }
 
     if ((size_t)vt >= number_of_texture_coordinates)
