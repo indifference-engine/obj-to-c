@@ -218,6 +218,66 @@ extern const char *u_list_macro_name;
 extern const char *u_macro_name;
 
 /**
+ * The name of a macro which declares a list of location index triangles (e.g.
+ * LOCATION_INDEX_LIST_MACRO_NAME(LOCATION_INDEX_TRIANGLE_MACRO_NAME(...),
+ * LOCATION_INDEX_TRIANGLE_MACRO_NAME(...), ...)).
+ */
+extern const char *location_index_triangle_list_macro_name;
+
+/**
+ * The name of a macro which declares a triangle of location indices (e.g.
+ * LOCATION_INDEX_TRIANGLE_MACRO_NAME(LOCATION_INDEX_MACRO_NAME(123),
+ * LOCATION_INDEX_MACRO_NAME(123), LOCATION_INDEX_MACRO_NAME(123))).
+ */
+extern const char *location_index_triangle_macro_name;
+
+/**
+ * The name of a macro which declares a location index (e.g.
+ * LOCATION_INDEX_MACRO_NAME(123)).
+ */
+extern const char *location_index_macro_name;
+
+/**
+ * The name of a macro which declares a list of color index triangles (e.g.
+ * COLOR_INDEX_LIST_MACRO_NAME(COLOR_INDEX_TRIANGLE_MACRO_NAME(...),
+ * COLOR_INDEX_TRIANGLE_MACRO_NAME(...), ...)).
+ */
+extern const char *color_index_triangle_list_macro_name;
+
+/**
+ * The name of a macro which declares a triangle of color indices (e.g.
+ * COLOR_INDEX_TRIANGLE_MACRO_NAME(COLOR_INDEX_MACRO_NAME(123),
+ * COLOR_INDEX_MACRO_NAME(123), COLOR_INDEX_MACRO_NAME(123))).
+ */
+extern const char *color_index_triangle_macro_name;
+
+/**
+ * The name of a macro which declares a color index (e.g.
+ * COLOR_INDEX_MACRO_NAME(123)).
+ */
+extern const char *color_index_macro_name;
+
+/**
+ * The name of a macro which declares a list of VU index triangles (e.g.
+ * VU_INDEX_LIST_MACRO_NAME(VU_INDEX_TRIANGLE_MACRO_NAME(...),
+ * VU_INDEX_TRIANGLE_MACRO_NAME(...), ...)).
+ */
+extern const char *vu_index_triangle_list_macro_name;
+
+/**
+ * The name of a macro which declares a triangle of VU indices (e.g.
+ * VU_INDEX_TRIANGLE_MACRO_NAME(VU_INDEX_MACRO_NAME(123),
+ * VU_INDEX_MACRO_NAME(123), VU_INDEX_MACRO_NAME(123))).
+ */
+extern const char *vu_index_triangle_macro_name;
+
+/**
+ * The name of a macro which declares a VU index (e.g.
+ * VU_INDEX_MACRO_NAME(123)).
+ */
+extern const char *vu_index_macro_name;
+
+/**
  * The include paths to emit.
  */
 extern const char *const *include_paths;

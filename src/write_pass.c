@@ -623,43 +623,43 @@ void write_pass(
           write_or_throw(stdout, "%s(%ff)", u_macro_name, first_matched_material_unique_u[material][unique_u]);
         }
 
-        write_or_throw(stdout, "),\n  { ");
+        write_or_throw(stdout, "),\n  %s(", location_index_triangle_list_macro_name);
 
-        for (size_t unique_xyz = 0; unique_xyz < first_matched_material_number_of_indices[material]; unique_xyz++)
+        for (size_t unique_xyz = 0; unique_xyz < first_matched_material_number_of_indices[material]; unique_xyz += 3)
         {
           if (unique_xyz)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", first_matched_material_xyz_indices[material][unique_xyz]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", location_index_triangle_macro_name, location_index_macro_name, first_matched_material_xyz_indices[material][unique_xyz], location_index_macro_name, first_matched_material_xyz_indices[material][unique_xyz + 1], location_index_macro_name, first_matched_material_xyz_indices[material][unique_xyz + 2]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", color_index_triangle_list_macro_name);
 
-        for (size_t unique_rgb = 0; unique_rgb < first_matched_material_number_of_indices[material]; unique_rgb++)
+        for (size_t unique_rgb = 0; unique_rgb < first_matched_material_number_of_indices[material]; unique_rgb += 3)
         {
           if (unique_rgb)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", first_matched_material_rgb_indices[material][unique_rgb]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", color_index_triangle_macro_name, color_index_macro_name, first_matched_material_rgb_indices[material][unique_rgb], color_index_macro_name, first_matched_material_rgb_indices[material][unique_rgb + 1], color_index_macro_name, first_matched_material_rgb_indices[material][unique_rgb + 2]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", vu_index_triangle_list_macro_name);
 
-        for (size_t unique_uv = 0; unique_uv < first_matched_material_number_of_indices[material]; unique_uv++)
+        for (size_t unique_uv = 0; unique_uv < first_matched_material_number_of_indices[material]; unique_uv += 3)
         {
           if (unique_uv)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", first_matched_material_uv_indices[material][unique_uv]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", vu_index_triangle_macro_name, vu_index_macro_name, first_matched_material_uv_indices[material][unique_uv], vu_index_macro_name, first_matched_material_uv_indices[material][unique_uv + 1], vu_index_macro_name, first_matched_material_uv_indices[material][unique_uv + 2]);
         }
 
-        write_or_throw(stdout, " }\n)\n");
+        write_or_throw(stdout, ")\n)\n");
       }
     }
 
@@ -741,43 +741,43 @@ void write_pass(
           write_or_throw(stdout, "%s(%ff)", u_macro_name, second_matched_material_unique_u[material][unique_u]);
         }
 
-        write_or_throw(stdout, "),\n  { ");
+        write_or_throw(stdout, "),\n  %s(", location_index_triangle_list_macro_name);
 
-        for (size_t unique_xyz = 0; unique_xyz < second_matched_material_number_of_indices[material]; unique_xyz++)
+        for (size_t unique_xyz = 0; unique_xyz < second_matched_material_number_of_indices[material]; unique_xyz += 3)
         {
           if (unique_xyz)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", second_matched_material_xyz_indices[material][unique_xyz]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", location_index_triangle_macro_name, location_macro_name, second_matched_material_xyz_indices[material][unique_xyz], location_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 1], location_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 2]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", color_index_triangle_list_macro_name);
 
-        for (size_t unique_rgbo = 0; unique_rgbo < second_matched_material_number_of_indices[material]; unique_rgbo++)
+        for (size_t unique_rgbo = 0; unique_rgbo < second_matched_material_number_of_indices[material]; unique_rgbo += 3)
         {
           if (unique_rgbo)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", second_matched_material_rgbo_indices[material][unique_rgbo]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", color_index_triangle_macro_name, color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo], color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo + 1], color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo + 2]);
         }
 
-        write_or_throw(stdout, " },\n  { ");
+        write_or_throw(stdout, "),\n  %s(", vu_index_triangle_list_macro_name);
 
-        for (size_t unique_uv = 0; unique_uv < second_matched_material_number_of_indices[material]; unique_uv++)
+        for (size_t unique_uv = 0; unique_uv < second_matched_material_number_of_indices[material]; unique_uv += 3)
         {
           if (unique_uv)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", second_matched_material_uv_indices[material][unique_uv]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", vu_index_triangle_macro_name, vu_index_macro_name, second_matched_material_uv_indices[material][unique_uv], vu_index_macro_name, second_matched_material_uv_indices[material][unique_uv + 1], vu_index_macro_name, second_matched_material_uv_indices[material][unique_uv + 2]);
         }
 
-        write_or_throw(stdout, " }\n)\n");
+        write_or_throw(stdout, ")\n)\n");
       }
     }
 

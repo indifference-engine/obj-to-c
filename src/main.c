@@ -20,11 +20,11 @@ int main(const int argc, const char *const *const argv)
   (void)(argc);
   (void)(argv);
 
-  if (argc < 35)
+  if (argc < 44)
   {
     throw(
-        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
-        "At least 34 arguments are required:\n",
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+        "At least 43 arguments are required:\n",
         "• A prefix applied to any object names.\n",
         "• A prefix applied to any non-navigation material names.\n",
         "• A prefix applied to any navigation material names.\n",
@@ -59,6 +59,15 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a V coordinate (e.g. V_MACRO_NAME(0.92f)).\n",
         "• The name of a macro which declares a list of U coordinates (e.g. U_LIST_MACRO_NAME(U_MACRO_NAME(...), U_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a U coordinate (e.g. U_MACRO_NAME(0.92f)).\n",
+        "• The name of a macro which declares a list of location index triangles (e.g. LOCATION_INDEX_LIST_MACRO_NAME(LOCATION_INDEX_TRIANGLE_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a triangle of location indices (e.g. LOCATION_INDEX_TRIANGLE_MACRO_NAME(LOCATION_INDEX_MACRO_NAME(123), LOCATION_INDEX_MACRO_NAME(123), LOCATION_INDEX_MACRO_NAME(123))).\n"
+        "• The name of a macro which declares a location index (e.g. LOCATION_INDEX_MACRO_NAME(123)).\n",
+        "• The name of a macro which declares a list of color index triangles (e.g. COLOR_INDEX_LIST_MACRO_NAME(COLOR_INDEX_TRIANGLE_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a triangle of color indices (e.g. COLOR_INDEX_TRIANGLE_MACRO_NAME(COLOR_INDEX_MACRO_NAME(123), COLOR_INDEX_MACRO_NAME(123), COLOR_INDEX_MACRO_NAME(123))).\n",
+        "• The name of a macro which declares a color index (e.g. COLOR_INDEX_MACRO_NAME(123)).\n",
+        "• The name of a macro which declares a list of VU index triangles (e.g. VU_INDEX_LIST_MACRO_NAME(VU_INDEX_TRIANGLE_MACRO_NAME(...), VU_INDEX_TRIANGLE_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares a triangle of VU indices (e.g. VU_INDEX_TRIANGLE_MACRO_NAME(VU_INDEX_MACRO_NAME(123), VU_INDEX_MACRO_NAME(123), VU_INDEX_MACRO_NAME(123))).\n",
+        "• The name of a macro which declares a VU index (e.g. VU_INDEX_MACRO_NAME(123)).\n",
         "• Any number of include paths.\n");
   }
 
@@ -96,8 +105,17 @@ int main(const int argc, const char *const *const argv)
   v_macro_name = argv[32];
   u_list_macro_name = argv[33];
   u_macro_name = argv[34];
-  include_paths = argv + 35;
-  number_of_include_paths = argc - 35;
+  location_index_triangle_list_macro_name = argv[35];
+  location_index_triangle_macro_name = argv[36];
+  location_index_macro_name = argv[37];
+  color_index_triangle_list_macro_name = argv[38];
+  color_index_triangle_macro_name = argv[39];
+  color_index_macro_name = argv[40];
+  vu_index_triangle_list_macro_name = argv[41];
+  vu_index_triangle_macro_name = argv[42];
+  vu_index_macro_name = argv[43];
+  include_paths = argv + 44;
+  number_of_include_paths = argc - 44;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

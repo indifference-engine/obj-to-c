@@ -4,13 +4,14 @@ Command-line utility to convert OBJ files to C files.
 
 ## Usage
 
-`obj_to_c object_prefix_ material_prefix_ NAVIGATION_MATERIAL_PREFIX_ OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME OPAQUE_PASS_DATA_MACRO_NAME OPAQUE_DRAW_CALL_DATA_MACRO_NAME CUTOUT_PASS_DATA_MACRO_NAME CUTOUT_DRAW_CALL_DATA_MACRO_NAME OPAQUE_CUTOUT_PASS_MACRO_NAME OPAQUE_DRAW_CALL_MACRO_NAME CUTOUT_DRAW_CALL_MACRO_NAME ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME ADDITIVE_PASS_DATA_MACRO_NAME ADDITIVE_DRAW_CALL_DATA_MACRO_NAME BLENDED_PASS_DATA_MACRO_NAME BLENDED_DRAW_CALL_DATA_MACRO_NAME ADDITIVE_BLENDED_PASS_MACRO_NAME ADDITIVE_DRAW_CALL_MACRO_NAME BLENDED_DRAW_CALL_MACRO_NAME NAVIGATION_MACRO_NAME LOCATION_LIST_MACRO_NAME LOCATION_MACRO_NAME RED_LIST_MACRO_NAME RED_MACRO_NAME GREEN_LIST_MACRO_NAME GREEN_MACRO_NAME BLUE_LIST_MACRO_NAME BLUE_MACRO_NAME OPACITY_LIST_MACRO_NAME OPACITY_MACRO_NAME V_LIST_MACRO_NAME V_MACRO_NAME U_LIST_MACRO_NAME U_MACRO_NAME path/to/first/include.h path/to/second/include.h < path/to/input.obj > path/to/output.c`
+`obj_to_c object_prefix_ material_prefix_ NAVIGATION_MATERIAL_PREFIX_ OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME OPAQUE_PASS_DATA_MACRO_NAME OPAQUE_DRAW_CALL_DATA_MACRO_NAME CUTOUT_PASS_DATA_MACRO_NAME CUTOUT_DRAW_CALL_DATA_MACRO_NAME OPAQUE_CUTOUT_PASS_MACRO_NAME OPAQUE_DRAW_CALL_MACRO_NAME CUTOUT_DRAW_CALL_MACRO_NAME ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME ADDITIVE_PASS_DATA_MACRO_NAME ADDITIVE_DRAW_CALL_DATA_MACRO_NAME BLENDED_PASS_DATA_MACRO_NAME BLENDED_DRAW_CALL_DATA_MACRO_NAME ADDITIVE_BLENDED_PASS_MACRO_NAME ADDITIVE_DRAW_CALL_MACRO_NAME BLENDED_DRAW_CALL_MACRO_NAME NAVIGATION_MACRO_NAME LOCATION_LIST_MACRO_NAME LOCATION_MACRO_NAME RED_LIST_MACRO_NAME RED_MACRO_NAME GREEN_LIST_MACRO_NAME GREEN_MACRO_NAME BLUE_LIST_MACRO_NAME BLUE_MACRO_NAME OPACITY_LIST_MACRO_NAME OPACITY_MACRO_NAME V_LIST_MACRO_NAME V_MACRO_NAME U_LIST_MACRO_NAME U_MACRO_NAME LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME LOCATION_INDEX_TRIANGLE_MACRO_NAME LOCATION_INDEX_MACRO_NAME COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME COLOR_INDEX_TRIANGLE_MACRO_NAME COLOR_INDEX_MACRO_NAME VU_INDEX_TRIANGLE_LIST_MACRO_NAME VU_INDEX_TRIANGLE_MACRO_NAME VU_INDEX_MACRO_NAME path/to/first/include.h path/to/second/include.h < path/to/input.obj > path/to/output.c`
 
 This will output a file similar to the following:
 
 ```c
 #include "path/to/first/include.h"
 #include "path/to/second/include.h"
+// TODO: Annotate
 OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME(
   object_prefix_first_object,
   LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(1.23f, -8.24f, 12.123f), LOCATION_MACRO_NAME(6.2f, 8.12f, -1.2f))
@@ -38,9 +39,7 @@ OPAQUE_DRAW_CALL_DATA_MACRO_NAME
   material_prefix_opaque_a,
   { 0.628132f, 0.528240f, 0.528240f, 0.000220f, 0.121966f, 0.267882f, 0.146137f, 0.528240f, 0.267882f, 0.267882f, 0.225066f, 0.880881f, 0.880881f, 0.728465f, 0.728465f, 0.728025f, 0.728025f, 0.121966f, 0.000220f, 0.601830f, 0.862188f, 0.862188f, 0.601830f, 0.958162f, 0.958162f, 0.805746f, 0.805746f, 0.728465f, 0.728465f, 0.839796f, 0.839796f, 0.728465f, 0.728465f, 0.839796f, 0.839796f, 0.728465f, 0.728465f, 0.728465f, 0.828357f, 0.802850f, 0.756222f },
   { 0.136684f, 0.136684f, 0.397042f, 0.403326f, 0.533505f, 0.397042f, 0.266863f, 0.036791f, 0.078061f, 0.136684f, 0.096641f, 0.241715f, 0.100553f, 0.100553f, 0.241715f, 0.397042f, 0.136684f, 0.000220f, 0.130399f, 0.972666f, 0.972666f, 0.831505f, 0.872774f, 0.100113f, 0.000220f, 0.000220f, 0.100113f, 0.027978f, 0.074605f, 0.342048f, 0.242155f, 0.242155f, 0.342048f, 0.389116f, 0.342488f, 0.342488f, 0.389116f, 0.466837f, 0.466837f, 0.389556f, 0.389556f },
-  { 5, 2, 1, 6, 7, 0, 6, 0, 4, 5, 8, 3, 5, 3, 2, 4, 3, 8, 9, 8, 10, 9, 10, 11, 1, 12, 5, 12, 13, 5, 8, 9, 6, 6, 4, 8, 14, 11, 10, 14, 10, 15, 16, 17, 18, 16, 18, 19, 19, 18, 20, 19, 20, 21, 5, 13, 17, 5, 17, 16, 22, 23, 21, 22, 21, 20, 14, 15, 23, 14, 23, 22 },
-  { 0, 0, 1, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0 },
-  { 0, 1, 2, 3, 4, 5, 3, 5, 6, 7, 8, 9, 7, 9, 1, 6, 9, 10, 11, 12, 13, 11, 13, 14, 2, 15, 0, 15, 16, 0, 10, 17, 18, 18, 6, 10, 19, 20, 21, 19, 21, 22, 23, 24, 25, 23, 25, 26, 26, 25, 27, 26, 27, 28, 29, 30, 31, 29, 31, 32, 33, 34, 35, 33, 35, 36, 37, 38, 39, 37, 39, 40 }
+  LOCATION_INDEX_LIST_MACRO_NAME(LOCATION_INDEX_MACRO_NAME(0), LOCATION_INDEX_MACRO_NAME(1), LOCATION_INDEX_MACRO_NAME(2))
 )
 CUTOUT_PASS_DATA_MACRO_NAME
 (
@@ -146,6 +145,7 @@ from the generated code:
 | `cutout_`   | Geometry which is fully solid except where the opacity falls below 0.5, where it is instead fully transparent.                                                                                   |
 | `additive_` | Geometry which is drawn by adding its color to the previously drawn geometry covering the same pixels.  Equivalent to a "linear dodge" layer in some graphics applications.                      |
 | `blended_`  | Geometry which is drawn by mixing its color with the previously drawn geometry covering the same pixels.  May draw in the wrong order when mixed with `additive_` or other `blended_` materials. |
+TODO: navigation
 
 ### Vertex Color
 
@@ -162,6 +162,13 @@ v 18.3, -17.9, 22.1, 0.3, 0.9, 1, 0.24
 ```
 
 Where these are not supplied, red, green, blue and opacity are assumed to be 1.
+
+TODO: Planar
+TODO: Convex
+TODO: Degenerate
+TODO: Navigation
+TODO: No normals
+TODO: MTLLib not read
 
 ## Building
 
@@ -251,8 +258,8 @@ This will create a new red navigation material.
 
 If a navigation mesh is selected, the material created is added to a new slot.
 
-The color can be changed from the material properties pane (`Emission` shader
-> `Color`).
+The color can be changed from the material properties pane (`Emission` shader >
+`Color`).
 
 #### Exporting OBJ files from Blender
 
