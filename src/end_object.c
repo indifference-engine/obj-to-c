@@ -418,14 +418,47 @@ void end_object(void)
 
       write_or_throw(stdout, "),\n  %s(", face_edge_neighbour_face_index_list_macro_name);
 
-      for (size_t neighbour_index = 0; neighbour_index < total_neighbors; neighbour_index++)
+      index = 0;
+      total_edges = 0;
+
+      for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
-        if (neighbour_index)
+        if (face_index)
         {
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%u", neighboring_face_indices[neighbour_index]);
+        write_or_throw(stdout, "%s(", offset_list_list_macro_name);
+
+        const size_t face_length = face_lengths[face_index];
+
+        for (size_t edge_index = 0; edge_index < face_length; edge_index++)
+        {
+          if (edge_index)
+          {
+            write_or_throw(stdout, ", ");
+          }
+
+          write_or_throw(stdout, "%s(", offset_list_macro_name);
+
+          const size_t edge_length = numbers_of_neighbouring_edges[total_edges];
+
+          for (size_t neighbor_index = 0; neighbor_index < edge_length; neighbor_index++)
+          {
+            if (neighbor_index)
+            {
+              write_or_throw(stdout, ", ");
+            }
+
+            write_or_throw(stdout, "%s(%u)", offset_macro_name, neighboring_face_indices[index]);
+            index++;
+          }
+
+          write_or_throw(stdout, ")");
+          total_edges++;
+        }
+
+        write_or_throw(stdout, ")");
       }
 
       write_or_throw(stdout, ")\n)\n");
