@@ -44,7 +44,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares an additive/blended pass (e.g. ADDITIVE_BLENDED_PASS_MACRO_NAME(object_name, ADDITIVE_DRAW_CALL_MACRO_NAME(...), BLENDED_DRAW_CALL_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares an additive draw call (e.g. ADDITIVE_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
         "• The name of a macro which declares a blended draw call (e.g. BLENDED_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
-        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
+        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
         "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f)).\n",
         "• The name of a macro which declares a list of red intensities (e.g. RED_LIST_MACRO_NAME(RED_MACRO_NAME(...), RED_MACRO_NAME(...), ...)).\n",
@@ -75,8 +75,8 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a list of faces, each of which contains a list of vertex locations (e.g. FACE_VERTEX_LOCATION_LIST_NAME(LOCATION_FACE_MACRO_NAME(...), LOCATION_FACE_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a list of vertex locations (e.g. LOCATION_FACE_MACRO_NAME(LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f), LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f), ...)).\n",
         "• The name of a macro which declares a list of normals (e.g. NORMAL_LIST_MACRO_NAME(NORMAL_MACRO_NAME(0.337f, -0.7538f, -0.5641f), NORMAL_MACRO_NAME(-0.6719f, 0.6248f, -0.3977f), ...)).\n",
-        "• The name of a macro which declares a list of edge exit normals for each face (e.g. EDGE_EXIT_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
-        "• The name of a macro which declares a list of vertex up normals for each face (e.g. VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
+        "• The name of a macro which declares a list of edge exit normals for each face (e.g. FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
+        "• The name of a macro which declares a list of vertex up normals for each face (e.g. FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
         "• The name of a macro which declares a normal (e.g. NORMAL_MACRO_NAME(0.337f, -0.7538f, -0.5641f)).\n",
         "• The name of a macro which declares a list of faces, each of which contains a list of how many neighbors each of its edges have (e.g. NEIGHBOR_COUNT_LIST_LIST_MACRO_NAME(NEIGHBOR_COUNT_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a list of edge neighbor counts (e.g. NEIGHBOR_COUNT_LIST_MACRO_NAME(NEIGHBOR_COUNT_MACRO_NAME(2), NEIGHBOR_COUNT_MACRO_NAME(0), ...)).\n",
@@ -144,8 +144,8 @@ int main(const int argc, const char *const *const argv)
   face_vertex_location_list_name = argv[48];
   location_face_macro_name = argv[49];
   normal_list_macro_name = argv[50];
-  edge_exit_normal_list_macro_name = argv[51];
-  vertex_up_normal_list_macro_name = argv[52];
+  face_edge_exit_normal_list_macro_name = argv[51];
+  face_vertex_up_normal_list_macro_name = argv[52];
   normal_macro_name = argv[53];
   neighbor_count_list_list_macro_name = argv[54];
   neighbor_count_list_macro_name = argv[55];

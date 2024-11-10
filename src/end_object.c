@@ -268,17 +268,17 @@ void end_object(void)
 
       write_or_throw(stdout, "),\n  %s(", normal_list_macro_name);
 
-      for (size_t axis = 0; axis < number_of_faces * 3; axis++)
+      for (size_t axis = 0; axis < number_of_faces * 3; axis += 3)
       {
         if (axis)
         {
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%f", normals[axis]);
+        write_or_throw(stdout, "%s(%f, %f, %f)", normal_macro_name, normals[axis], normals[axis + 1], normals[axis + 2]);
       }
 
-      write_or_throw(stdout, "),\n  %s(", edge_exit_normal_list_macro_name);
+      write_or_throw(stdout, "),\n  %s(", face_edge_exit_normal_list_macro_name);
 
       index = 0;
 
@@ -302,7 +302,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, "),\n  %s(", vertex_up_normal_list_macro_name);
+      write_or_throw(stdout, "),\n  %s(", face_vertex_up_normal_list_macro_name);
 
       index = 0;
 

@@ -148,8 +148,8 @@ extern const char *blended_draw_call_macro_name;
  * FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...),
  * FACE_VERTEX_LOCATION_LIST_NAME(...),
  * NORMAL_LIST_MACRO_NAME(...),
- * EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...),
- * VERTEX_UP_NORMAL_LIST_MACRO_NAME(...),
+ * FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...),
+ * FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...),
  * NEIGHBOR_COUNT_LIST_MACRO_NAME(...),
  * FACE_EDGE_OFFSET_LIST_MACRO_NAME(...),
  * FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...),
@@ -351,17 +351,17 @@ extern const char *normal_list_macro_name;
 
 /**
  * The name of a macro which declares a list of edge exit normals for each face
- * (e.g. EDGE_EXIT_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...),
+ * (e.g. FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...),
  * NORMAL_LIST_MACRO_NAME(...), ...).
  */
-extern const char *edge_exit_normal_list_macro_name;
+extern const char *face_edge_exit_normal_list_macro_name;
 
 /**
  * The name of a macro which declares a list of vertex up normals for each face
- * (e.g. VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...),
+ * (e.g. FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...),
  * NORMAL_LIST_MACRO_NAME(...), ...).
  */
-extern const char *vertex_up_normal_list_macro_name;
+extern const char *face_vertex_up_normal_list_macro_name;
 
 /**
  * The name of a macro which declares a normal
