@@ -284,22 +284,28 @@ void end_object(void)
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
+        if (face_index)
+        {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(", normal_list_macro_name);
+
         const size_t face_length = face_lengths[face_index];
 
         for (size_t edge_index = 0; edge_index < face_length; edge_index++)
         {
-          for (size_t axis = 0; axis < 3; axis++)
+          if (edge_index)
           {
-            if (index)
-            {
-              write_or_throw(stdout, ", ");
-            }
-
-            write_or_throw(stdout, "%f", edge_exit_normals[index]);
-
-            index++;
+            write_or_throw(stdout, ", ");
           }
+
+          write_or_throw(stdout, "%s(%f, %f, %f)", normal_macro_name, edge_exit_normals[index], edge_exit_normals[index + 1], edge_exit_normals[index + 2]);
+
+          index += 3;
         }
+
+        write_or_throw(stdout, ")");
       }
 
       write_or_throw(stdout, "),\n  %s(", face_vertex_up_normal_list_macro_name);
@@ -308,22 +314,28 @@ void end_object(void)
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
+        if (face_index)
+        {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(", normal_list_macro_name);
+
         const size_t face_length = face_lengths[face_index];
 
         for (size_t vertex_index = 0; vertex_index < face_length; vertex_index++)
         {
-          for (size_t axis = 0; axis < 3; axis++)
+          if (vertex_index)
           {
-            if (index)
-            {
-              write_or_throw(stdout, ", ");
-            }
-
-            write_or_throw(stdout, "%f", vertex_up_normals[index]);
-
-            index++;
+            write_or_throw(stdout, ", ");
           }
+
+          write_or_throw(stdout, "%s(%f, %f, %f)", normal_macro_name, vertex_up_normals[index], vertex_up_normals[index + 1], vertex_up_normals[index + 2]);
+
+          index += 3;
         }
+
+        write_or_throw(stdout, ")");
       }
 
       write_or_throw(stdout, "),\n  %s(", neighbor_count_list_macro_name);
