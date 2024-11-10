@@ -175,6 +175,8 @@ int main(const int argc, const char *const *const argv)
   {
     const int character = fgetc(stdin);
 
+    fprintf(stderr, "%c", character);
+
     switch (character)
     {
     case EOF:
