@@ -392,9 +392,9 @@ extern const char *neighbor_count_macro_name;
 
 /**
  * The name of a macro which declares a list of faces, each of which contains a
- * list of edges, each of which contains a list of neighbor vertex offsets (e.g.
- * FACE_EDGE_OFFSET_LIST_MACRO_NAME(OFFSET_LIST_MACRO_NAME(...),
- * OFFSET_LIST_MACRO_NAME(...), ...).
+ * list of edges, each of which contains a list of vertex offsets (e.g.
+ * FACE_EDGE_OFFSET_LIST_MACRO_NAME(OFFSET_MACRO_NAME(3), OFFSET_MACRO_NAME(8),
+ * ...).
  */
 extern const char *face_edge_offset_list_macro_name;
 

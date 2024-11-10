@@ -81,7 +81,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a list of faces, each of which contains a list of how many neighbors each of its edges have (e.g. NEIGHBOR_COUNT_LIST_LIST_MACRO_NAME(NEIGHBOR_COUNT_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a list of edge neighbor counts (e.g. NEIGHBOR_COUNT_LIST_MACRO_NAME(NEIGHBOR_COUNT_MACRO_NAME(2), NEIGHBOR_COUNT_MACRO_NAME(0), ...)).\n",
         "• The name of a macro which declares an edge neighbor count (e.g. NEIGHBOR_COUNT_MACRO_NAME(0)).\n",
-        "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbor vertex offsets (e.g. FACE_EDGE_OFFSET_LIST_MACRO_NAME(OFFSET_LIST_MACRO_NAME(...), OFFSET_LIST_MACRO_NAME(...), ...).\n",
+        "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of vertex offsets (e.g. FACE_EDGE_OFFSET_LIST_MACRO_NAME(OFFSET_MACRO_NAME(3), OFFSET_MACRO_NAME(8), ...).\n",
         "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbor vertex offsets (e.g. FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(OFFSET_LIST_LIST_MACRO_NAME(...), OFFSET_LIST_LIST_MACRO_NAME(...), ...).\n",
         "• The name of a macro which declares a list of a list of offsets into an array (e.g. OFFSET_LIST_LIST_MACRO_NAME(OFFSET_LIST_MACRO_NAME(...), OFFSET_LIST_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a list of offsets into an array (e.g. OFFSET_LIST_MACRO_NAME(OFFSET_MACRO_NAME(3), OFFSET_MACRO_NAME(8), ...)).\n",
