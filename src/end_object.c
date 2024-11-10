@@ -66,8 +66,8 @@ void end_object(void)
       size_t *neighboring_face_indices = NULL;
       size_t total_neighbors = 0;
       size_t *const numbers_of_neighbouring_edges = malloc_or_throw(sizeof(size_t) * number_of_indices);
-      float *const exit_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
-      float *const post_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
+      float *const edge_exit_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
+      float *const vertex_up_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
 
       size_t first_index = 0;
 
@@ -163,16 +163,16 @@ void end_object(void)
           float edge_normal[3];
           normal_between(previous_xyz, next_xyz, edge_normal);
 
-          cross_product(edge_normal, accumulated_normal, exit_normals + (first_index + first_edge_index) * 3);
-          normalize(exit_normals + (first_index + first_edge_index) * 3, exit_normals + (first_index + first_edge_index) * 3);
+          cross_product(edge_normal, accumulated_normal, edge_exit_normals + (first_index + first_edge_index) * 3);
+          normalize(edge_exit_normals + (first_index + first_edge_index) * 3, edge_exit_normals + (first_index + first_edge_index) * 3);
 
           first_previous_index = first_next_index;
         }
 
         for (size_t first_edge_index = 0; first_edge_index < first_face_length; first_edge_index++)
         {
-          cross_product(exit_normals + 3 * (first_index + first_edge_index), exit_normals + 3 * (first_index + ((first_edge_index + 1) % first_face_length)), post_normals + 3 * (first_index + first_edge_index));
-          normalize(post_normals + 3 * (first_index + first_edge_index), post_normals + 3 * (first_index + first_edge_index));
+          cross_product(edge_exit_normals + 3 * (first_index + first_edge_index), edge_exit_normals + 3 * (first_index + ((first_edge_index + 1) % first_face_length)), vertex_up_normals + 3 * (first_index + first_edge_index));
+          normalize(vertex_up_normals + 3 * (first_index + first_edge_index), vertex_up_normals + 3 * (first_index + first_edge_index));
         }
 
         first_index += first_face_length;
@@ -295,7 +295,7 @@ void end_object(void)
               write_or_throw(stdout, ", ");
             }
 
-            write_or_throw(stdout, "%f", exit_normals[index]);
+            write_or_throw(stdout, "%f", edge_exit_normals[index]);
 
             index++;
           }
@@ -319,7 +319,7 @@ void end_object(void)
               write_or_throw(stdout, ", ");
             }
 
-            write_or_throw(stdout, "%f", post_normals[index]);
+            write_or_throw(stdout, "%f", vertex_up_normals[index]);
 
             index++;
           }
@@ -405,8 +405,8 @@ void end_object(void)
         free(neighboring_face_indices);
       }
 
-      free(post_normals);
-      free(exit_normals);
+      free(vertex_up_normals);
+      free(edge_exit_normals);
       free(numbers_of_neighbouring_edges);
 
       free(normals);
