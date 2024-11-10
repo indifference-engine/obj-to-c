@@ -552,7 +552,7 @@ void write_pass(
         write_or_throw(stdout, ", ");
       }
 
-      write_or_throw(stdout, "%s(%ff, %ff, %ff)", location_macro_name, unique_x[unique_xyz], unique_y[unique_xyz], unique_z[unique_xyz]);
+      write_or_throw(stdout, "%s(%f, %f, %f)", location_macro_name, unique_x[unique_xyz], unique_y[unique_xyz], unique_z[unique_xyz]);
     }
 
     write_or_throw(stdout, ")\n)\n", pass_macro_data_name);
@@ -568,7 +568,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", red_macro_name, first_unique_r[unique_r]);
+        write_or_throw(stdout, "%s(%f)", red_macro_name, first_unique_r[unique_r]);
       }
 
       write_or_throw(stdout, "),\n  %s(", green_list_macro_name);
@@ -580,7 +580,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", green_macro_name, first_unique_g[unique_g]);
+        write_or_throw(stdout, "%s(%f)", green_macro_name, first_unique_g[unique_g]);
       }
 
       write_or_throw(stdout, "),\n  %s(", blue_list_macro_name);
@@ -592,7 +592,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", blue_macro_name, first_unique_b[unique_b]);
+        write_or_throw(stdout, "%s(%f)", blue_macro_name, first_unique_b[unique_b]);
       }
 
       write_or_throw(stdout, ")\n)\n");
@@ -608,7 +608,7 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%ff)", v_macro_name, first_matched_material_unique_v[material][unique_v]);
+          write_or_throw(stdout, "%s(%f)", v_macro_name, first_matched_material_unique_v[material][unique_v]);
         }
 
         write_or_throw(stdout, "),\n  %s(", u_list_macro_name);
@@ -620,7 +620,7 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%ff)", u_macro_name, first_matched_material_unique_u[material][unique_u]);
+          write_or_throw(stdout, "%s(%f)", u_macro_name, first_matched_material_unique_u[material][unique_u]);
         }
 
         write_or_throw(stdout, "),\n  %s(", location_index_triangle_list_macro_name);
@@ -674,7 +674,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", red_macro_name, second_unique_r[unique_r]);
+        write_or_throw(stdout, "%s(%f)", red_macro_name, second_unique_r[unique_r]);
       }
 
       write_or_throw(stdout, "),\n  %s(", green_list_macro_name);
@@ -686,7 +686,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", green_macro_name, second_unique_g[unique_g]);
+        write_or_throw(stdout, "%s(%f)", green_macro_name, second_unique_g[unique_g]);
       }
 
       write_or_throw(stdout, "),\n  %s(", blue_list_macro_name);
@@ -698,7 +698,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", blue_macro_name, second_unique_b[unique_b]);
+        write_or_throw(stdout, "%s(%f)", blue_macro_name, second_unique_b[unique_b]);
       }
 
       write_or_throw(stdout, "),\n  %s(", opacity_list_macro_name);
@@ -710,7 +710,7 @@ void write_pass(
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%s(%ff)", opacity_macro_name, second_unique_o[unique_o]);
+        write_or_throw(stdout, "%s(%f)", opacity_macro_name, second_unique_o[unique_o]);
       }
 
       write_or_throw(stdout, ")\n)\n");
@@ -726,7 +726,7 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%ff)", v_macro_name, second_matched_material_unique_v[material][unique_v]);
+          write_or_throw(stdout, "%s(%f)", v_macro_name, second_matched_material_unique_v[material][unique_v]);
         }
 
         write_or_throw(stdout, "),\n  %s(", u_list_macro_name);
@@ -738,7 +738,7 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%ff)", u_macro_name, second_matched_material_unique_u[material][unique_u]);
+          write_or_throw(stdout, "%s(%f)", u_macro_name, second_matched_material_unique_u[material][unique_u]);
         }
 
         write_or_throw(stdout, "),\n  %s(", location_index_triangle_list_macro_name);

@@ -264,7 +264,7 @@ void end_object(void)
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%ff", normals[axis]);
+        write_or_throw(stdout, "%f", normals[axis]);
       }
 
       write_or_throw(stdout, "),\n  %s(", edge_exit_normal_list_macro_name);
@@ -284,7 +284,7 @@ void end_object(void)
               write_or_throw(stdout, ", ");
             }
 
-            write_or_throw(stdout, "%ff", exit_normals[index]);
+            write_or_throw(stdout, "%f", exit_normals[index]);
 
             index++;
           }
@@ -308,7 +308,7 @@ void end_object(void)
               write_or_throw(stdout, ", ");
             }
 
-            write_or_throw(stdout, "%ff", post_normals[index]);
+            write_or_throw(stdout, "%f", post_normals[index]);
 
             index++;
           }
