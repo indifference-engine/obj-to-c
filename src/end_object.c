@@ -215,7 +215,7 @@ void end_object(void)
           write_or_throw(stdout, ", ");
         }
 
-        write_or_throw(stdout, "%u", face_lengths[face_index]);
+        write_or_throw(stdout, "%s(%u)", face_vertex_count_macro_name, face_lengths[face_index]);
       }
 
       write_or_throw(stdout, "),\n  %s(", face_vertex_offset_list_macro_name);
