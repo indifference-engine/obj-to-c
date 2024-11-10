@@ -752,7 +752,7 @@ class IndifferenceEngineOBJExport(Operator, ExportHelper):
 
                         case 1:
                             for uv_layer in mesh.uv_layers:
-                                match len(mesh.vertex_colors):
+                                match len(mesh.color_attributes):
                                     case 0:
                                         self.report(
                                             {"ERROR"},
@@ -765,7 +765,7 @@ class IndifferenceEngineOBJExport(Operator, ExportHelper):
                                     case 1:
                                         materials = mesh.materials.values()
 
-                                        for color_layer in mesh.vertex_colors:
+                                        for color_layer in mesh.color_attributes:
                                             total_indices = 0
 
                                             for polygon in mesh.polygons:
@@ -992,7 +992,7 @@ class IndifferenceEngineOBJImport(Operator, ImportHelper):
                             indices,
                         )
 
-                        color_layer = mesh.vertex_colors.new(name="Attribute")
+                        color_layer = mesh.color_attributes.new("Attribute", 'BYTE_COLOR', 'CORNER')
                         uv_layer = mesh.uv_layers.new(name="UV")
 
                         total_indices = 0
