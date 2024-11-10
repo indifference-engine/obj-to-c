@@ -353,6 +353,9 @@ def import_material(self, context, prefix):
                     exists = True
 
             if not exists:
+                if len(object.data.color_attributes) == 0:
+                    object.data.color_attributes.new("Attribute", 'BYTE_COLOR', 'CORNER')
+
                 object.data.materials.append(material)
 
     return {"FINISHED"}
