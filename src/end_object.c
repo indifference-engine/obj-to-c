@@ -178,7 +178,7 @@ void end_object(void)
         first_index += first_face_length;
       }
 
-      write_or_throw(stdout, "%s(\n  %s%s,\n  { ", navigation_macro_name, object_prefix, object_name);
+      write_or_throw(stdout, "%s(\n  %s%s,\n  %s(", navigation_macro_name, object_prefix, object_name, material_list_macro_name);
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
@@ -206,7 +206,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_vertex_count_list_macro_name);
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
@@ -218,7 +218,7 @@ void end_object(void)
         write_or_throw(stdout, "%u", face_lengths[face_index]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_vertex_offset_list_macro_name);
 
       size_t index = 0;
 
@@ -234,7 +234,7 @@ void end_object(void)
         index += face_lengths[face_index];
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_vertex_location_list_name);
 
       index = 0;
 
@@ -255,7 +255,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", normal_list_macro_name);
 
       for (size_t axis = 0; axis < number_of_faces * 3; axis++)
       {
@@ -267,7 +267,7 @@ void end_object(void)
         write_or_throw(stdout, "%ff", normals[axis]);
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", edge_exit_normal_list_macro_name);
 
       index = 0;
 
@@ -291,7 +291,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", vertex_up_normal_list_macro_name);
 
       index = 0;
 
@@ -315,7 +315,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", neighbor_count_list_macro_name);
 
       index = 0;
 
@@ -336,7 +336,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_edge_offset_list_macro_name);
 
       index = 0;
 
@@ -352,7 +352,7 @@ void end_object(void)
         index += face_lengths[face_index];
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_edge_neighbor_offset_list_macro_name);
 
       size_t total_edges = 0;
       index = 0;
@@ -375,7 +375,7 @@ void end_object(void)
         }
       }
 
-      write_or_throw(stdout, " },\n  { ");
+      write_or_throw(stdout, "),\n  %s(", face_edge_neighbour_face_index_list_macro_name);
 
       for (size_t neighbour_index = 0; neighbour_index < total_neighbors; neighbour_index++)
       {
@@ -387,7 +387,7 @@ void end_object(void)
         write_or_throw(stdout, "%u", neighboring_face_indices[neighbour_index]);
       }
 
-      write_or_throw(stdout, " }\n)\n");
+      write_or_throw(stdout, ")\n)\n");
 
       if (neighboring_face_indices)
       {

@@ -144,6 +144,7 @@ extern const char *blended_draw_call_macro_name;
 /**
  * The name of a macro which declares a navigation mesh (e.g.
  * NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...),
+ * FACE_VERTEX_COUNT_LIST_MACRO_NAME(...),
  * FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...),
  * FACE_VERTEX_LOCATION_LIST_NAME(...),
  * NORMAL_LIST_MACRO_NAME(...),
