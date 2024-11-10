@@ -161,7 +161,7 @@ int main(const int argc, const char *const *const argv)
   face_index_macro_name = argv[65];
   material_list_macro_name = argv[66];
   include_paths = argv + 67;
-  number_of_include_paths = argc - 68;
+  number_of_include_paths = argc - 67;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);
