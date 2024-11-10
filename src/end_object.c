@@ -338,25 +338,34 @@ void end_object(void)
         write_or_throw(stdout, ")");
       }
 
-      write_or_throw(stdout, "),\n  %s(", neighbor_count_list_macro_name);
+      write_or_throw(stdout, "),\n  %s(", neighbor_count_list_list_macro_name);
 
       index = 0;
 
       for (size_t face_index = 0; face_index < number_of_faces; face_index++)
       {
+        if (face_index)
+        {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(", neighbor_count_list_macro_name);
+
         const size_t face_length = face_lengths[face_index];
 
         for (size_t edge_index = 0; edge_index < face_length; edge_index++)
         {
-          if (index)
+          if (edge_index)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%u", numbers_of_neighbouring_edges[index]);
+          write_or_throw(stdout, "%s(%u)", neighbor_count_macro_name, numbers_of_neighbouring_edges[index]);
 
           index++;
         }
+
+        write_or_throw(stdout, ")");
       }
 
       write_or_throw(stdout, "),\n  %s(", face_edge_offset_list_macro_name);
