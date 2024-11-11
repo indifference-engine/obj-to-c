@@ -145,6 +145,10 @@ def create_material(name, texture_path):
                 multiply.operation = "MULTIPLY"
                 multiply.location = (-350, 50)
 
+                greater_than = output.node_tree.nodes.new("ShaderNodeMath")
+                greater_than.operation = "GREATER_THAN"
+                greater_than.location = (-100, 50)
+
                 emission = output.node_tree.nodes.new("ShaderNodeEmission")
                 emission.location = (-100, -250)
 
@@ -163,7 +167,10 @@ def create_material(name, texture_path):
                 output.node_tree.links.new(emission.inputs[0], color_mix.outputs[2])
 
                 output.node_tree.links.new(
-                    transparency_mix.inputs[0], multiply.outputs[0]
+                    greater_than.inputs[0], multiply.outputs[0]
+                )
+                output.node_tree.links.new(
+                    transparency_mix.inputs[0], greater_than.outputs[0]
                 )
                 output.node_tree.links.new(
                     transparency_mix.inputs[1], transparent.outputs[0]
