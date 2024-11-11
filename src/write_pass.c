@@ -750,7 +750,7 @@ void write_pass(
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", location_index_triangle_macro_name, location_macro_name, second_matched_material_xyz_indices[material][unique_xyz], location_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 1], location_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 2]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", location_index_triangle_macro_name, location_index_macro_name, second_matched_material_xyz_indices[material][unique_xyz], location_index_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 1], location_index_macro_name, second_matched_material_xyz_indices[material][unique_xyz + 2]);
         }
 
         write_or_throw(stdout, "),\n  %s(", color_index_triangle_list_macro_name);
