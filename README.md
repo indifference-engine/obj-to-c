@@ -40,6 +40,16 @@ v 18.3, -17.9, 22.1, 0.3, 0.9, 1, 0.24
 
 Where these are not supplied, red, green, blue and opacity are assumed to be 1.
 
+### Draw Calls
+
+Faces within an object are split into two groups of draw calls:
+
+- Depth-writing (opaque and cutout materials).
+- Non-depth-writing (additive and blended materials).
+
+They are additionally grouped by material within those groups to minimize
+unnecessary state switches.
+
 ### Navigation objects
 
 While every object featuring a name __not__ prefixed with `navigation_` is
