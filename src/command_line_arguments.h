@@ -463,6 +463,12 @@ extern const char *face_index_macro_name;
 extern const char *material_list_macro_name;
 
 /**
+ * The name of a macro which declares a material import (e.g.
+ * MATERIAL_IMPORT_MACRO_NAME(material_name)).
+ */
+extern const char *material_import_macro_name;
+
+/**
  * The include paths to emit.
  */
 extern const char *const *include_paths;

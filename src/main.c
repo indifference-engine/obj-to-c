@@ -91,6 +91,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbors, each of which contains a face index (e.g. FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(FACE_INDEX_MACRO_NAME(3), FACE_INDEX_MACRO_NAME(8), ...)).\n",
         "• The name of a macro which declares a face index (e.g. FACE_INDEX_MACRO_NAME(3)).\n",
         "• The name of a macro which declares a material name (e.g. MATERIAL_LIST_MACRO_NAME(MATERIAL_PREFIX_A, MATERIAL_PREFIX_B, ...)).\n",
+        "• The name of a macro which declares a material import (e.g. MATERIAL_IMPORT_MACRO_NAME(material_name)).\n",
         "• Any number of include paths.\n");
   }
 
@@ -160,8 +161,9 @@ int main(const int argc, const char *const *const argv)
   face_edge_neighbour_face_index_list_macro_name = argv[64];
   face_index_macro_name = argv[65];
   material_list_macro_name = argv[66];
-  include_paths = argv + 67;
-  number_of_include_paths = argc - 67;
+  material_import_macro_name = argv[67];
+  include_paths = argv + 68;
+  number_of_include_paths = argc - 68;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

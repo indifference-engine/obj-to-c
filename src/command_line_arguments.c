@@ -67,5 +67,6 @@ const char *face_index_list_list_macro_name = NULL;
 const char *face_edge_neighbour_face_index_list_macro_name = NULL;
 const char *face_index_macro_name = NULL;
 const char *material_list_macro_name = NULL;
+const char *material_import_macro_name = NULL;
 const char *const *include_paths = NULL;
 size_t number_of_include_paths = 0;

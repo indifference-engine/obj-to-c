@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <string.h>
 #include "register_material.h"
 #include "material_name.h"
@@ -58,6 +59,8 @@ void register_material(void)
     material_names[number_of_materials] = material_name;
     material_name_lengths = realloc_or_throw(material_name_lengths, sizeof(size_t) * (number_of_materials + 1));
     material_name_lengths[number_of_materials] = material_name_length;
+    material_imports = realloc_or_throw(material_imports, sizeof(bool) * (number_of_materials + 1));
+    material_imports[number_of_materials] = false;
     number_of_materials++;
   }
   else
@@ -68,6 +71,8 @@ void register_material(void)
     material_names[0] = material_name;
     material_name_lengths = malloc_or_throw(sizeof(size_t));
     material_name_lengths[0] = material_name_length;
+    material_imports = malloc_or_throw(sizeof(bool));
+    material_imports[0] = false;
     number_of_materials = 1;
   }
 

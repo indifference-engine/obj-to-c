@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "state.h"
 #include "space.h"
 #include "throw.h"
@@ -15,6 +16,8 @@
 #include "materials.h"
 #include "determine_object_type.h"
 #include "object_type.h"
+#include "write_or_throw.h"
+#include "command_line_arguments.h"
 
 void space(void)
 {
@@ -213,6 +216,13 @@ void space(void)
         {
           throw("Cannot apply navigation materials to non-navigation objects.");
         }
+
+        if (!material_imports[current_material])
+        {
+          write_or_throw(stdout, "%s(%s%s)\n", material_import_macro_name, material_prefix, material_names[current_material]);
+          material_imports[current_material] = true;
+        }
+
         break;
 
       case OBJECT_TYPE_NAVIGATION:

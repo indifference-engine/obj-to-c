@@ -3,6 +3,7 @@
 #define MATERIALS_H
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 /**
  * The material entirely replaces the background when rendered.
@@ -38,6 +39,11 @@ extern int *material_types;
  * The names of the materials found.
  */
 extern const char **material_names;
+
+/**
+ * Set when materials are imported.
+ */
+extern bool *material_imports;
 
 /**
  * The lengths of the names of the materials found.

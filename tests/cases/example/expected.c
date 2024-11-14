@@ -1,6 +1,10 @@
 #include "test/include/a.h"
 #include "test/include/b.h"
 #include "test/include/c.h"
+TEST_MATERIAL_IMPORT_MACRO_NAME(test_material_prefix_opaque_a)
+TEST_MATERIAL_IMPORT_MACRO_NAME(test_material_prefix_cutout_b)
+TEST_MATERIAL_IMPORT_MACRO_NAME(test_material_prefix_additive_c)
+TEST_MATERIAL_IMPORT_MACRO_NAME(test_material_prefix_blended_d)
 TEST_OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME(
   test_object_prefix_object_name,
   TEST_LOCATION_LIST_MACRO_NAME(TEST_LOCATION_MACRO_NAME(14.000000, 35.000000, 46.000000), TEST_LOCATION_MACRO_NAME(21.000000, 12.000000, 13.000000), TEST_LOCATION_MACRO_NAME(20.000000, 35.000000, 46.000000), TEST_LOCATION_MACRO_NAME(27.000000, 12.000000, 13.000000))
