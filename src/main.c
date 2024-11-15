@@ -20,10 +20,10 @@ int main(const int argc, const char *const *const argv)
   (void)(argc);
   (void)(argv);
 
-  if (argc < 67)
+  if (argc < 71)
   {
     throw(
-        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
         "At least 66 arguments are required:\n",
         "• A prefix applied to any object names.\n",
         "• A prefix applied to any non-navigation material names.\n",
@@ -33,18 +33,22 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares data for an opaque draw call (e.g. OPAQUE_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name, V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME(...), VU_INDEX_TRIANGLE_LIST_MACRO_NAME(...)).\n",
         "• The name of a macro which declares data for a cutout pass (e.g. CUTOUT_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...), OPACITY_LIST_MACRO_NAME(...))).\n",
         "• The name of a macro which declares data for a cutout draw call (e.g. CUTOUT_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name, V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME(...), VU_INDEX_TRIANGLE_LIST_MACRO_NAME(...)).\n",
-        "• The name of a macro which declares an opaque/cutout pass (e.g. OPAQUE_CUTOUT_PASS_MACRO_NAME(object_name, OPAQUE_DRAW_CALL_MACRO_NAME(...), CUTOUT_DRAW_CALL_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares an opaque/cutout pass (e.g. OPAQUE_CUTOUT_PASS_MACRO_NAME(object_name, TEST_OPAQUE_PREPARATION_MACRO_NAME(...), TEST_CUTOUT_PREPARATION_MACRO_NAME(...), OPAQUE_DRAW_CALL_MACRO_NAME(...), CUTOUT_DRAW_CALL_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares preparation for an opaque/cutout pass including opaque draw calls (e.g. TEST_OPAQUE_PREPARATION_MACRO_NAME(object_name)).\n",
+        "• The name of a macro which declares preparation for an opaque/cutout pass including cutout draw calls (e.g. TEST_CUTOUT_PREPARATION_MACRO_NAME(object_name)).\n",
         "• The name of a macro which declares an opaque draw call (e.g. OPAQUE_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
         "• The name of a macro which declares a cutout draw call (e.g. CUTOUT_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
         "• The name of a macro which declares data for an additive/blended pass (XYZ) (e.g. ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(object_name, LOCATION_LIST_MACRO_NAME(...))).\n",
         "• The name of a macro which declares data for an additive pass (e.g. ADDITIVE_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...))).\n",
         "• The name of a macro which declares data for an additive draw call (e.g. ADDITIVE_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name, V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME(...), VU_INDEX_TRIANGLE_LIST_MACRO_NAME(...)).\n",
-        "• The name of a macro which declares data for an blended pass (e.g. BLENDED_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...), OPACITY_LIST_MACRO_NAME(...))).\n",
-        "• The name of a macro which declares data for an blended draw call (e.g. BLENDED_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name, V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME(...), VU_INDEX_TRIANGLE_LIST_MACRO_NAME(...)).\n",
-        "• The name of a macro which declares an additive/blended pass (e.g. ADDITIVE_BLENDED_PASS_MACRO_NAME(object_name, ADDITIVE_DRAW_CALL_MACRO_NAME(...), BLENDED_DRAW_CALL_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares data for a blended pass (e.g. BLENDED_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...), OPACITY_LIST_MACRO_NAME(...))).\n",
+        "• The name of a macro which declares data for a blended draw call (e.g. BLENDED_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name, V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...), LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...), COLOR_INDEX_TRIANGLE_LIST_MACRO_NAME(...), VU_INDEX_TRIANGLE_LIST_MACRO_NAME(...)).\n",
+        "• The name of a macro which declares an additive/blended pass (e.g. ADDITIVE_BLENDED_PASS_MACRO_NAME(object_name, TEST_ADDITIVE_PREPARATION_MACRO_NAME(...), TEST_BLENDED_PREPARATION_MACRO_NAME(...), ADDITIVE_DRAW_CALL_MACRO_NAME(...), BLENDED_DRAW_CALL_MACRO_NAME(...), ...)).\n",
+        "• The name of a macro which declares preparation for an additive/blended pass including additive draw calls (e.g. TEST_ADDITIVE_PREPARATION_MACRO_NAME(object_name)).\n",
+        "• The name of a macro which declares preparation for an additive/blended pass including blended draw calls (e.g. TEST_BLENDED_PREPARATION_MACRO_NAME(object_name)).\n",
         "• The name of a macro which declares an additive draw call (e.g. ADDITIVE_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
         "• The name of a macro which declares a blended draw call (e.g. BLENDED_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
-        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
+        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
         "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f)).\n",
         "• The name of a macro which declares a list of red intensities (e.g. RED_LIST_MACRO_NAME(RED_MACRO_NAME(...), RED_MACRO_NAME(...), ...)).\n",
@@ -88,7 +92,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares an offset into an array (e.g. OFFSET_MACRO_NAME(3)).\n",
         "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbors, each of which contains a face index (e.g. FACE_INDEX_LIST_LIST_LIST_MACRO_NAME(FACE_INDEX_LIST_LIST_MACRO_NAME(...), FACE_INDEX_LIST_LIST_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares a list of edges, each of which contains a list of neighbors, each of which contains a face index (e.g. FACE_INDEX_LIST_LIST_MACRO_NAME(FACE_INDEX_LIST_MACRO_NAME(...), FACE_INDEX_LIST_MACRO_NAME(...), ...)).\n",
-        "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbors, each of which contains a face index (e.g. FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(FACE_INDEX_MACRO_NAME(3), FACE_INDEX_MACRO_NAME(8), ...)).\n",
+        "• The name of a macro which declares a list of faces, each of which contains a list of edges, each of which contains a list of neighbors, each of which contains a face index (e.g. FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(FACE_INDEX_MACRO_NAME(3), FACE_INDEX_MACRO_NAME(8), ...)).\n",
         "• The name of a macro which declares a face index (e.g. FACE_INDEX_MACRO_NAME(3)).\n",
         "• The name of a macro which declares a material name (e.g. MATERIAL_LIST_MACRO_NAME(MATERIAL_PREFIX_A, MATERIAL_PREFIX_B, ...)).\n",
         "• The name of a macro which declares a material import (e.g. MATERIAL_IMPORT_MACRO_NAME(material_name)).\n",
@@ -104,66 +108,70 @@ int main(const int argc, const char *const *const argv)
   cutout_pass_data_macro_name = argv[7];
   cutout_draw_call_data_macro_name = argv[8];
   opaque_cutout_pass_macro_name = argv[9];
-  opaque_draw_call_macro_name = argv[10];
-  cutout_draw_call_macro_name = argv[11];
-  additive_blended_pass_data_macro_name = argv[12];
-  additive_pass_data_macro_name = argv[13];
-  additive_draw_call_data_macro_name = argv[14];
-  blended_pass_data_macro_name = argv[15];
-  blended_draw_call_data_macro_name = argv[16];
-  additive_blended_pass_macro_name = argv[17];
-  additive_draw_call_macro_name = argv[18];
-  blended_draw_call_macro_name = argv[19];
-  navigation_macro_name = argv[20];
-  location_list_macro_name = argv[21];
-  location_macro_name = argv[22];
-  red_list_macro_name = argv[23];
-  red_macro_name = argv[24];
-  green_list_macro_name = argv[25];
-  green_macro_name = argv[26];
-  blue_list_macro_name = argv[27];
-  blue_macro_name = argv[28];
-  opacity_list_macro_name = argv[29];
-  opacity_macro_name = argv[30];
-  v_list_macro_name = argv[31];
-  v_macro_name = argv[32];
-  u_list_macro_name = argv[33];
-  u_macro_name = argv[34];
-  location_index_triangle_list_macro_name = argv[35];
-  location_index_triangle_macro_name = argv[36];
-  location_index_macro_name = argv[37];
-  color_index_triangle_list_macro_name = argv[38];
-  color_index_triangle_macro_name = argv[39];
-  color_index_macro_name = argv[40];
-  vu_index_triangle_list_macro_name = argv[41];
-  vu_index_triangle_macro_name = argv[42];
-  vu_index_macro_name = argv[43];
-  face_vertex_count_list_macro_name = argv[44];
-  face_vertex_count_macro_name = argv[45];
-  face_vertex_offset_list_macro_name = argv[46];
-  face_vertex_offset_macro_name = argv[47];
-  face_vertex_location_list_name = argv[48];
-  location_face_macro_name = argv[49];
-  normal_list_macro_name = argv[50];
-  face_edge_exit_normal_list_macro_name = argv[51];
-  face_vertex_up_normal_list_macro_name = argv[52];
-  normal_macro_name = argv[53];
-  neighbor_count_list_list_macro_name = argv[54];
-  neighbor_count_list_macro_name = argv[55];
-  neighbor_count_macro_name = argv[56];
-  face_edge_offset_list_macro_name = argv[57];
-  face_edge_neighbor_offset_list_macro_name = argv[58];
-  offset_list_list_macro_name = argv[59];
-  offset_list_macro_name = argv[60];
-  offset_macro_name = argv[61];
-  face_index_list_list_list_macro_name = argv[62];
-  face_index_list_list_macro_name = argv[63];
-  face_edge_neighbour_face_index_list_macro_name = argv[64];
-  face_index_macro_name = argv[65];
-  material_list_macro_name = argv[66];
-  material_import_macro_name = argv[67];
-  include_paths = argv + 68;
-  number_of_include_paths = argc - 68;
+  opaque_preparation_macro_name = argv[10];
+  cutout_preparation_macro_name = argv[11];
+  opaque_draw_call_macro_name = argv[12];
+  cutout_draw_call_macro_name = argv[13];
+  additive_blended_pass_data_macro_name = argv[14];
+  additive_pass_data_macro_name = argv[15];
+  additive_draw_call_data_macro_name = argv[16];
+  blended_pass_data_macro_name = argv[17];
+  blended_draw_call_data_macro_name = argv[18];
+  additive_blended_pass_macro_name = argv[19];
+  additive_preparation_macro_name = argv[20];
+  blended_preparation_macro_name = argv[21];
+  additive_draw_call_macro_name = argv[22];
+  blended_draw_call_macro_name = argv[23];
+  navigation_macro_name = argv[24];
+  location_list_macro_name = argv[25];
+  location_macro_name = argv[26];
+  red_list_macro_name = argv[27];
+  red_macro_name = argv[28];
+  green_list_macro_name = argv[29];
+  green_macro_name = argv[30];
+  blue_list_macro_name = argv[31];
+  blue_macro_name = argv[32];
+  opacity_list_macro_name = argv[33];
+  opacity_macro_name = argv[34];
+  v_list_macro_name = argv[35];
+  v_macro_name = argv[36];
+  u_list_macro_name = argv[37];
+  u_macro_name = argv[38];
+  location_index_triangle_list_macro_name = argv[39];
+  location_index_triangle_macro_name = argv[40];
+  location_index_macro_name = argv[41];
+  color_index_triangle_list_macro_name = argv[42];
+  color_index_triangle_macro_name = argv[43];
+  color_index_macro_name = argv[44];
+  vu_index_triangle_list_macro_name = argv[45];
+  vu_index_triangle_macro_name = argv[46];
+  vu_index_macro_name = argv[47];
+  face_vertex_count_list_macro_name = argv[48];
+  face_vertex_count_macro_name = argv[49];
+  face_vertex_offset_list_macro_name = argv[50];
+  face_vertex_offset_macro_name = argv[51];
+  face_vertex_location_list_name = argv[52];
+  location_face_macro_name = argv[53];
+  normal_list_macro_name = argv[54];
+  face_edge_exit_normal_list_macro_name = argv[55];
+  face_vertex_up_normal_list_macro_name = argv[56];
+  normal_macro_name = argv[57];
+  neighbor_count_list_list_macro_name = argv[58];
+  neighbor_count_list_macro_name = argv[59];
+  neighbor_count_macro_name = argv[60];
+  face_edge_offset_list_macro_name = argv[61];
+  face_edge_neighbor_offset_list_macro_name = argv[62];
+  offset_list_list_macro_name = argv[63];
+  offset_list_macro_name = argv[64];
+  offset_macro_name = argv[65];
+  face_index_list_list_list_macro_name = argv[66];
+  face_index_list_list_macro_name = argv[67];
+  face_edge_neighbor_face_index_list_macro_name = argv[68];
+  face_index_macro_name = argv[69];
+  material_list_macro_name = argv[70];
+  material_import_macro_name = argv[71];
+  include_paths = argv + 72;
+  number_of_include_paths = argc - 72;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

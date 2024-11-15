@@ -49,6 +49,16 @@
  *                                                       { 0, 1, 2 })).
  * @param pass_macro_name The name of a macro which declares a pass (e.g. MACRO(
  *                        object_name, { (draw calls) })).
+ * @param first_material_type_preparation_macro_name The name of a macro which
+ *                                                   declares a preparation to
+ *                                                   draw the first material
+ *                                                   type (e.g.
+ *                                                   MACRO(object_name)).
+ * @param second_material_type_preparation_macro_name The name of a macro which
+ *                                                    declares a preparation to
+ *                                                    draw the second material
+ *                                                    type (e.g.
+ *                                                    MACRO(object_name)).
  * @param first_material_type_draw_call_macro_name The name of a macro which
  *                                                 declares a draw call of the
  *                                                 first material type (e.g.
@@ -69,6 +79,8 @@ void write_pass(
     const char *const second_material_type_pass_data_macro_name,
     const char *const second_material_type_draw_call_data_macro_name,
     const char *const pass_macro_name,
+    const char *const first_material_type_preparation_macro_name,
+    const char *const second_material_type_preparation_macro_name,
     const char *const first_material_type_draw_call_macro_name,
     const char *const second_material_type_draw_call_macro_name);
 

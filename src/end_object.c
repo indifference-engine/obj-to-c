@@ -28,13 +28,13 @@ void end_object(void)
         opaque_cutout_pass_data_macro_name,
         MATERIAL_TYPE_OPAQUE, opaque_pass_data_macro_name, opaque_draw_call_data_macro_name,
         MATERIAL_TYPE_CUTOUT, cutout_pass_data_macro_name, cutout_draw_call_data_macro_name,
-        opaque_cutout_pass_macro_name, opaque_draw_call_macro_name, cutout_draw_call_macro_name);
+        opaque_cutout_pass_macro_name, opaque_preparation_macro_name, cutout_preparation_macro_name, opaque_draw_call_macro_name, cutout_draw_call_macro_name);
 
     write_pass(
         additive_blended_pass_data_macro_name,
         MATERIAL_TYPE_ADDITIVE, additive_pass_data_macro_name, additive_draw_call_data_macro_name,
         MATERIAL_TYPE_BLENDED, blended_pass_data_macro_name, blended_draw_call_data_macro_name,
-        additive_blended_pass_macro_name, additive_draw_call_macro_name, blended_draw_call_macro_name);
+        additive_blended_pass_macro_name, additive_preparation_macro_name, blended_preparation_macro_name, additive_draw_call_macro_name, blended_draw_call_macro_name);
 
     if (number_of_indices)
     {
@@ -65,7 +65,7 @@ void end_object(void)
       float *const normals = malloc_or_throw(sizeof(float) * number_of_faces * 3);
       size_t *neighboring_face_indices = NULL;
       size_t total_neighbors = 0;
-      size_t *const numbers_of_neighbouring_edges = malloc_or_throw(sizeof(size_t) * number_of_indices);
+      size_t *const numbers_of_neighboring_edges = malloc_or_throw(sizeof(size_t) * number_of_indices);
       float *const edge_exit_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
       float *const vertex_up_normals = malloc_or_throw(sizeof(float) * number_of_indices * 3);
 
@@ -106,7 +106,7 @@ void end_object(void)
 
         for (size_t first_edge_index = 0; first_edge_index < first_face_length; first_edge_index++)
         {
-          numbers_of_neighbouring_edges[first_index + first_edge_index] = 0;
+          numbers_of_neighboring_edges[first_index + first_edge_index] = 0;
 
           const size_t first_next_index = index_v[first_index + first_edge_index];
 
@@ -145,7 +145,7 @@ void end_object(void)
                   accumulated_normal[1] += normals[second_face_index * 3 + 1];
                   accumulated_normal[2] += normals[second_face_index * 3 + 2];
 
-                  numbers_of_neighbouring_edges[first_index + first_edge_index]++;
+                  numbers_of_neighboring_edges[first_index + first_edge_index]++;
                 }
 
                 second_previous_index = second_next_index;
@@ -360,7 +360,7 @@ void end_object(void)
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%u)", neighbor_count_macro_name, numbers_of_neighbouring_edges[index]);
+          write_or_throw(stdout, "%s(%u)", neighbor_count_macro_name, numbers_of_neighboring_edges[index]);
 
           index++;
         }
@@ -409,14 +409,14 @@ void end_object(void)
 
           write_or_throw(stdout, "%s(%u)", offset_macro_name, index);
 
-          index += numbers_of_neighbouring_edges[total_edges];
+          index += numbers_of_neighboring_edges[total_edges];
           total_edges++;
         }
 
         write_or_throw(stdout, ")");
       }
 
-      write_or_throw(stdout, "),\n  %s(", face_edge_neighbour_face_index_list_macro_name);
+      write_or_throw(stdout, "),\n  %s(", face_edge_neighbor_face_index_list_macro_name);
 
       index = 0;
       total_edges = 0;
@@ -441,7 +441,7 @@ void end_object(void)
 
           write_or_throw(stdout, "%s(", offset_list_macro_name);
 
-          const size_t edge_length = numbers_of_neighbouring_edges[total_edges];
+          const size_t edge_length = numbers_of_neighboring_edges[total_edges];
 
           for (size_t neighbor_index = 0; neighbor_index < edge_length; neighbor_index++)
           {
@@ -470,7 +470,7 @@ void end_object(void)
 
       free(vertex_up_normals);
       free(edge_exit_normals);
-      free(numbers_of_neighbouring_edges);
+      free(numbers_of_neighboring_edges);
 
       free(normals);
     }

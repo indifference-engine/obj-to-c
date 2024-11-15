@@ -27,6 +27,8 @@ void write_pass(
     const char *const second_material_type_pass_data_macro_name,
     const char *const second_material_type_draw_call_data_macro_name,
     const char *const pass_macro_name,
+    const char *const first_material_type_preparation_macro_name,
+    const char *const second_material_type_preparation_macro_name,
     const char *const first_material_type_draw_call_macro_name,
     const char *const second_material_type_draw_call_macro_name)
 {
@@ -555,7 +557,7 @@ void write_pass(
       write_or_throw(stdout, "%s(%f, %f, %f)", location_macro_name, unique_x[unique_xyz], unique_y[unique_xyz], unique_z[unique_xyz]);
     }
 
-    write_or_throw(stdout, ")\n)\n", pass_macro_data_name);
+    write_or_throw(stdout, ")\n)\n");
 
     if (number_of_first_matched_materials)
     {
@@ -781,19 +783,29 @@ void write_pass(
       }
     }
 
-    write_or_throw(stdout, "%s\n(\n  %s%s,\n", pass_macro_name, object_prefix, object_name);
+    write_or_throw(stdout, "%s\n(\n  %s%s", pass_macro_name, object_prefix, object_name);
+
+    if (number_of_first_matched_materials)
+    {
+      write_or_throw(stdout, ",\n  %s(%s)", first_material_type_preparation_macro_name, object_name);
+    }
+
+    if (number_of_second_matched_materials)
+    {
+      write_or_throw(stdout, ",\n  %s(%s)", second_material_type_preparation_macro_name, object_name);
+    }
 
     for (size_t material = 0; material < number_of_first_matched_materials; material++)
     {
-      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
+      write_or_throw(stdout, ",\n  %s(%s%s, %s%s)", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
     }
 
     for (size_t material = 0; material < number_of_second_matched_materials; material++)
     {
-      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
+      write_or_throw(stdout, ",\n  %s(%s%s, %s%s)", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
     }
 
-    write_or_throw(stdout, ")\n");
+    write_or_throw(stdout, "\n)\n");
 
     free(unique_x);
     free(unique_y);

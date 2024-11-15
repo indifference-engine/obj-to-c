@@ -20,11 +20,27 @@ extern const char *material_prefix;
 extern const char *navigation_material_prefix;
 
 /**
- * The name of a macro which declares data for an opaque/cutout pass (e.g.
- * OPAQUE_CUTOUT_PASS_DATA_MACRO_NAME(object_name,
- * LOCATION_LIST_MACRO_NAME(...))).
+ * The name of a macro which declares an opaque/cutout pass (e.g.
+ * OPAQUE_CUTOUT_PASS_MACRO_NAME(object_name,
+ * TEST_OPAQUE_PREPARATION_MACRO_NAME(...),
+ * TEST_CUTOUT_PREPARATION_MACRO_NAME(...), OPAQUE_DRAW_CALL_MACRO_NAME(...),
+ * CUTOUT_DRAW_CALL_MACRO_NAME(...), ...)).
  */
 extern const char *opaque_cutout_pass_data_macro_name;
+
+/**
+ * The name of a macro which declares preparation for an opaque/cutout pass
+ * including opaque draw calls (e.g.
+ * TEST_OPAQUE_PREPARATION_MACRO_NAME(object_name)).
+ */
+extern const char *opaque_preparation_macro_name;
+
+/**
+ * The name of a macro which declares preparation for an opaque/cutout pass
+ * including cutout draw calls (e.g.
+ * TEST_CUTOUT_PREPARATION_MACRO_NAME(object_name)).
+ */
+extern const char *cutout_preparation_macro_name;
 
 /**
  * The name of a macro which declares data for an opaque pass (e.g.
@@ -105,7 +121,7 @@ extern const char *additive_pass_data_macro_name;
 extern const char *additive_draw_call_data_macro_name;
 
 /**
- * The name of a macro which declares data for an blended pass (e.g.
+ * The name of a macro which declares data for a blended pass (e.g.
  * BLENDED_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...),
  * GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...),
  * OPACITY_LIST_MACRO_NAME(...))).
@@ -113,7 +129,7 @@ extern const char *additive_draw_call_data_macro_name;
 extern const char *blended_pass_data_macro_name;
 
 /**
- * The name of a macro which declares data for an blended draw call (e.g.
+ * The name of a macro which declares data for a blended draw call (e.g.
  * BLENDED_DRAW_CALL_DATA_MACRO_NAME(object_name, material_name,
  * V_LIST_MACRO_NAME(...), U_LIST_MACRO_NAME(...),
  * LOCATION_INDEX_TRIANGLE_LIST_MACRO_NAME(...),
@@ -123,11 +139,27 @@ extern const char *blended_pass_data_macro_name;
 extern const char *blended_draw_call_data_macro_name;
 
 /**
- * The name of a macro which declares an additive/blended pass
- * (e.g. ADDITIVE_BLENDED_PASS_MACRO_NAME(object_name,
- * ADDITIVE_DRAW_CALL_MACRO_NAME(...), BLENDED_DRAW_CALL_MACRO_NAME(...), ...)).
+ * The name of a macro which declares an additive/blended pass (e.g.
+ * ADDITIVE_BLENDED_PASS_MACRO_NAME(object_name,
+ * TEST_ADDITIVE_PREPARATION_MACRO_NAME(...),
+ * TEST_BLENDED_PREPARATION_MACRO_NAME(...), ADDITIVE_DRAW_CALL_MACRO_NAME(...),
+ * BLENDED_DRAW_CALL_MACRO_NAME(...), ...)).
  */
 extern const char *additive_blended_pass_macro_name;
+
+/**
+ * The name of a macro which declares preparation for an additive/blended pass
+ * including additive draw calls (e.g.
+ * TEST_ADDITIVE_PREPARATION_MACRO_NAME(object_name)).
+ */
+extern const char *additive_preparation_macro_name;
+
+/**
+ * The name of a macro which declares preparation for an additive/blended pass
+ * including blended draw calls (e.g.
+ * TEST_BLENDED_PREPARATION_MACRO_NAME(object_name)).\n",
+ */
+extern const char *blended_preparation_macro_name;
 
 /**
  * The name of a macro which declares an additive draw call
@@ -153,7 +185,7 @@ extern const char *blended_draw_call_macro_name;
  * NEIGHBOR_COUNT_LIST_MACRO_NAME(...),
  * FACE_EDGE_OFFSET_LIST_MACRO_NAME(...),
  * FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...),
- * FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(...)).
+ * FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(...)).
  */
 extern const char *navigation_macro_name;
 
@@ -445,10 +477,10 @@ extern const char *face_index_list_list_macro_name;
 /**
  * The name of a macro which declares a list of faces, each of which contains a
  * list of edges, each of which contains a list of neighbors, each of which
- * contains a face index (e.g. FACE_EDGE_NEIGHBOUR_FACE_INDEX_LIST_MACRO_NAME(
+ * contains a face index (e.g. FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(
  * FACE_INDEX_MACRO_NAME(3), FACE_INDEX_MACRO_NAME(8), ...)).
  */
-extern const char *face_edge_neighbour_face_index_list_macro_name;
+extern const char *face_edge_neighbor_face_index_list_macro_name;
 
 /**
  * The name of a macro which declares a face index (e.g.
