@@ -787,12 +787,12 @@ void write_pass(
 
     if (number_of_first_matched_materials)
     {
-      write_or_throw(stdout, ",\n  %s(%s)", first_material_type_preparation_macro_name, object_name);
+      write_or_throw(stdout, ",\n  %s(%s%s)", first_material_type_preparation_macro_name, object_prefix, object_name);
     }
 
     if (number_of_second_matched_materials)
     {
-      write_or_throw(stdout, ",\n  %s(%s)", second_material_type_preparation_macro_name, object_name);
+      write_or_throw(stdout, ",\n  %s(%s%s)", second_material_type_preparation_macro_name, object_prefix, object_name);
     }
 
     for (size_t material = 0; material < number_of_first_matched_materials; material++)
