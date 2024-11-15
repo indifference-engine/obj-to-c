@@ -20,6 +20,11 @@ extern float *vertex_y;
 extern float *vertex_z;
 
 /**
+ * The opacity of each vertex.
+ */
+extern float *vertex_opacity;
+
+/**
  * The intensity of each vertex in the red channel.
  */
 extern float *vertex_red;
@@ -33,11 +38,6 @@ extern float *vertex_green;
  * The intensity of each vertex in the blue channel.
  */
 extern float *vertex_blue;
-
-/**
- * The opacity of each vertex.
- */
-extern float *vertex_opacity;
 
 /**
  * The number of vertices.

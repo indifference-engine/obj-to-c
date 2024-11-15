@@ -61,9 +61,9 @@ extern const char *opaque_draw_call_data_macro_name;
 
 /**
  * The name of a macro which declares data for a cutout pass (e.g.
- * CUTOUT_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...),
- * GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...),
- * OPACITY_LIST_MACRO_NAME(...))).
+ * CUTOUT_PASS_DATA_MACRO_NAME(object_name, OPACITY_LIST_MACRO_NAME(...),
+ * RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...),
+ * BLUE_LIST_MACRO_NAME(...))).
  */
 extern const char *cutout_pass_data_macro_name;
 
@@ -122,9 +122,9 @@ extern const char *additive_draw_call_data_macro_name;
 
 /**
  * The name of a macro which declares data for a blended pass (e.g.
- * BLENDED_PASS_DATA_MACRO_NAME(object_name, RED_LIST_MACRO_NAME(...),
- * GREEN_LIST_MACRO_NAME(...), BLUE_LIST_MACRO_NAME(...),
- * OPACITY_LIST_MACRO_NAME(...))).
+ * BLENDED_PASS_DATA_MACRO_NAME(object_name, OPACITY_LIST_MACRO_NAME(...),
+ * RED_LIST_MACRO_NAME(...), GREEN_LIST_MACRO_NAME(...),
+ * BLUE_LIST_MACRO_NAME(...))).
  */
 extern const char *blended_pass_data_macro_name;
 
@@ -203,6 +203,19 @@ extern const char *location_list_macro_name;
 extern const char *location_macro_name;
 
 /**
+ * The name of a macro which declares a list of opacities (e.g.
+ * OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...),
+ * ...)).
+ */
+extern const char *opacity_list_macro_name;
+
+/**
+ * The name of a macro which declares an opacity as a unit interval (e.g.
+ * OPACITY_MACRO_NAME(0.92f)).
+ */
+extern const char *opacity_macro_name;
+
+/**
  * The name of a macro which declares a list of red intensities (e.g.
  * RED_LIST_MACRO_NAME(RED_MACRO_NAME(...), RED_MACRO_NAME(...), ...)).
  */
@@ -237,19 +250,6 @@ extern const char *blue_list_macro_name;
  * BLUE_MACRO_NAME(0.92f)).
  */
 extern const char *blue_macro_name;
-
-/**
- * The name of a macro which declares a list of opacities (e.g.
- * OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...),
- * ...)).
- */
-extern const char *opacity_list_macro_name;
-
-/**
- * The name of a macro which declares an opacity as a unit interval (e.g.
- * OPACITY_MACRO_NAME(0.92f)).
- */
-extern const char *opacity_macro_name;
 
 /**
  * The name of a macro which declares a list of V coordinates (e.g.

@@ -40,11 +40,11 @@ void write_pass(
   float *first_unique_g = NULL;
   float *first_unique_b = NULL;
   size_t number_of_first_unique_rgb = 0;
+  float *second_unique_o = NULL;
   float *second_unique_r = NULL;
   float *second_unique_g = NULL;
   float *second_unique_b = NULL;
-  float *second_unique_o = NULL;
-  size_t number_of_second_unique_rgbo = 0;
+  size_t number_of_second_unique_orgb = 0;
   size_t *first_matched_materials = NULL;
   float **first_matched_material_unique_u = NULL;
   float **first_matched_material_unique_v = NULL;
@@ -59,7 +59,7 @@ void write_pass(
   float **second_matched_material_unique_v = NULL;
   size_t *second_matched_material_number_of_unique_uv = NULL;
   size_t **second_matched_material_xyz_indices = NULL;
-  size_t **second_matched_material_rgbo_indices = NULL;
+  size_t **second_matched_material_orgb_indices = NULL;
   size_t **second_matched_material_uv_indices = NULL;
   size_t *second_matched_material_number_of_indices = NULL;
   size_t number_of_second_matched_materials = 0;
@@ -326,8 +326,8 @@ void write_pass(
               second_matched_material_number_of_unique_uv[number_of_second_matched_materials] = 0;
               second_matched_material_xyz_indices = realloc_or_throw(second_matched_material_xyz_indices, sizeof(size_t *) * (number_of_second_matched_materials + 1));
               second_matched_material_xyz_indices[number_of_second_matched_materials] = NULL;
-              second_matched_material_rgbo_indices = realloc_or_throw(second_matched_material_rgbo_indices, sizeof(size_t *) * (number_of_second_matched_materials + 1));
-              second_matched_material_rgbo_indices[number_of_second_matched_materials] = NULL;
+              second_matched_material_orgb_indices = realloc_or_throw(second_matched_material_orgb_indices, sizeof(size_t *) * (number_of_second_matched_materials + 1));
+              second_matched_material_orgb_indices[number_of_second_matched_materials] = NULL;
               second_matched_material_uv_indices = realloc_or_throw(second_matched_material_uv_indices, sizeof(size_t *) * (number_of_second_matched_materials + 1));
               second_matched_material_uv_indices[number_of_second_matched_materials] = NULL;
               second_matched_material_number_of_indices = realloc_or_throw(second_matched_material_number_of_indices, sizeof(size_t) * (number_of_second_matched_materials + 1));
@@ -347,8 +347,8 @@ void write_pass(
             second_matched_material_number_of_unique_uv[0] = 0;
             second_matched_material_xyz_indices = malloc_or_throw(sizeof(size_t *) * (number_of_second_matched_materials + 1));
             second_matched_material_xyz_indices[number_of_second_matched_materials] = NULL;
-            second_matched_material_rgbo_indices = malloc_or_throw(sizeof(size_t *) * (number_of_second_matched_materials + 1));
-            second_matched_material_rgbo_indices[number_of_second_matched_materials] = NULL;
+            second_matched_material_orgb_indices = malloc_or_throw(sizeof(size_t *) * (number_of_second_matched_materials + 1));
+            second_matched_material_orgb_indices[number_of_second_matched_materials] = NULL;
             second_matched_material_uv_indices = malloc_or_throw(sizeof(size_t *) * (number_of_second_matched_materials + 1));
             second_matched_material_uv_indices[number_of_second_matched_materials] = NULL;
             second_matched_material_number_of_indices = malloc_or_throw(sizeof(size_t) * (number_of_second_matched_materials + 1));
@@ -357,10 +357,10 @@ void write_pass(
           }
 
           size_t first_unique_xyz = SIZE_MAX;
-          size_t first_unique_rgbo = SIZE_MAX;
+          size_t first_unique_orgb = SIZE_MAX;
           size_t first_unique_uv = SIZE_MAX;
           size_t previous_unique_xyz = SIZE_MAX;
-          size_t previous_unique_rgbo = SIZE_MAX;
+          size_t previous_unique_orgb = SIZE_MAX;
           size_t previous_unique_uv = SIZE_MAX;
           const size_t end = index + face_length;
 
@@ -405,46 +405,46 @@ void write_pass(
               }
             }
 
+            const float o = vertex_opacity[vertex];
             const float r = vertex_red[vertex];
             const float g = vertex_green[vertex];
             const float b = vertex_blue[vertex];
-            const float o = vertex_opacity[vertex];
 
-            size_t unique_rgbo = 0;
+            size_t unique_orgb = 0;
 
-            for (; unique_rgbo < number_of_second_unique_rgbo; unique_rgbo++)
+            for (; unique_orgb < number_of_second_unique_orgb; unique_orgb++)
             {
-              if (r == second_unique_r[unique_rgbo] && g == second_unique_g[unique_rgbo] && b == second_unique_b[unique_rgbo] && o == second_unique_o[unique_rgbo])
+              if (r == second_unique_r[unique_orgb] && g == second_unique_g[unique_orgb] && b == second_unique_b[unique_orgb] && o == second_unique_o[unique_orgb])
               {
                 break;
               }
             }
 
-            if (unique_rgbo == number_of_second_unique_rgbo)
+            if (unique_orgb == number_of_second_unique_orgb)
             {
-              if (number_of_second_unique_rgbo)
+              if (number_of_second_unique_orgb)
               {
-                second_unique_r = realloc_or_throw(second_unique_r, sizeof(float) * (number_of_second_unique_rgbo + 1));
-                second_unique_r[number_of_second_unique_rgbo] = r;
-                second_unique_g = realloc_or_throw(second_unique_g, sizeof(float) * (number_of_second_unique_rgbo + 1));
-                second_unique_g[number_of_second_unique_rgbo] = g;
-                second_unique_b = realloc_or_throw(second_unique_b, sizeof(float) * (number_of_second_unique_rgbo + 1));
-                second_unique_b[number_of_second_unique_rgbo] = b;
-                second_unique_o = realloc_or_throw(second_unique_o, sizeof(float) * (number_of_second_unique_rgbo + 1));
-                second_unique_o[number_of_second_unique_rgbo] = o;
-                number_of_second_unique_rgbo++;
+                second_unique_o = realloc_or_throw(second_unique_o, sizeof(float) * (number_of_second_unique_orgb + 1));
+                second_unique_o[number_of_second_unique_orgb] = o;
+                second_unique_r = realloc_or_throw(second_unique_r, sizeof(float) * (number_of_second_unique_orgb + 1));
+                second_unique_r[number_of_second_unique_orgb] = r;
+                second_unique_g = realloc_or_throw(second_unique_g, sizeof(float) * (number_of_second_unique_orgb + 1));
+                second_unique_g[number_of_second_unique_orgb] = g;
+                second_unique_b = realloc_or_throw(second_unique_b, sizeof(float) * (number_of_second_unique_orgb + 1));
+                second_unique_b[number_of_second_unique_orgb] = b;
+                number_of_second_unique_orgb++;
               }
               else
               {
+                second_unique_o = malloc_or_throw(sizeof(float));
+                second_unique_o[0] = o;
                 second_unique_r = malloc_or_throw(sizeof(float));
                 second_unique_r[0] = r;
                 second_unique_g = malloc_or_throw(sizeof(float));
                 second_unique_g[0] = g;
                 second_unique_b = malloc_or_throw(sizeof(float));
                 second_unique_b[0] = b;
-                second_unique_o = malloc_or_throw(sizeof(float));
-                second_unique_o[0] = o;
-                number_of_second_unique_rgbo = 1;
+                number_of_second_unique_orgb = 1;
               }
             }
 
@@ -486,7 +486,7 @@ void write_pass(
             if (first_unique_xyz == SIZE_MAX)
             {
               first_unique_xyz = unique_xyz;
-              first_unique_rgbo = unique_rgbo;
+              first_unique_orgb = unique_orgb;
               first_unique_uv = unique_uv;
             }
             else
@@ -501,10 +501,10 @@ void write_pass(
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][number_of_indices] = first_unique_xyz;
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][number_of_indices + 1] = previous_unique_xyz;
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][number_of_indices + 2] = unique_xyz;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1] = realloc_or_throw(second_matched_material_rgbo_indices[number_of_second_matched_materials - 1], sizeof(size_t) * (number_of_indices + 3));
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][number_of_indices] = first_unique_rgbo;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][number_of_indices + 1] = previous_unique_rgbo;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][number_of_indices + 2] = unique_rgbo;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1] = realloc_or_throw(second_matched_material_orgb_indices[number_of_second_matched_materials - 1], sizeof(size_t) * (number_of_indices + 3));
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][number_of_indices] = first_unique_orgb;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][number_of_indices + 1] = previous_unique_orgb;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][number_of_indices + 2] = unique_orgb;
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1] = realloc_or_throw(second_matched_material_uv_indices[number_of_second_matched_materials - 1], sizeof(size_t) * (number_of_indices + 3));
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1][number_of_indices] = first_unique_uv;
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1][number_of_indices + 1] = previous_unique_uv;
@@ -517,10 +517,10 @@ void write_pass(
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][0] = first_unique_xyz;
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][1] = previous_unique_xyz;
                   second_matched_material_xyz_indices[number_of_second_matched_materials - 1][2] = unique_xyz;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1] = malloc_or_throw(sizeof(size_t) * 3);
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][0] = first_unique_rgbo;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][1] = previous_unique_rgbo;
-                  second_matched_material_rgbo_indices[number_of_second_matched_materials - 1][2] = unique_rgbo;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1] = malloc_or_throw(sizeof(size_t) * 3);
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][0] = first_unique_orgb;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][1] = previous_unique_orgb;
+                  second_matched_material_orgb_indices[number_of_second_matched_materials - 1][2] = unique_orgb;
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1] = malloc_or_throw(sizeof(size_t) * 3);
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1][0] = first_unique_uv;
                   second_matched_material_uv_indices[number_of_second_matched_materials - 1][1] = previous_unique_uv;
@@ -530,7 +530,7 @@ void write_pass(
               }
 
               previous_unique_xyz = unique_xyz;
-              previous_unique_rgbo = unique_rgbo;
+              previous_unique_orgb = unique_orgb;
               previous_unique_uv = unique_uv;
             }
           }
@@ -667,9 +667,21 @@ void write_pass(
 
     if (number_of_second_matched_materials)
     {
-      write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s(", second_material_type_pass_data_macro_name, object_prefix, object_name, red_list_macro_name);
+      write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s(", second_material_type_pass_data_macro_name, object_prefix, object_name, opacity_list_macro_name);
 
-      for (size_t unique_r = 0; unique_r < number_of_second_unique_rgbo; unique_r++)
+      for (size_t unique_o = 0; unique_o < number_of_second_unique_orgb; unique_o++)
+      {
+        if (unique_o)
+        {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(%f)", opacity_macro_name, second_unique_o[unique_o]);
+      }
+
+      write_or_throw(stdout, "),\n  %s(", red_list_macro_name);
+
+      for (size_t unique_r = 0; unique_r < number_of_second_unique_orgb; unique_r++)
       {
         if (unique_r)
         {
@@ -681,7 +693,7 @@ void write_pass(
 
       write_or_throw(stdout, "),\n  %s(", green_list_macro_name);
 
-      for (size_t unique_g = 0; unique_g < number_of_second_unique_rgbo; unique_g++)
+      for (size_t unique_g = 0; unique_g < number_of_second_unique_orgb; unique_g++)
       {
         if (unique_g)
         {
@@ -693,7 +705,7 @@ void write_pass(
 
       write_or_throw(stdout, "),\n  %s(", blue_list_macro_name);
 
-      for (size_t unique_b = 0; unique_b < number_of_second_unique_rgbo; unique_b++)
+      for (size_t unique_b = 0; unique_b < number_of_second_unique_orgb; unique_b++)
       {
         if (unique_b)
         {
@@ -701,18 +713,6 @@ void write_pass(
         }
 
         write_or_throw(stdout, "%s(%f)", blue_macro_name, second_unique_b[unique_b]);
-      }
-
-      write_or_throw(stdout, "),\n  %s(", opacity_list_macro_name);
-
-      for (size_t unique_o = 0; unique_o < number_of_second_unique_rgbo; unique_o++)
-      {
-        if (unique_o)
-        {
-          write_or_throw(stdout, ", ");
-        }
-
-        write_or_throw(stdout, "%s(%f)", opacity_macro_name, second_unique_o[unique_o]);
       }
 
       write_or_throw(stdout, ")\n)\n");
@@ -757,14 +757,14 @@ void write_pass(
 
         write_or_throw(stdout, "),\n  %s(", color_index_triangle_list_macro_name);
 
-        for (size_t unique_rgbo = 0; unique_rgbo < second_matched_material_number_of_indices[material]; unique_rgbo += 3)
+        for (size_t unique_orgb = 0; unique_orgb < second_matched_material_number_of_indices[material]; unique_orgb += 3)
         {
-          if (unique_rgbo)
+          if (unique_orgb)
           {
             write_or_throw(stdout, ", ");
           }
 
-          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", color_index_triangle_macro_name, color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo], color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo + 1], color_index_macro_name, second_matched_material_rgbo_indices[material][unique_rgbo + 2]);
+          write_or_throw(stdout, "%s(%s(%u), %s(%u), %s(%u))", color_index_triangle_macro_name, color_index_macro_name, second_matched_material_orgb_indices[material][unique_orgb], color_index_macro_name, second_matched_material_orgb_indices[material][unique_orgb + 1], color_index_macro_name, second_matched_material_orgb_indices[material][unique_orgb + 2]);
         }
 
         write_or_throw(stdout, "),\n  %s(", vu_index_triangle_list_macro_name);
@@ -849,7 +849,7 @@ void write_pass(
         free(second_matched_material_unique_u[matched_material]);
         free(second_matched_material_unique_v[matched_material]);
         free(second_matched_material_xyz_indices[matched_material]);
-        free(second_matched_material_rgbo_indices[matched_material]);
+        free(second_matched_material_orgb_indices[matched_material]);
         free(second_matched_material_uv_indices[matched_material]);
       }
 
@@ -857,7 +857,7 @@ void write_pass(
       free(second_matched_material_unique_v);
       free(second_matched_material_number_of_unique_uv);
       free(second_matched_material_xyz_indices);
-      free(second_matched_material_rgbo_indices);
+      free(second_matched_material_orgb_indices);
       free(second_matched_material_uv_indices);
       free(second_matched_material_number_of_indices);
     }
