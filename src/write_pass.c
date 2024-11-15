@@ -783,29 +783,29 @@ void write_pass(
       }
     }
 
-    write_or_throw(stdout, "%s\n(\n  %s%s", pass_macro_name, object_prefix, object_name);
+    write_or_throw(stdout, "%s\n(\n  %s%s,\n", pass_macro_name, object_prefix, object_name);
 
     if (number_of_first_matched_materials)
     {
-      write_or_throw(stdout, ",\n  %s(%s%s)", first_material_type_preparation_macro_name, object_prefix, object_name);
+      write_or_throw(stdout, "  %s(%s%s)\n", first_material_type_preparation_macro_name, object_prefix, object_name);
     }
 
     if (number_of_second_matched_materials)
     {
-      write_or_throw(stdout, ",\n  %s(%s%s)", second_material_type_preparation_macro_name, object_prefix, object_name);
+      write_or_throw(stdout, "  %s(%s%s)\n", second_material_type_preparation_macro_name, object_prefix, object_name);
     }
 
     for (size_t material = 0; material < number_of_first_matched_materials; material++)
     {
-      write_or_throw(stdout, ",\n  %s(%s%s, %s%s)", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
+      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
     }
 
     for (size_t material = 0; material < number_of_second_matched_materials; material++)
     {
-      write_or_throw(stdout, ",\n  %s(%s%s, %s%s)", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
+      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
     }
 
-    write_or_throw(stdout, "\n)\n");
+    write_or_throw(stdout, ")\n");
 
     free(unique_x);
     free(unique_y);

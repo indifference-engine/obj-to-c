@@ -47,9 +47,9 @@ TEST_CUTOUT_DRAW_CALL_DATA_MACRO_NAME
 TEST_OPAQUE_CUTOUT_PASS_MACRO_NAME
 (
   test_object_prefix_object_name,
-  TEST_OPAQUE_PREPARATION_MACRO_NAME(test_object_prefix_object_name),
-  TEST_CUTOUT_PREPARATION_MACRO_NAME(test_object_prefix_object_name),
-  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_opaque_a),
+  TEST_OPAQUE_PREPARATION_MACRO_NAME(test_object_prefix_object_name)
+  TEST_CUTOUT_PREPARATION_MACRO_NAME(test_object_prefix_object_name)
+  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_opaque_a)
   TEST_CUTOUT_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_cutout_b)
 )
 TEST_ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(
@@ -94,9 +94,9 @@ TEST_BLENDED_DRAW_CALL_DATA_MACRO_NAME
 TEST_ADDITIVE_BLENDED_PASS_MACRO_NAME
 (
   test_object_prefix_object_name,
-  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_object_name),
-  TEST_BLENDED_PREPARATION_MACRO_NAME(test_object_prefix_object_name),
-  TEST_ADDITIVE_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_additive_c),
+  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_object_name)
+  TEST_BLENDED_PREPARATION_MACRO_NAME(test_object_prefix_object_name)
+  TEST_ADDITIVE_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_additive_c)
   TEST_BLENDED_DRAW_CALL_MACRO_NAME(test_object_prefix_object_name, test_material_prefix_blended_d)
 )
 TEST_NAVIGATION_MACRO_NAME(

@@ -58,10 +58,10 @@ TEST_CUTOUT_DRAW_CALL_DATA_MACRO_NAME
 TEST_OPAQUE_CUTOUT_PASS_MACRO_NAME
 (
   test_object_prefix_first_object,
-  TEST_OPAQUE_PREPARATION_MACRO_NAME(test_object_prefix_first_object),
-  TEST_CUTOUT_PREPARATION_MACRO_NAME(test_object_prefix_first_object),
-  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_opaque_b),
-  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_opaque_a),
+  TEST_OPAQUE_PREPARATION_MACRO_NAME(test_object_prefix_first_object)
+  TEST_CUTOUT_PREPARATION_MACRO_NAME(test_object_prefix_first_object)
+  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_opaque_b)
+  TEST_OPAQUE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_opaque_a)
   TEST_CUTOUT_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_cutout_a)
 )
 TEST_ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(
@@ -106,9 +106,9 @@ TEST_BLENDED_DRAW_CALL_DATA_MACRO_NAME
 TEST_ADDITIVE_BLENDED_PASS_MACRO_NAME
 (
   test_object_prefix_first_object,
-  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_first_object),
-  TEST_BLENDED_PREPARATION_MACRO_NAME(test_object_prefix_first_object),
-  TEST_ADDITIVE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_additive_a),
+  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_first_object)
+  TEST_BLENDED_PREPARATION_MACRO_NAME(test_object_prefix_first_object)
+  TEST_ADDITIVE_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_additive_a)
   TEST_BLENDED_DRAW_CALL_MACRO_NAME(test_object_prefix_first_object, test_material_prefix_blended_a)
 )
 TEST_ADDITIVE_BLENDED_PASS_DATA_MACRO_NAME(
@@ -135,7 +135,7 @@ TEST_ADDITIVE_DRAW_CALL_DATA_MACRO_NAME
 TEST_ADDITIVE_BLENDED_PASS_MACRO_NAME
 (
   test_object_prefix_second_object,
-  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_second_object),
+  TEST_ADDITIVE_PREPARATION_MACRO_NAME(test_object_prefix_second_object)
   TEST_ADDITIVE_DRAW_CALL_MACRO_NAME(test_object_prefix_second_object, test_material_prefix_additive_a)
 )
 TEST_NAVIGATION_MACRO_NAME(
