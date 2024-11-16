@@ -3,7 +3,6 @@
 #define MATERIALS_H
 
 #include <stdlib.h>
-#include <stdbool.h>
 
 /**
  * The material entirely replaces the background when rendered.
@@ -31,6 +30,12 @@
 #define MATERIAL_TYPE_NAVIGATION 4
 
 /**
+ * The number of characters to skip in a name of a material of each material
+ * type to skip the type prefix.
+ */
+extern const int material_type_name_offsets[5];
+
+/**
  * The types of the materials found.
  */
 extern int *material_types;
@@ -39,11 +44,6 @@ extern int *material_types;
  * The names of the materials found.
  */
 extern const char **material_names;
-
-/**
- * Set when materials are imported.
- */
-extern bool *material_imports;
 
 /**
  * The lengths of the names of the materials found.

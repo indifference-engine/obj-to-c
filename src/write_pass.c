@@ -601,7 +601,7 @@ void write_pass(
 
       for (size_t material = 0; material < number_of_first_matched_materials; material++)
       {
-        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", first_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]], v_list_macro_name);
+        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", first_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]] + material_type_name_offsets[material_types[first_matched_materials[material]]], v_list_macro_name);
 
         for (size_t unique_v = 0; unique_v < first_matched_material_number_of_unique_uv[material]; unique_v++)
         {
@@ -719,7 +719,7 @@ void write_pass(
 
       for (size_t material = 0; material < number_of_second_matched_materials; material++)
       {
-        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", second_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]], v_list_macro_name);
+        write_or_throw(stdout, "%s\n(\n  %s%s,\n  %s%s,\n  %s(", second_material_type_draw_call_data_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]] + material_type_name_offsets[material_types[second_matched_materials[material]]], v_list_macro_name);
 
         for (size_t unique_v = 0; unique_v < second_matched_material_number_of_unique_uv[material]; unique_v++)
         {
@@ -797,12 +797,12 @@ void write_pass(
 
     for (size_t material = 0; material < number_of_first_matched_materials; material++)
     {
-      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]]);
+      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", first_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[first_matched_materials[material]] + material_type_name_offsets[material_types[first_matched_materials[material]]]);
     }
 
     for (size_t material = 0; material < number_of_second_matched_materials; material++)
     {
-      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]]);
+      write_or_throw(stdout, "  %s(%s%s, %s%s)\n", second_material_type_draw_call_macro_name, object_prefix, object_name, material_prefix, material_names[second_matched_materials[material]] + material_type_name_offsets[material_types[second_matched_materials[material]]]);
     }
 
     write_or_throw(stdout, ")\n");

@@ -1,4 +1,6 @@
+#include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 #include "state.h"
 #include "space.h"
 #include "throw.h"
@@ -18,6 +20,7 @@
 #include "object_type.h"
 #include "write_or_throw.h"
 #include "command_line_arguments.h"
+#include "imported_materials.h"
 
 void space(void)
 {
@@ -217,10 +220,43 @@ void space(void)
           throw("Cannot apply navigation materials to non-navigation objects.");
         }
 
-        if (!material_imports[current_material])
+        const char *const skipped_material_name = material_names[current_material] + material_type_name_offsets[material_types[current_material]];
+        const size_t skipped_material_name_length = material_name_lengths[current_material] - material_type_name_offsets[material_types[current_material]];
+
+        bool imported = false;
+
+        for (size_t index = 0; index < number_of_imported_materials; index++)
         {
-          write_or_throw(stdout, "%s(%s%s)\n", material_import_macro_name, material_prefix, material_names[current_material]);
-          material_imports[current_material] = true;
+          if (imported_material_name_lengths[index] == skipped_material_name_length)
+          {
+            if (strcmp(skipped_material_name, imported_material_names[index]) == 0)
+            {
+              imported = true;
+              break;
+            }
+          }
+        }
+
+        if (!imported)
+        {
+          write_or_throw(stdout, "%s(%s%s)\n", material_import_macro_name, material_prefix, skipped_material_name);
+
+          if (number_of_imported_materials)
+          {
+            imported_material_names = realloc_or_throw(imported_material_names, sizeof(const char *) * (number_of_imported_materials + 1));
+            imported_material_names[number_of_imported_materials] = skipped_material_name;
+            imported_material_name_lengths = realloc_or_throw(imported_material_name_lengths, sizeof(size_t) * (number_of_imported_materials + 1));
+            imported_material_name_lengths[number_of_imported_materials] = skipped_material_name_length;
+            number_of_imported_materials++;
+          }
+          else
+          {
+            imported_material_names = malloc_or_throw(sizeof(const char *));
+            imported_material_names[0] = skipped_material_name;
+            imported_material_name_lengths = malloc_or_throw(sizeof(size_t));
+            imported_material_name_lengths[0] = skipped_material_name_length;
+            number_of_imported_materials = 1;
+          }
         }
 
         break;
