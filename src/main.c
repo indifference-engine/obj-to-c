@@ -20,11 +20,11 @@ int main(const int argc, const char *const *const argv)
   (void)(argc);
   (void)(argv);
 
-  if (argc < 71)
+  if (argc < 72)
   {
     throw(
         "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s",
-        "At least 66 arguments are required:\n",
+        "At least 67 arguments are required:\n",
         "• A prefix applied to any object names.\n",
         "• A prefix applied to any non-navigation material names.\n",
         "• A prefix applied to any navigation material names.\n",
@@ -48,7 +48,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares preparation for an additive/blended pass including blended draw calls (e.g. TEST_BLENDED_PREPARATION_MACRO_NAME(object_name)).\n",
         "• The name of a macro which declares an additive draw call (e.g. ADDITIVE_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
         "• The name of a macro which declares a blended draw call (e.g. BLENDED_DRAW_CALL_MACRO_NAME(object_name, material_name)).\n",
-        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
+        "• The name of a macro which declares a navigation mesh (e.g. NAVIGATION_MACRO_NAME(object_name, MATERIAL_LIST_MACRO_NAME(...), FACE_VERTEX_COUNT_LIST_MACRO_NAME(...), FACE_VERTEX_OFFSET_LIST_MACRO_NAME(...), FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), FACE_EDGE_NORMAL_LIST_MACRO_NAME(...), FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_OFFSET_LIST_MACRO_NAME(...), FACE_EDGE_NEIGHBOR_FACE_INDEX_LIST_MACRO_NAME(...)).\n",
         "• The name of a macro which declares a list of locations (e.g. LOCATION_LIST_MACRO_NAME(LOCATION_MACRO_NAME(...), LOCATION_MACRO_NAME(...), ...)).\n",
         "• The name of a macro which declares the X, Y and Z coordinates of a single location (e.g. LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f)).\n",
         "• The name of a macro which declares a list of opacities (e.g. OPACITY_LIST_MACRO_NAME(OPACITY_MACRO_NAME(...), OPACITY_MACRO_NAME(...), ...)).\n",
@@ -80,6 +80,7 @@ int main(const int argc, const char *const *const argv)
         "• The name of a macro which declares a list of vertex locations (e.g. LOCATION_FACE_MACRO_NAME(LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f), LOCATION_MACRO_NAME(1.23f, -3.25f, 94.24f), ...)).\n",
         "• The name of a macro which declares a list of normals (e.g. NORMAL_LIST_MACRO_NAME(NORMAL_MACRO_NAME(0.337f, -0.7538f, -0.5641f), NORMAL_MACRO_NAME(-0.6719f, 0.6248f, -0.3977f), ...)).\n",
         "• The name of a macro which declares a list of edge exit normals for each face (e.g. FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
+        "• The name of a macro which declares a list of edge normals for each face (e.g. FACE_EDGE_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
         "• The name of a macro which declares a list of vertex up normals for each face (e.g. FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), NORMAL_LIST_MACRO_NAME(...), ...).\n",
         "• The name of a macro which declares a normal (e.g. NORMAL_MACRO_NAME(0.337f, -0.7538f, -0.5641f)).\n",
         "• The name of a macro which declares a list of faces, each of which contains a list of how many neighbors each of its edges have (e.g. NEIGHBOR_COUNT_LIST_LIST_MACRO_NAME(NEIGHBOR_COUNT_LIST_MACRO_NAME(...), NEIGHBOR_COUNT_LIST_MACRO_NAME(...), ...)).\n",
@@ -154,24 +155,25 @@ int main(const int argc, const char *const *const argv)
   location_face_macro_name = argv[53];
   normal_list_macro_name = argv[54];
   face_edge_exit_normal_list_macro_name = argv[55];
-  face_vertex_up_normal_list_macro_name = argv[56];
-  normal_macro_name = argv[57];
-  neighbor_count_list_list_macro_name = argv[58];
-  neighbor_count_list_macro_name = argv[59];
-  neighbor_count_macro_name = argv[60];
-  face_edge_offset_list_macro_name = argv[61];
-  face_edge_neighbor_offset_list_macro_name = argv[62];
-  offset_list_list_macro_name = argv[63];
-  offset_list_macro_name = argv[64];
-  offset_macro_name = argv[65];
-  face_index_list_list_list_macro_name = argv[66];
-  face_index_list_list_macro_name = argv[67];
-  face_edge_neighbor_face_index_list_macro_name = argv[68];
-  face_index_macro_name = argv[69];
-  material_list_macro_name = argv[70];
-  material_import_macro_name = argv[71];
-  include_paths = argv + 72;
-  number_of_include_paths = argc - 72;
+  face_edge_normal_list_macro_name = argv[56];
+  face_vertex_up_normal_list_macro_name = argv[57];
+  normal_macro_name = argv[58];
+  neighbor_count_list_list_macro_name = argv[59];
+  neighbor_count_list_macro_name = argv[60];
+  neighbor_count_macro_name = argv[61];
+  face_edge_offset_list_macro_name = argv[62];
+  face_edge_neighbor_offset_list_macro_name = argv[63];
+  offset_list_list_macro_name = argv[64];
+  offset_list_macro_name = argv[65];
+  offset_macro_name = argv[66];
+  face_index_list_list_list_macro_name = argv[67];
+  face_index_list_list_macro_name = argv[68];
+  face_edge_neighbor_face_index_list_macro_name = argv[69];
+  face_index_macro_name = argv[70];
+  material_list_macro_name = argv[71];
+  material_import_macro_name = argv[72];
+  include_paths = argv + 73;
+  number_of_include_paths = argc - 73;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

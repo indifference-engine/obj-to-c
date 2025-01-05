@@ -56,6 +56,7 @@ const char *face_vertex_location_list_name = NULL;
 const char *location_face_macro_name = NULL;
 const char *normal_list_macro_name = NULL;
 const char *face_edge_exit_normal_list_macro_name = NULL;
+const char *face_edge_normal_list_macro_name = NULL;
 const char *face_vertex_up_normal_list_macro_name = NULL;
 const char *normal_macro_name = NULL;
 const char *neighbor_count_list_list_macro_name = NULL;
