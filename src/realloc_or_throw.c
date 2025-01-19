@@ -8,7 +8,7 @@ void *realloc_or_throw(void *const block, const size_t size)
 
   if (output == NULL)
   {
-    throw("Failed to realloc %u byte%s.", size, size == 1 ? "" : "1");
+    throw("Failed to realloc %u byte%s.", size, size == 1 ? "" : "s");
   }
 
   return output;
