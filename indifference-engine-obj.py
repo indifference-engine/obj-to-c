@@ -2,7 +2,7 @@ bl_info = {
     "name": "Indifference Engine OBJ",
     "author": "siliconspecter",
     "version": (0, 0, 0),
-    "blender": (4, 2, 3),
+    "blender": (4, 3, 2),
     "location": "File > Import-Export",
     "description": "Import-Export OBJ files from/to Indifference Engine",
     "category": "Import-Export",
@@ -183,9 +183,6 @@ def create_material(name, texture_path):
                     transparency_mix.inputs[2], emission.outputs[0]
                 )
 
-                output.blend_method = "CLIP"
-                output.shadow_method = "CLIP"
-
             case "additive":
                 vertex_color = output.node_tree.nodes.new("ShaderNodeVertexColor")
                 vertex_color.layer_name = "Attribute"
@@ -231,9 +228,7 @@ def create_material(name, texture_path):
                     transparency_mix.inputs[1], emission.outputs[0]
                 )
 
-                output.blend_method = "BLEND"
-                output.shadow_method = "NONE"
-
+                output.surface_render_method = "BLENDED"
             case "blended":
                 vertex_color = output.node_tree.nodes.new("ShaderNodeVertexColor")
                 vertex_color.layer_name = "Attribute"
@@ -288,8 +283,7 @@ def create_material(name, texture_path):
                     transparency_mix.inputs[2], emission.outputs[0]
                 )
 
-                output.blend_method = "BLEND"
-                output.shadow_method = "HASHED"
+                output.surface_render_method = "BLENDED"
 
     return output
 
@@ -329,8 +323,7 @@ def create_navigation_object_material(name, color):
         output.node_tree.links.new(mix.inputs[2], transparent.outputs[0])
         output.node_tree.links.new(output_node.inputs[0], mix.outputs[0])
 
-        output.blend_method = "BLEND"
-        output.shadow_method = "NONE"
+        output.surface_render_method = "BLENDED"
 
     return output
 
