@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "vertices.h"
+#include <stdlib.h>
 
 float *vertex_x = NULL;
 float *vertex_y = NULL;

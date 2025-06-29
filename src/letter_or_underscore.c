@@ -1,17 +1,14 @@
+#include "malloc_or_throw.h"
+#include "material_name.h"
+#include "object_name.h"
+#include "realloc_or_throw.h"
 #include "state.h"
 #include "throw.h"
-#include "object_name.h"
-#include "material_name.h"
-#include "malloc_or_throw.h"
-#include "realloc_or_throw.h"
 
-void letter_or_underscore(const char letter_or_underscore)
-{
-  switch (state)
-  {
+void letter_or_underscore(const char letter_or_underscore) {
+  switch (state) {
   case STATE_INITIAL:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 'u':
       state = STATE_U;
       return;
@@ -35,8 +32,7 @@ void letter_or_underscore(const char letter_or_underscore)
     break;
 
   case STATE_M:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 't':
       state = STATE_MT;
       return;
@@ -44,8 +40,7 @@ void letter_or_underscore(const char letter_or_underscore)
     break;
 
   case STATE_MT:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 'l':
       state = STATE_MTL;
       return;
@@ -53,8 +48,7 @@ void letter_or_underscore(const char letter_or_underscore)
     break;
 
   case STATE_MTL:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 'l':
       state = STATE_MTLL;
       return;
@@ -62,8 +56,7 @@ void letter_or_underscore(const char letter_or_underscore)
     break;
 
   case STATE_MTLL:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 'i':
       state = STATE_MTLLI;
       return;
@@ -71,8 +64,7 @@ void letter_or_underscore(const char letter_or_underscore)
     break;
 
   case STATE_MTLLI:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 'b':
       state = STATE_MTLLIB;
       return;
@@ -115,7 +107,8 @@ void letter_or_underscore(const char letter_or_underscore)
     return;
 
   case STATE_O_NAME:
-    object_name = realloc_or_throw(object_name, sizeof(char) * (object_name_length + 2));
+    object_name =
+        realloc_or_throw(object_name, sizeof(char) * (object_name_length + 2));
     object_name[object_name_length] = letter_or_underscore;
     object_name[object_name_length + 1] = '\0';
     object_name_length++;
@@ -130,15 +123,15 @@ void letter_or_underscore(const char letter_or_underscore)
     return;
 
   case STATE_USEMTL_NAME:
-    material_name = realloc_or_throw(material_name, sizeof(char) * (material_name_length + 2));
+    material_name = realloc_or_throw(material_name,
+                                     sizeof(char) * (material_name_length + 2));
     material_name[material_name_length] = letter_or_underscore;
     material_name[material_name_length + 1] = '\0';
     material_name_length++;
     return;
 
   case STATE_V:
-    switch (letter_or_underscore)
-    {
+    switch (letter_or_underscore) {
     case 't':
       state = STATE_VT;
       return;

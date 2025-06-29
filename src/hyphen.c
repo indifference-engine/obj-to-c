@@ -1,18 +1,16 @@
 #include "hyphen.h"
+#include "accumulate_float_hyphen.h"
+#include "accumulate_integer.h"
+#include "accumulate_integer_hyphen.h"
+#include "faces.h"
+#include "indices.h"
+#include "object_type.h"
 #include "state.h"
 #include "throw.h"
 #include "vertices.h"
-#include "indices.h"
-#include "accumulate_integer_hyphen.h"
-#include "accumulate_float_hyphen.h"
-#include "accumulate_integer.h"
-#include "faces.h"
-#include "object_type.h"
 
-void hyphen(void)
-{
-  switch (state)
-  {
+void hyphen(void) {
+  switch (state) {
   case STATE_V_SPACE:
     state = STATE_V_X;
     accumulate_float_hyphen();
@@ -59,23 +57,18 @@ void hyphen(void)
     return;
 
   case STATE_F_SPACE:
-    if (number_of_indices)
-    {
+    if (number_of_indices) {
       index_v = realloc(index_v, sizeof(size_t) * (number_of_indices + 1));
 
-      if (object_type == OBJECT_TYPE_GRAPHICAL)
-      {
+      if (object_type == OBJECT_TYPE_GRAPHICAL) {
         index_vt = realloc(index_vt, sizeof(size_t) * (number_of_indices + 1));
       }
 
       number_of_indices++;
-    }
-    else
-    {
+    } else {
       index_v = malloc(sizeof(size_t));
 
-      if (object_type == OBJECT_TYPE_GRAPHICAL)
-      {
+      if (object_type == OBJECT_TYPE_GRAPHICAL) {
         index_vt = malloc(sizeof(size_t));
       }
 

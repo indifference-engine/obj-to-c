@@ -1,12 +1,10 @@
-#include "state.h"
 #include "period.h"
-#include "throw.h"
 #include "accumulate_float_period.h"
+#include "state.h"
+#include "throw.h"
 
-void period(void)
-{
-  switch (state)
-  {
+void period(void) {
+  switch (state) {
   case STATE_MTLLIB_NAME:
     return;
 

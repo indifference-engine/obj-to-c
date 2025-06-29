@@ -43,12 +43,14 @@
 #define STATE_USEMTL_SPACE 7
 
 /**
- * The parser has found a line starting "usemtl", then at least one space, then a material name.
+ * The parser has found a line starting "usemtl", then at least one space, then
+ * a material name.
  */
 #define STATE_USEMTL_NAME 8
 
 /**
- * The parser has found a line starting "usemtl", then at least one space, then a material name, then at least one space.
+ * The parser has found a line starting "usemtl", then at least one space, then
+ * a material name, then at least one space.
  */
 #define STATE_USEMTL_NAME_SPACE 9
 
@@ -88,12 +90,14 @@
 #define STATE_MTLLIB_SPACE 16
 
 /**
- * The parser has found a line starting "usemtl", then at least one space, then a file name.
+ * The parser has found a line starting "usemtl", then at least one space, then
+ * a file name.
  */
 #define STATE_MTLLIB_NAME 17
 
 /**
- * The parser has found a line starting "usemtl", then at least one space, then a file name, then at least one space.
+ * The parser has found a line starting "usemtl", then at least one space, then
+ * a file name, then at least one space.
  */
 #define STATE_MTLLIB_NAME_SPACE 18
 
@@ -108,12 +112,14 @@
 #define STATE_O_SPACE 20
 
 /**
- * The parser has found a line starting "o", then at least one space, then an object name.
+ * The parser has found a line starting "o", then at least one space, then an
+ * object name.
  */
 #define STATE_O_NAME 21
 
 /**
- * The parser has found a line starting "o", then at least one space, then an object name, then at least one space.
+ * The parser has found a line starting "o", then at least one space, then an
+ * object name, then at least one space.
  */
 #define STATE_O_NAME_SPACE 22
 
@@ -128,72 +134,105 @@
 #define STATE_V_SPACE 24
 
 /**
- * The parser has found a line starting "v", then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then at
+ * least part of a number.
  */
 #define STATE_V_X 25
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space.
  */
 #define STATE_V_X_SPACE 26
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then at least part of a number.
  */
 #define STATE_V_Y 27
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space.
  */
 #define STATE_V_Y_SPACE 28
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * at least part of a number.
  */
 #define STATE_V_Z 29
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space.
  */
 #define STATE_V_Z_SPACE 30
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then at least part of a number.
  */
 #define STATE_V_R 31
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space.
  */
 #define STATE_V_R_SPACE 32
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then at least part of a number.
  */
 #define STATE_V_G 33
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then a number, then at least one space.
  */
 #define STATE_V_G_SPACE 34
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then a number, then at least one space, then at least part of a number.
  */
 #define STATE_V_B 35
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then a number, then at least one space, then a number, then at least one
+ * space.
  */
 #define STATE_V_B_SPACE 36
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then a number, then at least one space, then a number, then at least one
+ * space, then at least part of a number.
  */
 #define STATE_V_O 37
 
 /**
- * The parser has found a line starting "v", then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "v", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space, then
+ * a number, then at least one space, then a number, then at least one space,
+ * then a number, then at least one space, then a number, then at least one
+ * space, then a number, then at least one space.
  */
 #define STATE_V_O_SPACE 38
 
@@ -208,22 +247,26 @@
 #define STATE_VT_SPACE 40
 
 /**
- * The parser has found a line starting "vt", then at least one space, then at least part of a number.
+ * The parser has found a line starting "vt", then at least one space, then at
+ * least part of a number.
  */
 #define STATE_VT_U 41
 
 /**
- * The parser has found a line starting "vt", then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "vt", then at least one space, then a
+ * number, then at least one space.
  */
 #define STATE_VT_U_SPACE 42
 
 /**
- * The parser has found a line starting "vt", then at least one space, then a number, then at least one space, then at least part of a number.
+ * The parser has found a line starting "vt", then at least one space, then a
+ * number, then at least one space, then at least part of a number.
  */
 #define STATE_VT_V 43
 
 /**
- * The parser has found a line starting "vt", then at least one space, then a number, then at least one space, then a number, then at least one space.
+ * The parser has found a line starting "vt", then at least one space, then a
+ * number, then at least one space, then a number, then at least one space.
  */
 #define STATE_VT_V_SPACE 44
 
@@ -238,17 +281,20 @@
 #define STATE_F_SPACE 46
 
 /**
- * The parser has found a line starting "f", then at least one space, then at least part of a number.
+ * The parser has found a line starting "f", then at least one space, then at
+ * least part of a number.
  */
 #define STATE_F_V 47
 
 /**
- * The parser has found a line starting "f", then at least one space, then a number, then a slash.
+ * The parser has found a line starting "f", then at least one space, then a
+ * number, then a slash.
  */
 #define STATE_F_V_SLASH 48
 
 /**
- * The parser has found a line starting "f", then at least one space, then a number, then a slash, then at least part of a number.
+ * The parser has found a line starting "f", then at least one space, then a
+ * number, then a slash, then at least part of a number.
  */
 #define STATE_F_VT 49
 

@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "command_line_arguments.h"
+#include <stdlib.h>
 
 const char *object_prefix = NULL;
 const char *material_prefix = NULL;

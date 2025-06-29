@@ -1,39 +1,29 @@
 #include "forward_slash.h"
+#include "accumulate_integer.h"
+#include "indices.h"
+#include "object_type.h"
 #include "state.h"
 #include "throw.h"
 #include "vertices.h"
-#include "indices.h"
-#include "accumulate_integer.h"
-#include "object_type.h"
 
-void forward_slash(void)
-{
-  switch (state)
-  {
-  case STATE_F_V:
-  {
+void forward_slash(void) {
+  switch (state) {
+  case STATE_F_V: {
     int v = accumulate_integer();
 
-    if (!v)
-    {
+    if (!v) {
       throw("Vertex indices cannot be zero.");
-    }
-    else if (v < 0)
-    {
+    } else if (v < 0) {
       v += number_of_vertices;
 
-      if (v < 0)
-      {
+      if (v < 0) {
         throw("Face references nonexistent vertex.");
       }
-    }
-    else
-    {
+    } else {
       v--;
     }
 
-    if ((size_t)v >= number_of_vertices)
-    {
+    if ((size_t)v >= number_of_vertices) {
       throw("Face references nonexistent vertex.");
     }
 

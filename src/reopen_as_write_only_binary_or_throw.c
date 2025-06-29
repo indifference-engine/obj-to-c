@@ -5,8 +5,7 @@
 #include "reopen_as_write_only_binary_or_throw.h"
 #include "throw.h"
 
-void reopen_as_write_only_binary_or_throw(FILE *const file)
-{
+void reopen_as_write_only_binary_or_throw(FILE *const file) {
 #ifdef __MINGW32__
   if (_setmode(_fileno(file), O_BINARY) == -1)
 #else

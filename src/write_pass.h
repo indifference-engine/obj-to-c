@@ -71,8 +71,7 @@
  *                                                  material_name)).
  */
 void write_pass(
-    const char *const pass_macro_data_name,
-    const int first_material_type,
+    const char *const pass_macro_data_name, const int first_material_type,
     const char *const first_material_type_pass_data_macro_name,
     const char *const first_material_type_draw_call_data_macro_name,
     const int second_material_type,

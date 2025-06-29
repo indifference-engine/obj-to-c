@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "texture_coordinates.h"
+#include <stdlib.h>
 
 float *texture_coordinate_u = NULL;
 float *texture_coordinate_v = NULL;

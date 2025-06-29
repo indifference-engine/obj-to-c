@@ -1,16 +1,14 @@
 #include "digit.h"
-#include "state.h"
-#include "throw.h"
 #include "accumulate_float_digit.h"
 #include "accumulate_integer_digit.h"
-#include "indices.h"
 #include "faces.h"
+#include "indices.h"
 #include "object_type.h"
+#include "state.h"
+#include "throw.h"
 
-void digit(const int digit)
-{
-  switch (state)
-  {
+void digit(const int digit) {
+  switch (state) {
   case STATE_V_SPACE:
     state = STATE_V_X;
     accumulate_float_digit(digit);
@@ -93,23 +91,18 @@ void digit(const int digit)
     return;
 
   case STATE_F_SPACE:
-    if (number_of_indices)
-    {
+    if (number_of_indices) {
       index_v = realloc(index_v, sizeof(size_t) * (number_of_indices + 1));
 
-      if (object_type == OBJECT_TYPE_GRAPHICAL)
-      {
+      if (object_type == OBJECT_TYPE_GRAPHICAL) {
         index_vt = realloc(index_vt, sizeof(size_t) * (number_of_indices + 1));
       }
 
       number_of_indices++;
-    }
-    else
-    {
+    } else {
       index_v = malloc(sizeof(size_t));
 
-      if (object_type == OBJECT_TYPE_GRAPHICAL)
-      {
+      if (object_type == OBJECT_TYPE_GRAPHICAL) {
         index_vt = malloc(sizeof(size_t));
       }
 

@@ -1,28 +1,21 @@
-#include <stdio.h>
 #include "accumulate_float.h"
 #include "accumulated_float.h"
 #include "throw.h"
+#include <stdio.h>
 
-float accumulate_float(void)
-{
-  if (accumulated_float_length)
-  {
+float accumulate_float(void) {
+  if (accumulated_float_length) {
     float output;
 
-    if (sscanf(accumulated_float, "%f", &output))
-    {
+    if (sscanf(accumulated_float, "%f", &output)) {
       free(accumulated_float);
       accumulated_float = NULL;
       accumulated_float_length = 0;
       return output;
-    }
-    else
-    {
+    } else {
       throw("Failed to parse float \"%s\".", accumulated_float);
     }
-  }
-  else
-  {
+  } else {
     throw("No float accumulated.");
   }
 }

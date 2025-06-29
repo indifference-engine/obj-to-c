@@ -1,31 +1,29 @@
+#include "space.h"
+#include "accumulate_float.h"
+#include "accumulate_integer.h"
+#include "command_line_arguments.h"
+#include "current_material.h"
+#include "determine_object_type.h"
+#include "end_object.h"
+#include "faces.h"
+#include "imported_materials.h"
+#include "indices.h"
+#include "malloc_or_throw.h"
+#include "materials.h"
+#include "object_type.h"
+#include "realloc_or_throw.h"
+#include "register_material.h"
+#include "state.h"
+#include "texture_coordinates.h"
+#include "throw.h"
+#include "vertices.h"
+#include "write_or_throw.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include "state.h"
-#include "space.h"
-#include "throw.h"
-#include "end_object.h"
-#include "vertices.h"
-#include "texture_coordinates.h"
-#include "realloc_or_throw.h"
-#include "malloc_or_throw.h"
-#include "accumulate_float.h"
-#include "indices.h"
-#include "faces.h"
-#include "accumulate_integer.h"
-#include "register_material.h"
-#include "current_material.h"
-#include "materials.h"
-#include "determine_object_type.h"
-#include "object_type.h"
-#include "write_or_throw.h"
-#include "command_line_arguments.h"
-#include "imported_materials.h"
 
-void space(void)
-{
-  switch (state)
-  {
+void space(void) {
+  switch (state) {
   case STATE_MTLLIB:
     state = STATE_MTLLIB_SPACE;
     return;
@@ -71,26 +69,30 @@ void space(void)
   case STATE_V:
     state = STATE_V_SPACE;
 
-    if (number_of_vertices)
-    {
-      vertex_x = realloc_or_throw(vertex_x, sizeof(float) * (number_of_vertices + 1));
+    if (number_of_vertices) {
+      vertex_x =
+          realloc_or_throw(vertex_x, sizeof(float) * (number_of_vertices + 1));
       vertex_x[number_of_vertices] = 0.0f;
-      vertex_y = realloc_or_throw(vertex_y, sizeof(float) * (number_of_vertices + 1));
+      vertex_y =
+          realloc_or_throw(vertex_y, sizeof(float) * (number_of_vertices + 1));
       vertex_y[number_of_vertices] = 0.0f;
-      vertex_z = realloc_or_throw(vertex_z, sizeof(float) * (number_of_vertices + 1));
+      vertex_z =
+          realloc_or_throw(vertex_z, sizeof(float) * (number_of_vertices + 1));
       vertex_z[number_of_vertices] = 0.0f;
-      vertex_red = realloc_or_throw(vertex_red, sizeof(float) * (number_of_vertices + 1));
+      vertex_red = realloc_or_throw(vertex_red,
+                                    sizeof(float) * (number_of_vertices + 1));
       vertex_red[number_of_vertices] = 1.0f;
-      vertex_green = realloc_or_throw(vertex_green, sizeof(float) * (number_of_vertices + 1));
+      vertex_green = realloc_or_throw(vertex_green,
+                                      sizeof(float) * (number_of_vertices + 1));
       vertex_green[number_of_vertices] = 1.0f;
-      vertex_blue = realloc_or_throw(vertex_blue, sizeof(float) * (number_of_vertices + 1));
+      vertex_blue = realloc_or_throw(vertex_blue,
+                                     sizeof(float) * (number_of_vertices + 1));
       vertex_blue[number_of_vertices] = 1.0f;
-      vertex_opacity = realloc_or_throw(vertex_opacity, sizeof(float) * (number_of_vertices + 1));
+      vertex_opacity = realloc_or_throw(
+          vertex_opacity, sizeof(float) * (number_of_vertices + 1));
       vertex_opacity[number_of_vertices] = 1.0f;
       number_of_vertices++;
-    }
-    else
-    {
+    } else {
       vertex_x = malloc_or_throw(sizeof(float));
       vertex_x[0] = 0.0f;
       vertex_y = malloc_or_throw(sizeof(float));
@@ -170,16 +172,17 @@ void space(void)
     return;
 
   case STATE_VT:
-    if (number_of_texture_coordinates)
-    {
-      texture_coordinate_u = realloc_or_throw(texture_coordinate_u, sizeof(float) * (number_of_texture_coordinates + 1));
+    if (number_of_texture_coordinates) {
+      texture_coordinate_u =
+          realloc_or_throw(texture_coordinate_u,
+                           sizeof(float) * (number_of_texture_coordinates + 1));
       texture_coordinate_u[number_of_texture_coordinates] = 0.0f;
-      texture_coordinate_v = realloc_or_throw(texture_coordinate_v, sizeof(float) * (number_of_texture_coordinates + 1));
+      texture_coordinate_v =
+          realloc_or_throw(texture_coordinate_v,
+                           sizeof(float) * (number_of_texture_coordinates + 1));
       texture_coordinate_v[number_of_texture_coordinates] = 0.0f;
       number_of_texture_coordinates++;
-    }
-    else
-    {
+    } else {
       texture_coordinate_u = malloc_or_throw(sizeof(float));
       texture_coordinate_u[0] = 0.0f;
       texture_coordinate_v = malloc_or_throw(sizeof(float));
@@ -191,7 +194,8 @@ void space(void)
     return;
 
   case STATE_VT_U:
-    texture_coordinate_u[number_of_texture_coordinates - 1] = accumulate_float();
+    texture_coordinate_u[number_of_texture_coordinates - 1] =
+        accumulate_float();
     state = STATE_VT_U_SPACE;
     return;
 
@@ -199,7 +203,8 @@ void space(void)
     return;
 
   case STATE_VT_V:
-    texture_coordinate_v[number_of_texture_coordinates - 1] = accumulate_float();
+    texture_coordinate_v[number_of_texture_coordinates - 1] =
+        accumulate_float();
     state = STATE_VT_V_SPACE;
     return;
 
@@ -207,50 +212,53 @@ void space(void)
     return;
 
   case STATE_F:
-    if (number_of_materials)
-    {
-      switch (object_type)
-      {
+    if (number_of_materials) {
+      switch (object_type) {
       case OBJECT_TYPE_NONE:
         throw("No object for face.");
 
       case OBJECT_TYPE_GRAPHICAL:
-        if (material_types[current_material] == MATERIAL_TYPE_NAVIGATION)
-        {
+        if (material_types[current_material] == MATERIAL_TYPE_NAVIGATION) {
           throw("Cannot apply navigation materials to non-navigation objects.");
         }
 
-        const char *const skipped_material_name = material_names[current_material] + material_type_name_offsets[material_types[current_material]];
-        const size_t skipped_material_name_length = material_name_lengths[current_material] - material_type_name_offsets[material_types[current_material]];
+        const char *const skipped_material_name =
+            material_names[current_material] +
+            material_type_name_offsets[material_types[current_material]];
+        const size_t skipped_material_name_length =
+            material_name_lengths[current_material] -
+            material_type_name_offsets[material_types[current_material]];
 
         bool imported = false;
 
-        for (size_t index = 0; index < number_of_imported_materials; index++)
-        {
-          if (imported_material_name_lengths[index] == skipped_material_name_length)
-          {
-            if (strcmp(skipped_material_name, imported_material_names[index]) == 0)
-            {
+        for (size_t index = 0; index < number_of_imported_materials; index++) {
+          if (imported_material_name_lengths[index] ==
+              skipped_material_name_length) {
+            if (strcmp(skipped_material_name, imported_material_names[index]) ==
+                0) {
               imported = true;
               break;
             }
           }
         }
 
-        if (!imported)
-        {
-          write_or_throw(stdout, "%s(%s%s)\n", material_import_macro_name, material_prefix, skipped_material_name);
+        if (!imported) {
+          write_or_throw(stdout, "%s(%s%s)\n", material_import_macro_name,
+                         material_prefix, skipped_material_name);
 
-          if (number_of_imported_materials)
-          {
-            imported_material_names = realloc_or_throw(imported_material_names, sizeof(const char *) * (number_of_imported_materials + 1));
-            imported_material_names[number_of_imported_materials] = skipped_material_name;
-            imported_material_name_lengths = realloc_or_throw(imported_material_name_lengths, sizeof(size_t) * (number_of_imported_materials + 1));
-            imported_material_name_lengths[number_of_imported_materials] = skipped_material_name_length;
+          if (number_of_imported_materials) {
+            imported_material_names = realloc_or_throw(
+                imported_material_names,
+                sizeof(const char *) * (number_of_imported_materials + 1));
+            imported_material_names[number_of_imported_materials] =
+                skipped_material_name;
+            imported_material_name_lengths = realloc_or_throw(
+                imported_material_name_lengths,
+                sizeof(size_t) * (number_of_imported_materials + 1));
+            imported_material_name_lengths[number_of_imported_materials] =
+                skipped_material_name_length;
             number_of_imported_materials++;
-          }
-          else
-          {
+          } else {
             imported_material_names = malloc_or_throw(sizeof(const char *));
             imported_material_names[0] = skipped_material_name;
             imported_material_name_lengths = malloc_or_throw(sizeof(size_t));
@@ -262,23 +270,21 @@ void space(void)
         break;
 
       case OBJECT_TYPE_NAVIGATION:
-        if (material_types[current_material] != MATERIAL_TYPE_NAVIGATION)
-        {
+        if (material_types[current_material] != MATERIAL_TYPE_NAVIGATION) {
           throw("Cannot apply navigation materials to non-navigation objects.");
         }
         break;
       }
 
-      if (number_of_faces)
-      {
-        face_materials = realloc(face_materials, sizeof(size_t) * (number_of_faces + 1));
+      if (number_of_faces) {
+        face_materials =
+            realloc(face_materials, sizeof(size_t) * (number_of_faces + 1));
         face_materials[number_of_faces] = current_material;
-        face_lengths = realloc(face_lengths, sizeof(size_t) * (number_of_faces + 1));
+        face_lengths =
+            realloc(face_lengths, sizeof(size_t) * (number_of_faces + 1));
         face_lengths[number_of_faces] = 0;
         number_of_faces++;
-      }
-      else
-      {
+      } else {
         face_materials = malloc(sizeof(size_t));
         face_materials[0] = current_material;
         face_lengths = malloc(sizeof(size_t));
@@ -288,9 +294,7 @@ void space(void)
 
       state = STATE_F_SPACE;
       return;
-    }
-    else
-    {
+    } else {
       throw("No material set for face.");
     }
 
@@ -298,30 +302,22 @@ void space(void)
     return;
 
   case STATE_F_V:
-    if (object_type == OBJECT_TYPE_NAVIGATION)
-    {
+    if (object_type == OBJECT_TYPE_NAVIGATION) {
       int v = accumulate_integer();
 
-      if (!v)
-      {
+      if (!v) {
         throw("Vertex indices cannot be zero.");
-      }
-      else if (v < 0)
-      {
+      } else if (v < 0) {
         v += number_of_vertices;
 
-        if (v < 0)
-        {
+        if (v < 0) {
           throw("Face references nonexistent vertex.");
         }
-      }
-      else
-      {
+      } else {
         v--;
       }
 
-      if ((size_t)v >= number_of_vertices)
-      {
+      if ((size_t)v >= number_of_vertices) {
         throw("Face references nonexistent vertex.");
       }
 
@@ -331,35 +327,26 @@ void space(void)
     }
     break;
 
-  case STATE_F_VT:
-  {
+  case STATE_F_VT: {
     int vt = accumulate_integer();
 
-    if (!vt)
-    {
+    if (!vt) {
       throw("Texture coordinate indices cannot be zero.");
-    }
-    else if (vt < 0)
-    {
+    } else if (vt < 0) {
       vt += number_of_texture_coordinates;
 
-      if (vt < 0)
-      {
+      if (vt < 0) {
         throw("Face references nonexistent texture coordinate.");
       }
-    }
-    else
-    {
+    } else {
       vt--;
     }
 
-    if ((size_t)vt >= number_of_texture_coordinates)
-    {
+    if ((size_t)vt >= number_of_texture_coordinates) {
       throw("Face references nonexistent texture coordinate.");
     }
 
-    if (object_type == OBJECT_TYPE_GRAPHICAL)
-    {
+    if (object_type == OBJECT_TYPE_GRAPHICAL) {
       index_vt[number_of_indices - 1] = vt;
     }
 
