@@ -2,6 +2,8 @@
 
 #define REOPEN_AS_READ_ONLY_BINARY_OR_THROW_H
 
+#include <stdio.h>
+
 /**
  * Re-opens a file as read-only binary, halting execution with an error message
  * should the operation fail.

@@ -2,6 +2,8 @@
 
 #define WRITE_OR_THROW_H
 
+#include <stdio.h>
+
 /**
  * Writes a string to a file, halting execution with an error message should the
  * operation fail.

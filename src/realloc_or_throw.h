@@ -2,6 +2,8 @@
 
 #define REALLOC_OR_THROW_H
 
+#include <stddef.h>
+
 /**
  * Resizes previously allocated memory, halting execution with an error message
  * should the operation fail.

@@ -2,6 +2,8 @@
 
 #define IMPORTED_MATERIALS_H
 
+#include <stddef.h>
+
 /**
  * The names of the materials imported.
  */
