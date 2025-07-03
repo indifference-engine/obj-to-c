@@ -110,15 +110,15 @@ void end_object(void) {
            first_face_index++) {
         const size_t first_face_length = face_lengths[first_face_index];
 
-        size_t first_previous_index =
-            index_v[first_index + first_face_length - 1];
+        size_t first_previous_index = index_v[first_index];
 
         for (size_t first_edge_index = 0; first_edge_index < first_face_length;
              first_edge_index++) {
           numbers_of_neighboring_edges[first_index + first_edge_index] = 0;
 
           const size_t first_next_index =
-              index_v[first_index + first_edge_index];
+              index_v[first_index +
+                      ((first_edge_index + 1) % first_face_length)];
 
           float accumulated_normal[] = {normals[first_face_index * 3],
                                         normals[first_face_index * 3 + 1],
@@ -200,13 +200,15 @@ void end_object(void) {
 
         for (size_t first_edge_index = 0; first_edge_index < first_face_length;
              first_edge_index++) {
+
+          const int next_offset =
+              3 * (first_index + ((first_edge_index + 1) % first_face_length));
+
           cross_product(
               edge_exit_normals + 3 * (first_index + first_edge_index),
-              edge_exit_normals + 3 * (first_index + ((first_edge_index + 1) %
-                                                      first_face_length)),
-              vertex_up_normals + 3 * (first_index + first_edge_index));
-          normalize(vertex_up_normals + 3 * (first_index + first_edge_index),
-                    vertex_up_normals + 3 * (first_index + first_edge_index));
+              edge_exit_normals + next_offset, vertex_up_normals + next_offset);
+          normalize(vertex_up_normals + next_offset,
+                    vertex_up_normals + next_offset);
         }
 
         first_index += first_face_length;
