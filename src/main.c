@@ -16,15 +16,12 @@
 #include <stdlib.h>
 
 int main(const int argc, const char *const *const argv) {
-  (void)(argc);
-  (void)(argv);
-
-  if (argc < 72) {
+  if (argc < 76) {
     throw(
-        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%"
-        "s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%"
-        "s%s%s%s",
-        "At least 67 arguments are required:\n",
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s"
+        "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s"
+        "%s%s%s%s%s%s%s%s%s%s",
+        "At least 75 arguments are required:\n",
         "• A prefix applied to any object names.\n",
         "• A prefix applied to any non-navigation material names.\n",
         "• A prefix applied to any navigation material names.\n",
@@ -111,6 +108,7 @@ int main(const int argc, const char *const *const argv) {
         "FACE_VERTEX_LOCATION_LIST_NAME(...), NORMAL_LIST_MACRO_NAME(...), "
         "FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...), "
         "FACE_EDGE_NORMAL_LIST_MACRO_NAME(...), "
+        "FACE_EDGE_COEFFICIENT_LIST_MACRO_NAME(...), "
         "FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...), "
         "NEIGHBOR_COUNT_LIST_MACRO_NAME(...), "
         "FACE_EDGE_OFFSET_LIST_MACRO_NAME(...), "
@@ -207,6 +205,11 @@ int main(const int argc, const char *const *const argv) {
         "face (e.g. "
         "FACE_EDGE_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), "
         "NORMAL_LIST_MACRO_NAME(...), ...).\n",
+        "• The name of a macro which declares a list of edge coefficients for "
+        "each face (e.g. "
+        "FACE_EDGE_COEFFICIENT_LIST_MACRO_NAME(",
+        "COEFFICIENT_LIST_MACRO_NAME(...),"
+        "COEFFICIENT_LIST_MACRO_NAME(...), ...).\n",
         "• The name of a macro which declares a list of vertex up normals for "
         "each face (e.g. "
         "FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...), "
@@ -262,6 +265,12 @@ int main(const int argc, const char *const *const argv) {
         "...)).\n",
         "• The name of a macro which declares a material import (e.g. "
         "MATERIAL_IMPORT_MACRO_NAME(material_name)).\n",
+        "• The name of a macro which declares a list of coefficients (e.g. "
+        "COEFFICIENT_LIST_MACRO_NAME("
+        "COEFFICIENT_MACRO_NAME(0.337f, -0.7538f, -0.5641f), "
+        "COEFFICIENT_MACRO_NAME(-0.6719f, 0.6248f, -0.3977f), ...)).\n",
+        "• The name of a macro which declares a coefficient (e.g. "
+        "COEFFICIENT_MACRO_NAME(0.337f, -0.7538f, -0.5641f)).\n",
         "• Any number of include paths.\n");
   }
 
@@ -321,24 +330,27 @@ int main(const int argc, const char *const *const argv) {
   normal_list_macro_name = argv[54];
   face_edge_exit_normal_list_macro_name = argv[55];
   face_edge_normal_list_macro_name = argv[56];
-  face_vertex_up_normal_list_macro_name = argv[57];
-  normal_macro_name = argv[58];
-  neighbor_count_list_list_macro_name = argv[59];
-  neighbor_count_list_macro_name = argv[60];
-  neighbor_count_macro_name = argv[61];
-  face_edge_offset_list_macro_name = argv[62];
-  face_edge_neighbor_offset_list_macro_name = argv[63];
-  offset_list_list_macro_name = argv[64];
-  offset_list_macro_name = argv[65];
-  offset_macro_name = argv[66];
-  face_index_list_list_list_macro_name = argv[67];
-  face_index_list_list_macro_name = argv[68];
-  face_edge_neighbor_face_index_list_macro_name = argv[69];
-  face_index_macro_name = argv[70];
-  material_list_macro_name = argv[71];
-  material_import_macro_name = argv[72];
-  include_paths = argv + 73;
-  number_of_include_paths = argc - 73;
+  face_edge_coefficient_list_macro_name = argv[57];
+  face_vertex_up_normal_list_macro_name = argv[58];
+  normal_macro_name = argv[59];
+  neighbor_count_list_list_macro_name = argv[60];
+  neighbor_count_list_macro_name = argv[61];
+  neighbor_count_macro_name = argv[62];
+  face_edge_offset_list_macro_name = argv[63];
+  face_edge_neighbor_offset_list_macro_name = argv[64];
+  offset_list_list_macro_name = argv[65];
+  offset_list_macro_name = argv[66];
+  offset_macro_name = argv[67];
+  face_index_list_list_list_macro_name = argv[68];
+  face_index_list_list_macro_name = argv[69];
+  face_edge_neighbor_face_index_list_macro_name = argv[70];
+  face_index_macro_name = argv[71];
+  material_list_macro_name = argv[72];
+  material_import_macro_name = argv[73];
+  coefficient_list_macro_name = argv[74];
+  coefficient_macro_name = argv[75];
+  include_paths = argv + 76;
+  number_of_include_paths = argc - 76;
 
   reopen_as_read_only_binary_or_throw(stdin);
   reopen_as_write_only_binary_or_throw(stdout);

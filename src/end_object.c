@@ -3,6 +3,7 @@
 #include "cross_product.h"
 #include "faces.h"
 #include "indices.h"
+#include "magnitude.h"
 #include "malloc_or_throw.h"
 #include "materials.h"
 #include "normal_between.h"
@@ -10,6 +11,8 @@
 #include "object_name.h"
 #include "object_type.h"
 #include "realloc_or_throw.h"
+#include "subtract.h"
+#include "throw.h"
 #include "vertices.h"
 #include "write_or_throw.h"
 #include "write_pass.h"
@@ -69,6 +72,8 @@ void end_object(void) {
       float *const edge_exit_normals =
           malloc_or_throw(sizeof(float) * number_of_indices * 3);
       float *const edge_normals =
+          malloc_or_throw(sizeof(float) * number_of_indices * 3);
+      float *const edge_coefficients =
           malloc_or_throw(sizeof(float) * number_of_indices * 3);
       float *const vertex_up_normals =
           malloc_or_throw(sizeof(float) * number_of_indices * 3);
@@ -181,8 +186,23 @@ void end_object(void) {
                                     vertex_y[first_next_index],
                                     vertex_z[first_next_index]};
 
-          float edge_normal[3];
-          normal_between(previous_xyz, next_xyz, edge_normal);
+          float edge_delta[3];
+          subtract(next_xyz, previous_xyz, edge_delta);
+
+          const float edge_length = magnitude(edge_delta);
+
+          if (edge_length < 0.001f) {
+            throw(
+                "Failed to normalize a vector as its magnitude is too small.");
+          }
+
+          const float edge_length_reciprocal = 1.0f / edge_length;
+
+          float edge_normal[3] = {
+              edge_delta[0] * edge_length_reciprocal,
+              edge_delta[1] * edge_length_reciprocal,
+              edge_delta[2] * edge_length_reciprocal,
+          };
 
           cross_product(edge_normal, accumulated_normal,
                         edge_exit_normals +
@@ -194,6 +214,15 @@ void end_object(void) {
                         edge_normals + (first_index + first_edge_index) * 3);
           normalize(edge_normals + (first_index + first_edge_index) * 3,
                     edge_normals + (first_index + first_edge_index) * 3);
+
+          edge_coefficients[(first_index + first_edge_index) * 3] =
+              edge_normal[0] * edge_length_reciprocal;
+
+          edge_coefficients[(first_index + first_edge_index) * 3 + 1] =
+              edge_normal[1] * edge_length_reciprocal;
+
+          edge_coefficients[(first_index + first_edge_index) * 3 + 2] =
+              edge_normal[2] * edge_length_reciprocal;
 
           first_previous_index = first_next_index;
         }
@@ -366,6 +395,35 @@ void end_object(void) {
       }
 
       write_or_throw(stdout, "),\n  %s(",
+                     face_edge_coefficient_list_macro_name);
+
+      index = 0;
+
+      for (size_t face_index = 0; face_index < number_of_faces; face_index++) {
+        if (face_index) {
+          write_or_throw(stdout, ", ");
+        }
+
+        write_or_throw(stdout, "%s(", coefficient_list_macro_name);
+
+        const size_t face_length = face_lengths[face_index];
+
+        for (size_t edge_index = 0; edge_index < face_length; edge_index++) {
+          if (edge_index) {
+            write_or_throw(stdout, ", ");
+          }
+
+          write_or_throw(stdout, "%s(%f, %f, %f)", coefficient_list_macro_name,
+                         edge_coefficients[index], edge_coefficients[index + 1],
+                         edge_coefficients[index + 2]);
+
+          index += 3;
+        }
+
+        write_or_throw(stdout, ")");
+      }
+
+      write_or_throw(stdout, "),\n  %s(",
                      face_vertex_up_normal_list_macro_name);
 
       index = 0;
@@ -501,6 +559,7 @@ void end_object(void) {
       free(vertex_up_normals);
       free(edge_exit_normals);
       free(edge_normals);
+      free(edge_coefficients);
       free(numbers_of_neighboring_edges);
 
       free(normals);

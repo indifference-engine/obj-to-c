@@ -182,6 +182,7 @@ extern const char *blended_draw_call_macro_name;
  * NORMAL_LIST_MACRO_NAME(...),
  * FACE_EDGE_EXIT_NORMAL_LIST_MACRO_NAME(...),
  * FACE_EDGE_NORMAL_LIST_MACRO_NAME(...),
+ * FACE_EDGE_COEFFICIENT_LIST_MACRO_NAME(...),
  * FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(...),
  * NEIGHBOR_COUNT_LIST_MACRO_NAME(...),
  * FACE_EDGE_OFFSET_LIST_MACRO_NAME(...),
@@ -397,6 +398,13 @@ extern const char *face_edge_exit_normal_list_macro_name;
 extern const char *face_edge_normal_list_macro_name;
 
 /**
+ * The name of a macro which declares a list of edge coefficients for each face
+ * (e.g. FACE_EDGE_NORMAL_LIST_MACRO_NAME(COEFFICIENT_LIST_MACRO_NAME(...),
+ * COEFFICIENT_LIST_MACRO_NAME(...), ...).
+ */
+extern const char *face_edge_coefficient_list_macro_name;
+
+/**
  * The name of a macro which declares a list of vertex up normals for each face
  * (e.g. FACE_VERTEX_UP_NORMAL_LIST_MACRO_NAME(NORMAL_LIST_MACRO_NAME(...),
  * NORMAL_LIST_MACRO_NAME(...), ...).
@@ -507,6 +515,20 @@ extern const char *material_list_macro_name;
  * MATERIAL_IMPORT_MACRO_NAME(material_name)).
  */
 extern const char *material_import_macro_name;
+
+/**
+ * The name of a macro which declares a list of coefficients (e.g.
+ * COEFFICIENT_LIST_MACRO_NAME(
+ * COEFFICIENT_MACRO_NAME(0.337f, -0.7538f, -0.5641f),
+ * COEFFICIENT_MACRO_NAME(-0.6719f, 0.6248f, -0.3977f), ...)).
+ */
+extern const char *coefficient_list_macro_name;
+
+/**
+ * The name of a macro which declares a coefficient
+ * (e.g. COEFFICIENT_MACRO_NAME(0.337f, -0.7538f, -0.5641f)).
+ */
+extern const char *coefficient_macro_name;
 
 /**
  * The include paths to emit.
